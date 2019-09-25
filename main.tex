@@ -14,12 +14,12 @@
 \section{Introduction}
 
 \citep{taylor2001specification} world city network driven by interactions between firms/behavior of firms
-
 \citep{martinus2018global} combination of different types of proximity in inter-urban firm networks: economic, sociocultural, geopolitical - implies spatial and non-spatial 
+\citep{pan2017mapping} different types of linkages: e.g. services here, but not only. All sectors should be taken into account first.
 
-\citep{pan2017mapping} different types of linkages: e.g. services here
+The originality of the present paper is to approach these issues within the system of cities framework \citep{berry1964cities}, where the position and dynamics of cities in the socio-economic world-wide space can be considered by their interactions with other cities \citep{pumain1997pour}. We examine the interactions of european cities within firm linkages. 
 
-
+% We compare the model to real data on transnational firm networks defined by ownership links at city-level, by the means of the Bureau Van Dijk's \emph {FAME} database with a graph theory application. 
 
 \section{Model}
 
@@ -78,6 +78,7 @@ The city network evolves at discrete time steps the following way:
     \end{equation}
     
     \item The ``geopolitical/sociocultural'' distance remains abstract and should be parametrized (see setup below) and estimated in the data-driven setting.
+    \item \textcolor{red} TODO the path dependency $w_{ij}$ could (or should ?) be decomposed into in/out degree for origin and destination ? (then stronger self-reinforcment effect)
     \end{itemize}
 \end{enumerate}
 
@@ -92,13 +93,36 @@ Let consider the simplest synthetic setup possible:
     % from the GHS database : scaling GDP - pop ~ 1.1 for Europe, rank size 0.94 -> 1.034 : take 1.1 to simplify - can be paramterized ?
     \item country boundaries are constructed to obtain an approximately equal coverage of the space for a fixed number of countries, what remains consistent with non-correlated city sizes at the scale of the countries as our cities are randomly distributed in space \citep{simini2019testing} (\textit{Note: on this point this may be realistic if staying at a continental level, although we should include realistic size of countries; this paper is surely wrong when changing the dataset used and the scale of analysis, working at the scale of Mega-city regions e.g.}). Therefore, we do a basic spatial k-means clustering with $C = 20$ countries and attribute the country accordingly.
     \item firm sector structure: 
+    \begin{itemize}
+        \item random probabilities
+        \item uniform: then the term of proximity is cancelled, no interest
+        \item function of size: larger cities are more diverse, larger cities have more knowledge-based sectors. Test 1: log-normal with slightly increasing width and shifting mode.
+        % mode of log normal is exp(mu - sigma ^ 2) ; variance is [exp(sigma^2) - 1]*exp(2 mu + sigma ^ 2)
+        % when the pdf is 1 / (x sigma sqrt(2 pi)) * exp (- (ln x - mu) ^ 2 / 2 sigma^2 )
+        % -> for largest city stddev = sqrt(variance) = fields / 2 ; for smallest sigma = 1 / nfields
+        %  ==> solving for mu and sigma with linear mode and variance as a function of log(E_i)
+        % => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X)-1) - ln(e_i)
+        % => mu = sigma^2 + ln(e_i)
+        %    ~ somehow dirty and not sure that most of the distrib for highest values is within [0,1]
+    \end{itemize}
 \end{itemize}
 
+! links depend on the sectors: cobb douglas for sector proximity should depend on sector composition ? or several functions ?
 
 \subsection{Model indicators}
 
+\textit{find some indicators for polarization : when big cities take everything or when local clusters organize}
+
+Network indicators:
+
 \begin{itemize}
     \item weighted degree distribution (\textit{if it is fat-tailed, log-log power law exponent and adjusted r-squared})
+\end{itemize}
+
+Sector structure indicators:
+
+\begin{itemize}
+    \item sector diversity (Herfindhal ?) 
 \end{itemize}
 
 
