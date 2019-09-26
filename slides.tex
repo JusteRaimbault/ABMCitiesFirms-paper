@@ -101,7 +101,7 @@ Towards a generative model of urban firm networks
 
 \sframe{Model rationale}{
 
-\item Cities are defined by their GDP and their profile regarding the proportion of firms in the different sectors. Links between cities are created in an iterative way, taking into account:
+$\rightarrow$ Cities are defined by their GDP and their profile regarding the proportion of firms in the different sectors. Links between cities are created in an iterative way, taking into account:
 
 \medskip
 
@@ -197,13 +197,13 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 \medskip
 
-\footnotesize
+\tiny
 
 \begin{enumerate}
-    \item Generate $N=700$ cities with size following a power law $E_i \eq E_0 \cdot i^{-\alpha}$ with $E_0 \eq 10^{11}$ and $\alpha=1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
+    \item Generate $N=700$ cities with size following a power law $E_i \= E_0 \cdot i^{-\alpha}$ with $E_0 \= 10^{11}$ and $\alpha=1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
     \item Distribute them randomly in space (\cite{simini2019testing} vs \cite{banos2011christaller})
     \item Create countries with k-means clustering ($C \eq 30$)
-    \item 
+    \item Distribute sectors such that (i) smaller cities are more specialized and (ii) larger cities are more knowledge-based, with a one dimensional axis to position sectors $1/K \ldots 1$ where the density $f\left(k\right)$ follows a log-normal with $\left(\mu,\sigma\right)$ such that $\sqrt{\Var f} = K/2$ for the largest, $\sqrt{\Var f} = 1/K$ for the smallest
 \end{enumerate}
 
  
@@ -221,8 +221,12 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 \end{itemize}
 
 % for now no dynamics of cities
-	\item Current implementation: only network dynamics
 
+\begin{itemize}
+	\item Current experiment: only network dynamics (short time scale)
+	\item One-factor sampling with 100 repetitions to assess statistical properties
+	\item Grid sampling with 20 repetitions for model behavior (2years 5month of computation)
+\end{itemize}
 
 }
 
