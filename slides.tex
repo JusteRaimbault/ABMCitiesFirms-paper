@@ -30,6 +30,7 @@ General framework:
 
 \begin{itemize}
     \item Cities as maximisation of socio-economic interactions 
+    % que veux tu dire par maximisation ? je mettrais plutot "foster socio-eco"
     \item Network economies \cite{sassen1991global} \cite{castells1996information}
     \item World city network driven by interactions between firms \cite{taylor2001specification} \cite{martinus2018global}
     \item Asymmetrical spatial interactions -- different relative position of cities
@@ -45,8 +46,9 @@ General framework:
 \begin{itemize}
     \item Evolutionary Theory of Urban Systems \cite{pumain1997pour} \cite{pumain2006villes}
     \item Adaptive cycles and diffusion on innovation \cite{Hagerstrand1968Innovation}
-    \item Path dependence \cite{martin2006path}
-    \item Selection and emerging structures of systems
+    \item Path dependence \cite{martin2006path} \cite{pumain2012urban}
+    \item Selection and emerging structures of systems % pas clair
+    \item Evolutionary models for urban systems dynamics: \cite{favaro2011gibrat} \cite{cottineau2015growing} \cite{schmitt2015half} \cite{raimbault2018indirect} \cite{raimbault2018calibration}
 \end{itemize}
 
 }
@@ -67,6 +69,7 @@ General framework:
 }
 
 % si besoin je peux rajouter d'autres exemples sur le UK ou carrement des trucs de Celine sur les reseaux de firmes
+% oui ca serait cool des trucs a toi sur le UK
 
 \sframe{Urban Firm linkages and geo-economic processes}{
 
@@ -79,7 +82,9 @@ Assumptions
     \item Macroeconomic exogenous chocs and resilience of urban systems 
 \end{itemize}
 
-How can we approach geographical and economic processes within urban networks of firms with a generative model? 
+\bigskip
+
+How can we capture geographical and economic processes within urban networks of firms with a generative model? 
 
 }
 \sframe{Towards a generative model of urban firm networks}{
@@ -96,7 +101,10 @@ Towards a generative model of urban firm networks
 
 \sframe{Model rationale}{
 
-\item Cities are defined by their profile regarding the proportion of firms in the different sectors. Links between cities are created in an iterative way, taking into account:
+\item Cities are defined by their GDP and their profile regarding the proportion of firms in the different sectors. Links between cities are created in an iterative way, taking into account:
+
+\medskip
+
     \begin{itemize}
         \item geographical proximity (distance or effective accessibility)
         \item geopolitical proximity (belonging to the same country or single market $\rightarrow$ application to Brexit)
@@ -106,19 +114,20 @@ Towards a generative model of urban firm networks
     \end{itemize}
 
 % j'ai mis ca plus pour moi,enfin pour moi c'est plus clair pour la presentation
+%  => oui c'est exactement ce quil fallait mettre !
 
 }
 
 
 \sframe{Formalization}{
 
-Cities characterized by economic size $E_i$ (GDP) and economic structure $s_{ik}$
+Cities characterized by economic size $E_i$ (GDP) and economic structure $S_{ik}$ (probability distribution of firms within $K$ sectors)
 
 \bigskip
 
 Starting from an initial network, at each time step:
 \begin{enumerate}
-    \item Evolve cities with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
+    \item Evolve city sizes $E_i(t+1) = f(E_j(t))$ with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
     \item Add a fixed number of links randomly, following a probability function of sizes, sector proximity, and geographical and socio-cultural proximity
 \end{enumerate}
 
@@ -129,29 +138,43 @@ Starting from an initial network, at each time step:
 
 Probability for a new link follows a generalized Cobb-Douglas function
 
-\begin{equation}
-     p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_D \cdot d_{ij}\right) \cdot \exp \left(- \gamma_G \cdot g_{ij}\right)
-\end{equation}
+\medskip
+
+\[
+     p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
+\]
+
+\medskip
+
+where $E=\sum_k E_k$, $W = \sum_{i,j} w_{ij}$, $s$ is cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ socio-cultural distance
+
+\medskip
+
+\textbf{Model parameters: } $\gamma_F, \gamma_T, \gamma_W, \gamma_S, \gamma_D = \frac{1}{d_G}, \gamma_G = \frac{1}{d_G}$
 
 }
 
 \sframe{Model indicators}{
 
-Geographical indicators:
+\textbf{Geographical indicators:}
 
 \begin{itemize}
-    \item Internationalisation
-    \item Metropolisation
-    \item Regionalisation
-    \item Specialisation
+    \item Internationalisation (modularity of countries in the network)
+    \item Metropolisation (correlation between weighted degree and city size)
+    \item Regionalisation (correlation between length and flow of links, stratified by size of extremities)
+    \item Specialisation (correlation between sector proximity and flow of links, stratified by size of extremities)
 \end{itemize}
 
 \bigskip
 
-Network and flows indicators:
+\textbf{Network and flows indicators:}
+
+%  networkModularity, networkAvgCommunitySize, networkDegreeHierarchy, networkAvgDegree, networkDegreeEntropy, flowsHierarchy, flowsEntropy, rhoDegreeSize, rhoFlowDistancePos, rhoFlowDistance
 
 \begin{itemize}
-    \item 
+    \item Louvain modularity, community sizes
+    \item Degree and flows distribution (average, hierarchy, entropy)
+    \item Correlations (degree-size, flow-distance)
 \end{itemize}
 
 }
@@ -161,28 +184,45 @@ Network and flows indicators:
 % la ou avant il faut surement expliquer que c'est pas totalement synthetique, que tu pars de X villes europeennes de plus de 50 000 habitants (pour les plus nuls comme moi)
 % si c'est completement synthetiques, l'histoire des villes europeenes c'est pour avoir les ordres de grandeur de la hierarchie et du nombre de villes, mais c'est pas parametrise sur des vraies donnees - mais oui ca ca sera explique dans comment construire le systeme de ville synthetique.
 
-% ok desolee je n'avais pas bien compris
+% ok desolee je n'avais pas bien compris 
+% javais mal explique ^-^
  
-\textit{Following \cite{raimbault2018space}, geosimulation models must be studied within synthetic controllable urban contexts (spatial sensitivity)}
+\justify
+ 
+\textit{Following \cite{raimbault2018space}, geosimulation models must be studied within synthetic controllable urban contexts in order to (i) understand intrinsic behavior of the model and robust qualitative stylized facts; (ii) study the sensitivity to the spatial configuration}
 
 \bigskip
 
+Generation of a continent-scale urban system with stylized order of magnitude corresponding to Europe:
 
+\medskip
+
+\footnotesize
+
+\begin{enumerate}
+    \item Generate $N=700$ cities with size following a power law $E_i \eq E_0 \cdot i^{-\alpha}$ with $E_0 \eq 10^{11}$ and $\alpha=1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
+    \item Distribute them randomly in space (\cite{simini2019testing} vs \cite{banos2011christaller})
+    \item Create countries with k-means clustering ($C \eq 30$)
+    \item 
+\end{enumerate}
 
  
 }
 
 \section{Results}
 
-\sframe{Implementation}{
+\sframe{Implementation and experiments}{
 
-% for now no dynamics of cities
+
 
 \begin{itemize}
 	\item Model implemented in NetLogo (good compromise interactivity / ergonomy), with fast data structures (matrix/table extensions)
-	\item Integrated into OpenMOLE \cite{reuillon2013openmole} for model exploration
-	\item Current implementation: only network dynamics 
+	\item Integrated seamlessly into OpenMOLE \cite{reuillon2013openmole} for model exploration (NetLogoTask)
 \end{itemize}
+
+% for now no dynamics of cities
+	\item Current implementation: only network dynamics
+
 
 }
 
@@ -197,7 +237,7 @@ Network and flows indicators:
 
 	\medskip
 
-	\textit{Networks at $t=1500$, for default parameters values and high gravity (left) and low gravity (right)}
+	\textit{Networks at $t = 1500$, for default parameters values and high gravity (left) and low gravity (right)}
 
 }
 
@@ -238,7 +278,25 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
 
 \sframe{Grid exploration}{
 
+    \centering
+
+    \includegraphics[width=\textwidth]{figures/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
 }
+
+\sframe{Grid exploration}{
+
+    \centering
+
+    \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+}
+
+\sframe{Grid exploration}{
+
+    \centering
+
+    \includegraphics[width=\textwidth]{figures/rhoFlowDistance_countryGravityDecay2100_gammaDestination2_facetwrapgammaOrigin_colorgammaSectors.png}
+}
+
 
 % other experiments ? PSE on correlations ?
 
