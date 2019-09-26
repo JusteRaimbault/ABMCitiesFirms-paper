@@ -30,7 +30,7 @@ Cities as maximisation of socio-economic interactions
 
 Network economies \cite{sassen1991global} \cite{castells1996information}
 
-World city network driven by interactions between firms (Taylor, 2001; Martinus and Sigler, 2018)
+World city network driven by interactions between firms \cite{taylor2001specification} \cite{martinus2018global}
 
 Asymmetrical spatial interactions -- different relative position of cities
 
@@ -49,7 +49,6 @@ Selection
 
 Emergent structures
 
-% discussion theorie Denise
 
 }
 
@@ -120,7 +119,7 @@ Starting from an initial network, at each time step:
 Probability for a new link follows a generalized Cobb-Douglas function
 
 \begin{equation}
-     p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s(S_{ik},S_{jk})^{\gamma_S} \cdot \exp \left(- \gamma_D \cdot d_{ij}\right) \cdot \exp \left(- \gamma_G \cdot g_{ij}\right)
+     p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_D \cdot d_{ij}\right) \cdot \exp \left(- \gamma_G \cdot g_{ij}\right)
 \end{equation}
 
 }
@@ -147,7 +146,12 @@ Network and flows indicators
 % la ou avant il faut surement expliquer que c'est pas totalement synthetique, que tu pars de X villes europeennes de plus de 50 000 habitants (pour les plus nuls comme moi)
 % si c'est completement synthetiques, l'histoire des villes europeenes c'est pour avoir les ordres de grandeur de la hierarchie et du nombre de villes, mais c'est pas parametrise sur des vraies donnees - mais oui ca ca sera explique dans comment construire le systeme de ville synthetique.
  
- 
+\textit{Following \cite{raimbault2018space}, geosimulation models must be studied within synthetic controllable urban contexts (spatial sensitivity)}
+
+\bigskip
+
+
+
  
 }
 
@@ -157,6 +161,11 @@ Network and flows indicators
 
 % for now no dynamics of cities
 
+\begin{itemize}
+	\item Model implemented in NetLogo (good compromise interactivity / ergonomy), with fast data structures (matrix/table extensions)
+	\item Integrated into OpenMOLE \cite{reuillon2013openmole} for model exploration
+	\item Current implementation: only network dynamics 
+\end{itemize}
 
 }
 
@@ -169,14 +178,23 @@ Network and flows indicators
     \includegraphics[width=0.48\textwidth]{figures/ex_alleq-highgravity_seed-12102_t1500.png}\hspace{0.1cm}
     \includegraphics[width=0.48\textwidth]{figures/ex_alleq-lowgravity_seed-12102_t1500.png}
 
+	\medskip
+
+	\textit{Networks at $t=1500$, for default parameters values and high gravity (left) and low gravity (right)}
+
 }
 
 
 \sframe{Statistical convergence}{
 
-Good convergence for most indicators: average sharpes ratios on a one-factor sampling above 5 (except for metropolization index $\simeq 1.5$)
+$\rightarrow$ Good convergence for most indicators: average sharpes ratios on a one-factor sampling above 5 (except for metropolization index $\simeq 1.5$)
 
 % + histograms
+
+\bigskip
+
+
+
 
 }
 
@@ -224,11 +242,19 @@ Good convergence for most indicators: average sharpes ratios on a one-factor sam
 
 \sframe{Discussion}{
 
+\textbf{Practical application}
+
+
+
+\textbf{Developments}
+
 
 }
 
 
 \sframe{Conclusion}{
+
+$\rightarrow$ A simulation model to understand processes of network emergence
 
 $\rightarrow$ 
 
@@ -237,9 +263,13 @@ $\rightarrow$
 \bigskip
 
 
-\textbf{Open repository} at
+\textbf{Open repository for model and results at}
 
 \texttt{https://github.com/JusteRaimbault/ABMCitiesFirms}
+
+\textbf{Simulation data at}
+
+\texttt{}% dataverse
 
 \bigskip
 
