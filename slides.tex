@@ -44,8 +44,8 @@ General framework:
 
 \begin{itemize}
     \item Evolutionary Theory of Urban Systems \cite{pumain1997pour} \cite{pumain2006villes}
-    \item Adaptive cycles and diffusion on innovation (H{\"a}gerstrand, 1973) 
-    \item Path dependence \cite{martinsunley2006information}
+    \item Adaptive cycles and diffusion on innovation \cite{Hagerstrand1968Innovation}
+    \item Path dependence \cite{martin2006path}
     \item Selection and emerging structures of systems
 \end{itemize}
 
@@ -62,7 +62,7 @@ General framework:
  \includegraphics[width=0.7\textwidth]{figures/Figure1.png}
  \end{center}
  
-  \textit{Central and Eastern European cities within ownership links of firms in 2013.}
+  \textit{Central and Eastern European cities within ownership links of firms in 2013}
 
 }
 
@@ -96,6 +96,17 @@ Towards a generative model of urban firm networks
 
 \sframe{Model rationale}{
 
+\item Cities are defined by their profile regarding the proportion of firms in the different sectors. Links between cities are created in an iterative way, taking into account:
+    \begin{itemize}
+        \item geographical proximity (distance or effective accessibility)
+        \item geopolitical proximity (belonging to the same country or single market $\rightarrow$ application to Brexit)
+        \item city size (economic size as GDP) 
+        \item economic similarity (e.g. cosine distance between sector proximity as done in \cite{2019arXiv190505106C}
+        \item previous linkages 
+    \end{itemize}
+
+% j'ai mis ca plus pour moi,enfin pour moi c'est plus clair pour la presentation
+
 }
 
 
@@ -108,7 +119,7 @@ Cities characterized by economic size $E_i$ (GDP) and economic structure $s_{ik}
 Starting from an initial network, at each time step:
 \begin{enumerate}
     \item Evolve cities with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
-    \item Add a fixed number of links randomly, following a probability function of sizes, sector proximity, and geographical and socio-cultural proximities
+    \item Add a fixed number of links randomly, following a probability function of sizes, sector proximity, and geographical and socio-cultural proximity
 \end{enumerate}
 
 }
