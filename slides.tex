@@ -29,8 +29,9 @@ October 2nd 2019
 General framework:
 
 \begin{itemize}
-    \item Cities as maximisation of socio-economic interactions 
-    % que veux tu dire par maximisation ? je mettrais plutot "foster socio-eco"
+    \item Cities as cross-overs of socio-economic interactions 
+    % que veux tu dire par maximisation ? je mettrais plutot "foster socio-eco" 
+    % c'est un terme utilisé par les économistes pour dire que c'est la ou tout converge quoi, mais c'est mieux de changer peut-être car ca fait allusion à l'offre et la demande..et a la maximisation du profit etc..mais j'avais vu ca chez Denise une fois 
     \item Network economies \cite{sassen1991global} \cite{castells1996information}
     \item World city network driven by interactions between firms \cite{taylor2001specification} \cite{martinus2018global}
     \item Asymmetrical spatial interactions -- different relative position of cities
@@ -55,11 +56,6 @@ General framework:
 
 \sframe{Firm linkages structuring urban systems}{
 
-% examples de resultats pour l'Europe Centrale et Orientale
-
-
-
-
  \begin{center}
  \includegraphics[width=0.7\textwidth]{figures/Figure1.png}
  \end{center}
@@ -68,8 +64,17 @@ General framework:
 
 }
 
-% si besoin je peux rajouter d'autres exemples sur le UK ou carrement des trucs de Celine sur les reseaux de firmes
-% oui ca serait cool des trucs a toi sur le UK
+\sframe{Firm linkages structuring urban systems}{
+
+ \begin{center}
+ \includegraphics[width=0.7\textwidth]{figures/Figure2.png}
+ \end{center}
+ 
+  \textit{UK cities within transnational ownership links of firms in 2016}
+
+}
+
+% bon je ne sais pas si c'est utile mais au moins ca fait un exempple en plus (bon ok on ne voit rien)
 
 \sframe{Urban Firm linkages and geo-economic processes}{
 
@@ -92,7 +97,7 @@ How can we capture geographical and economic processes within urban networks of 
 Towards a generative model of urban firm networks
 
 % research question / objective
-% 
+% ???
 
 
 }
@@ -115,7 +120,7 @@ $\rightarrow$ Cities are defined by their GDP and their profile regarding the pr
 
 % j'ai mis ca plus pour moi,enfin pour moi c'est plus clair pour la presentation
 %  => oui c'est exactement ce quil fallait mettre !
-
+% question a la con, mais est-ce que ce n'est pas tautolgique de dire que les villes et les liens sont definis par le GDP, ou le lien est bien defini par le GDP des noeuds.
 }
 
 
@@ -123,11 +128,17 @@ $\rightarrow$ Cities are defined by their GDP and their profile regarding the pr
 
 Cities characterized by economic size $E_i$ (GDP) and economic structure $S_{ik}$ (probability distribution of firms within $K$ sectors)
 
+% excuses-moi, mais je vais commencer a partir de la a te demander de m'expliquer, ca va te paraitre evident je suis desolee, mais c'est pour que je ne trompe pas en presentant
+% a quoi correspond le i et j? En gros c'est ville i, puis la ville j? Le k c'est bien le nombre de secteurs? 
+
+
+
 \bigskip
 
 Starting from an initial network, at each time step:
 \begin{enumerate}
     \item Evolve city sizes $E_i(t+1) = f(E_j(t))$ with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
+    % ici le = n'apparait pas dans la formule. le t c'est bien le temps?
     \item Add a fixed number of links randomly, following a probability function of sizes, sector proximity, and geographical and socio-cultural proximity
 \end{enumerate}
 
@@ -143,6 +154,11 @@ Probability for a new link follows a generalized Cobb-Douglas function
 \[
      p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
 \]
+
+% idem ici, pij c'est la probabilite d'un lien entre i et j oui?
+% les gamma c'est les parametres du modele et Ei c'est le gdp de la ville et pourquoi c'est sur E, ca vient de la formule du modele gravitaire oui?
+% Wij c'est quoi? il me semble que tu as dit que c'est le lien du passé et Sik c'est la structure economique defini par le cosine similarity
+% comment est definie le gij donc la distance socio-culturelle?
 
 \medskip
 
@@ -269,6 +285,10 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
     \includegraphics[width=0.48\textwidth]{figures/rhoDegreeSize-gravityDecay_errorbars.png}
 }
 
+% alors la je ne comprend pas desolee l'interpretation de l'evolution des courbes, l'internationalisation (qui est defini par la modularite diminue avec le temp?
+% et le p(di,E) proba entre distance et poids economique? comment tu interpretes ca? il y a un seuil a la fin
+% du coup je ne comprend pas bien comment interpreter
+
 \sframe{Sector proximity}{
     
     % One factor sampling results
@@ -277,6 +297,7 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
      \includegraphics[width=0.48\textwidth]{figures/internationalization-gammaSectors_errorbars.png}
     \includegraphics[width=0.48\textwidth]{figures/rhoDegreeSize-gammaSectors_errorbars.png}
     
+    % et lq c'est quoi lq difference :'( c'est quoi le one factor sampling?
     
 }
 
@@ -287,12 +308,18 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
     \includegraphics[width=\textwidth]{figures/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
 }
 
+% alors tu as explique pendant la presentqtion pour Mike, mais je n'ai pas compris pourquoi il a trois graphiques 0 1 2 et pourquoi le 3 est si different:?
+% je pense qu'il faut reconmmer en un truc plus clair l'axe des ordonnees et les 0, 1, 2
+% dG c'est quoi, c'est toujours le pqs de temps? donc la meme chose que le gravity decay?
+
 \sframe{Grid exploration}{
 
     \centering
 
     \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
 }
+
+% alors ici il faut reconnomer l'axe des ordonnees ca peut etre community size? qui est defini comment d'ailleurs ici? C'est la ou tu as dit que le pic aussi rapide est interessant, donc en si peu de temps la taille du reseaux grossi c'est ca :'(? et du coup comment expliquer le 2 a droite? 
 
 \sframe{Grid exploration}{
 
@@ -301,6 +328,9 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
     \includegraphics[width=\textwidth]{figures/rhoFlowDistance_countryGravityDecay2100_gammaDestination2_facetwrapgammaOrigin_colorgammaSectors.png}
 }
 
+% idem la c'est pas facile a lire pour quelqu'un qui ne connait pas. c'est quoi rhoFlowDistance?
+% le gamma sector c'est le parametre de la variable secteurs donc s? 
+% en fait quand j'y pense pourquoi il yq u gradien du gamma et comment comprendre ces varations pour chqaue pqs de temps
 
 % other experiments ? PSE on correlations ?
 
