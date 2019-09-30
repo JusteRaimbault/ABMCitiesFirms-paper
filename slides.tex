@@ -130,6 +130,7 @@ Cities characterized by economic size $E_i$ (GDP) and economic structure $S_{ik}
 
 % excuses-moi, mais je vais commencer a partir de la a te demander de m'expliquer, ca va te paraitre evident je suis desolee, mais c'est pour que je ne trompe pas en presentant
 % a quoi correspond le i et j? En gros c'est ville i, puis la ville j? Le k c'est bien le nombre de secteurs? 
+% -> oui exactement
 
 
 
@@ -137,8 +138,9 @@ Cities characterized by economic size $E_i$ (GDP) and economic structure $S_{ik}
 
 Starting from an initial network, at each time step:
 \begin{enumerate}
-    \item Evolve city sizes $E_i(t+1) = f(E_j(t))$ with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
+    \item Evolve city sizes $E_i \left(t \textrm{ + } 1 \right) \textrm{ = } f\left(E_j\left(t\right)\right)$ with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
     % ici le = n'apparait pas dans la formule. le t c'est bien le temps?
+    %  => oui t est le temps ; les = et + et ( ) qui passent pas c'est la template ucl, j'arrive pas a fixer alors il faut passer par le reswitch en mode texte
     \item Add a fixed number of links randomly, following a probability function of sizes, sector proximity, and geographical and socio-cultural proximity
 \end{enumerate}
 
@@ -156,13 +158,20 @@ Probability for a new link follows a generalized Cobb-Douglas function
 \]
 
 % idem ici, pij c'est la probabilite d'un lien entre i et j oui?
+%. => oui, sachant qu'il y a un nouveau lien (il y en a un par pas de temps), la proba qu'il soit entre i et j
 % les gamma c'est les parametres du modele et Ei c'est le gdp de la ville et pourquoi c'est sur E, ca vient de la formule du modele gravitaire oui?
-% Wij c'est quoi? il me semble que tu as dit que c'est le lien du passé et Sik c'est la structure economique defini par le cosine similarity
+% oui c'est les parametres de Cobb douglas qui permettent d'ajuster l'importance relative entre chacun des facteurs, et la maniere dont ils influencent (en gros gamma << 1 favorise majoritairmenent les faibles avleurs, gamma = 1 lineaire, gamma >> 1 favorise les fortes valeurs
+% le modele gravitaire c'est des masses m_i m_j / d_{ij} mais il y a toujours un facteur de normalistaion qu'il faut determiner ou non (selon que c'est avec ocntraintes - c'est lien a ce que fait Robin Morphet s'il t'en a deja parl�) - dans notre cas c'est la cobbdouglas qui doit avoir ses variables dans 0,1, donc on normalise comme la part du gdp total
+% Wij c'est quoi? il me semble que tu as dit que c'est le lien du passé e
+% oui c'est le poids du lien precedennt
+% Sik c'est la structure economique defini par le cosine similarity 
+% => la fonction s donne la cosine similarity entre S_{ik} et S_{jk} les structures industrielles
 % comment est definie le gij donc la distance socio-culturelle?
+% => pour l'instant c'est la distance entre les centroides des pays correspondants (c'est un trick pour le systeme synthetique, pour une application sur donnees reelles faudra faire des modeles stat avec effets fixes pour l'estimer)
 
 \medskip
 
-where $E=\sum_k E_k$, $W = \sum_{i,j} w_{ij}$, $s$ is cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ socio-cultural distance
+where $E \textrm{ = } \sum_k E_k$, $W \textrm{ = } \sum_{i,j} w_{ij}$, $s$ is a proximity measure given by cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance
 
 \medskip
 
@@ -218,7 +227,7 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 \begin{enumerate}
     \item Generate $N \textrm{ = } 700$ cities with size following a power law $E_i \textrm{ = } E_0 \cdot i^{-\alpha}$ with $E_0 \textrm{ = } 10^{11}$ and $\alpha=1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
     \item Distribute them randomly in space (\cite{simini2019testing} vs \cite{banos2011christaller})
-    \item Create countries with k-means clustering ($C \eq 30$)
+    \item Create countries with k-means clustering ($C \textrm{ = } 30$)
     \item Distribute sectors such that (i) smaller cities are more specialized and (ii) larger cities are more knowledge-based, with a one dimensional axis to position sectors $1/K \ldots 1$ where the density $f\left(k\right)$ follows a log-normal with $\left(\mu,\sigma\right)$ such that $\sqrt{\Var f} = K/2$ for the largest, $\sqrt{\Var f} = 1/K$ for the smallest
 \end{enumerate}
 
