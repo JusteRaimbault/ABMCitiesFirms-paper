@@ -76,7 +76,7 @@ General framework:
 
 % bon je ne sais pas si c'est utile mais au moins ca fait un exempple en plus (bon ok on ne voit rien)
 
-\sframe{Urban Firm linkages and geo-economic processes}{
+\sframe{Urban firm linkages and geo-economic processes}{
 
 Assumptions
 
@@ -89,18 +89,18 @@ Assumptions
 
 \bigskip
 
-How can we capture geographical and economic processes within urban networks of firms with a generative model? 
+$\rightarrow$ \textit{How can we capture geographical and economic processes within urban networks of firms with a generative model?}
 
-}
-\sframe{Towards a generative model of urban firm networks}{
-
-Towards a generative model of urban firm networks
-
-% research question / objective
-% ???
+\begin{itemize}
+	\item Indirect inference on processes
+	\item Includes path-dependency
+\end{itemize}
 
 
 }
+
+
+
 
 \section{Model}
 
@@ -173,9 +173,10 @@ Probability for a new link follows a generalized Cobb-Douglas function
 
 where $E \textrm{ = } \sum_k E_k$, $W \textrm{ = } \sum_{i,j} w_{ij}$, $s$ is a proximity measure given by cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance
 
-\medskip
+\bigskip
+\bigskip
 
-\textbf{Model parameters: } $\gamma_F, \gamma_T, \gamma_W, \gamma_S, \gamma_D = \frac{1}{d_G}, \gamma_G = \frac{1}{d_G}$
+\textbf{Model parameters: } $\gamma_F, \gamma_T, \gamma_W, \gamma_S, \gamma_D \textrm{ = } \frac{1}{d_G}, \gamma_G \textrm{ = } \frac{1}{d_G}$
 
 }
 
@@ -222,13 +223,13 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 \medskip
 
-\tiny
+\footnotesize
 
 \begin{enumerate}
-    \item Generate $N \textrm{ = } 700$ cities with size following a power law $E_i \textrm{ = } E_0 \cdot i^{-\alpha}$ with $E_0 \textrm{ = } 10^{11}$ and $\alpha=1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
+    \item Generate $N \textrm{ = } 700$ cities with size following a power law $E_i \textrm{ = } E_0 \cdot i^{-\alpha}$ with $E_0 \textrm{ = } 10^{11}$ and $\alpha \textrm{ = } 1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
     \item Distribute them randomly in space (\cite{simini2019testing} vs \cite{banos2011christaller})
     \item Create countries with k-means clustering ($C \textrm{ = } 30$)
-    \item Distribute sectors such that (i) smaller cities are more specialized and (ii) larger cities are more knowledge-based, with a one dimensional axis to position sectors $1/K \ldots 1$ where the density $f\left(k\right)$ follows a log-normal with $\left(\mu,\sigma\right)$ such that $\sqrt{\Var f} = K/2$ for the largest, $\sqrt{\Var f} = 1/K$ for the smallest
+    \item Distribute sectors such that (i) smaller cities are more specialized and (ii) larger cities are more knowledge-based, with a one dimensional axis to position sectors $1/K \ldots 1$ where the density $f\left(k\right)$ follows a log-normal with $\left(\mu,\sigma\right)$ such that $\sqrt{\Var f} \textrm{ = } K/2$ for the largest, $\sqrt{\Var f} \textrm{ = } 1/K$ for the smallest
 \end{enumerate}
 
  
@@ -238,19 +239,24 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 \sframe{Implementation and experiments}{
 
-
+\textbf{Implementation}
 
 \begin{itemize}
 	\item Model implemented in NetLogo (good compromise interactivity / ergonomy), with fast data structures (matrix/table extensions)
 	\item Integrated seamlessly into OpenMOLE \cite{reuillon2013openmole} for model exploration (NetLogoTask)
 \end{itemize}
 
+
+\medskip
+
+\textbf{Experiments}
+
 % for now no dynamics of cities
 
 \begin{itemize}
 	\item Current experiment: only network dynamics (short time scale)
 	\item One-factor sampling with 100 repetitions to assess statistical properties
-	\item Grid sampling with 20 repetitions for model behavior (2years 5month of computation)
+	\item Grid sampling with 20 repetitions for model behavior (2years 5months of computation)
 \end{itemize}
 
 }
@@ -259,14 +265,14 @@ Generation of a continent-scale urban system with stylized order of magnitude co
     
     % examples
     
-    \centering
-    
+    \begin{center}
     \includegraphics[width=0.48\textwidth]{figures/ex_alleq-highgravity_seed-12102_t1500.png}\hspace{0.1cm}
     \includegraphics[width=0.48\textwidth]{figures/ex_alleq-lowgravity_seed-12102_t1500.png}
+	\end{center}
 
 	\medskip
 
-	\textit{Networks at $t = 1500$, for default parameters values and high gravity (left) and low gravity (right)}
+	\textit{Networks at $t \textrm{ = } 1500$, for default parameters values and high gravity (left) and low gravity (right)}
 
 }
 
@@ -292,11 +298,19 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
     
     \includegraphics[width=0.48\textwidth]{figures/internationalization-gravityDecay_errorbars.png}
     \includegraphics[width=0.48\textwidth]{figures/rhoDegreeSize-gravityDecay_errorbars.png}
+    
+    \medskip
+    
+    \footnotesize
+    
+    \textit{(Left) Internationalization index decreases exponentially with gravity decay; (Right) Correlation between }
+    
 }
 
 % alors la je ne comprend pas desolee l'interpretation de l'evolution des courbes, l'internationalisation (qui est defini par la modularite diminue avec le temp?
 % et le p(di,E) proba entre distance et poids economique? comment tu interpretes ca? il y a un seuil a la fin
 % du coup je ne comprend pas bien comment interpreter
+%  => c'est pas dans le temps, c'est en fonction du parametre de gravity ; internationalization comme c'est la modularite elle est minimisee plus c'est internataional
 
 \sframe{Sector proximity}{
     
