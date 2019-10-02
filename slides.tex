@@ -30,12 +30,6 @@ General framework:
 
 \begin{itemize}
     \item Cities as cross-overs of socio-economic interactions 
-    % que veux tu dire par maximisation ? je mettrais plutot "foster socio-eco" 
-<<<<<<< HEAD
-    % c'est un terme utilisé par les économistes pour dire que c'est la ou tout converge quoi, mais c'est mieux de changer peut-être car ca fait allusion à l'offre et la demande..et a la maximisation du profit etc..mais j'avais vu ca chez Denise une fois 
-=======
-    % c'est un terme utilisÃ© par les Ã©conomistes pour dire que c'est la ou tout converge quoi, mais c'est mieux de changer peut-Ãªtre car ca fait allusion Ã  l'offre et la demande..et a la maximisation du profit etc..mais j'avais vu ca chez Denise une fois 
->>>>>>> 6da27f247dc6a5859125a5d7c204c2c4deef99e0
     \item Network economies \cite{sassen1991global} \cite{castells1996information}
     \item World city network driven by interactions between firms \cite{taylor2001specification} \cite{martinus2018global}
     \item Asymmetrical spatial interactions -- different relative position of cities
@@ -71,7 +65,7 @@ General framework:
 \sframe{Firm linkages structuring urban systems}{
 
  \begin{center}
- \includegraphics[width=0.7\textwidth]{figures/Figure2.png}
+ \includegraphics[width=0.7\textwidth]{figures/Figure2.jpg}
  \end{center}
  
   \textit{UK cities within transnational ownership links of firms in 2016}
@@ -161,22 +155,7 @@ Probability for a new link follows a generalized Cobb-Douglas function
      p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
 \]
 
-% idem ici, pij c'est la probabilite d'un lien entre i et j oui?
-%. => oui, sachant qu'il y a un nouveau lien (il y en a un par pas de temps), la proba qu'il soit entre i et j
-% les gamma c'est les parametres du modele et Ei c'est le gdp de la ville et pourquoi c'est sur E, ca vient de la formule du modele gravitaire oui?
-% oui c'est les parametres de Cobb douglas qui permettent d'ajuster l'importance relative entre chacun des facteurs, et la maniere dont ils influencent (en gros gamma << 1 favorise majoritairmenent les faibles avleurs, gamma = 1 lineaire, gamma >> 1 favorise les fortes valeurs
-<<<<<<< HEAD
-% le modele gravitaire c'est des masses m_i m_j / d_{ij} mais il y a toujours un facteur de normalistaion qu'il faut determiner ou non (selon que c'est avec ocntraintes - c'est lien a ce que fait Robin Morphet s'il t'en a deja parl�) - dans notre cas c'est la cobbdouglas qui doit avoir ses variables dans 0,1, donc on normalise comme la part du gdp total
-% Wij c'est quoi? il me semble que tu as dit que c'est le lien du passé e
-=======
-% le modele gravitaire c'est des masses m_i m_j / d_{ij} mais il y a toujours un facteur de normalistaion qu'il faut determiner ou non (selon que c'est avec ocntraintes - c'est lien a ce que fait Robin Morphet s'il t'en a deja parlé) - dans notre cas c'est la cobbdouglas qui doit avoir ses variables dans 0,1, donc on normalise comme la part du gdp total
-% Wij c'est quoi? il me semble que tu as dit que c'est le lien du passÃ© e
->>>>>>> 6da27f247dc6a5859125a5d7c204c2c4deef99e0
-% oui c'est le poids du lien precedennt
-% Sik c'est la structure economique defini par le cosine similarity 
-% => la fonction s donne la cosine similarity entre S_{ik} et S_{jk} les structures industrielles
-% comment est definie le gij donc la distance socio-culturelle?
-% => pour l'instant c'est la distance entre les centroides des pays correspondants (c'est un trick pour le systeme synthetique, pour une application sur donnees reelles faudra faire des modeles stat avec effets fixes pour l'estimer)
+
 
 \medskip
 
@@ -216,12 +195,7 @@ where $E \textrm{ = } \sum_k E_k$, $W \textrm{ = } \sum_{i,j} w_{ij}$, $s$ is a 
 
 \sframe{Simulation on synthetic systems of cities}{
 
-% la ou avant il faut surement expliquer que c'est pas totalement synthetique, que tu pars de X villes europeennes de plus de 50 000 habitants (pour les plus nuls comme moi)
-% si c'est completement synthetiques, l'histoire des villes europeenes c'est pour avoir les ordres de grandeur de la hierarchie et du nombre de villes, mais c'est pas parametrise sur des vraies donnees - mais oui ca ca sera explique dans comment construire le systeme de ville synthetique.
 
-% ok desolee je n'avais pas bien compris 
-% javais mal explique ^-^
- 
 \justify
  
 \textit{Following \cite{raimbault2018space}, geosimulation models must be studied within synthetic controllable urban contexts in order to (i) understand intrinsic behavior of the model and robust qualitative stylized facts; (ii) study the sensitivity to the spatial configuration}
@@ -336,15 +310,15 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 \sframe{Grid exploration: internationalization}{
 
-    \centering
-
+    \begin{center}
     \includegraphics[width=\textwidth]{figures/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+    \end{center}
     
     \medskip
     
     \footnotesize
     
-    \textit{}
+    \textit{The transition as a function of interaction range depends on the influence of origin size $\gamma_F$; sector proximity $\gamma_S$ plays a role only for a large influence of the origin.}
     
 }
 
@@ -352,11 +326,22 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 % je pense qu'il faut reconmmer en un truc plus clair l'axe des ordonnees et les 0, 1, 2
 % dG c'est quoi, c'est toujours le pqs de temps? donc la meme chose que le gravity decay?
 
-\sframe{Grid exploration}{
+\sframe{Grid exploration: community size}{
 
-    \centering
+    \begin{center}
+    	\includegraphics[height=0.6\textheight]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+    \end{center}
+    
+    \vspace{-0.5cm}
+    
+    \footnotesize
 
-    \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+\begin{itemize}
+	\item Maximal integration in term of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime
+	\item Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$
+	\item This regime disappear when origin size influence is too large
+\end{itemize}
+    
 }
 
 % alors ici il faut reconnomer l'axe des ordonnees ca peut etre community size? qui est defini comment d'ailleurs ici? C'est la ou tu as dit que le pic aussi rapide est interessant, donc en si peu de temps la taille du reseaux grossi c'est ca :'(? et du coup comment expliquer le 2 a droite? 
@@ -384,18 +369,42 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 % further comparing with real data?
 
-\sframe{On the role of model exploration}{
-
-}
 
 
 \sframe{Discussion}{
 
+\justify
+\footnotesize
+
 \textbf{Practical application}
 
+$\rightarrow$ effect of exogenous shocks in the socio-economic structure (``subsystem-xit'')
 
+\medskip
 
 \textbf{Developments}
+
+$\rightarrow$ evolution of city sizes (co-evolution model)
+
+$\rightarrow$ parametrization/calibration on real data
+
+$\rightarrow$ role of path-dependency
+
+$\rightarrow$ towards a model with firm agents? (multi-scale ABM)
+
+\medskip
+
+\textbf{On the role of model exploration}
+
+$\rightarrow$ even with such a ``simple'' model (close to directly tractable stationary state), behavior is highly non-linear in many dimensions
+
+$\rightarrow$ model exploration allows to overcome hidden parameters (deactivated mechanisms or default parameter values)
+
+$\rightarrow$ exploration of intrinsic dynamics on synthetic data is a crucial step before an application on real data (disentangle effects of geography from model dynamics)
+
+
+
+
 
 
 }
@@ -403,9 +412,11 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 \sframe{Conclusion}{
 
-$\rightarrow$ A simulation model to understand processes of network emergence
+$\rightarrow$ A generative model to understand processes of economic network emergence
 
-$\rightarrow$ 
+\bigskip
+
+$\rightarrow$ Crucial role of model exploration to validate and extract knowledge from such a simulation model
 
 
 \bigskip
@@ -416,26 +427,14 @@ $\rightarrow$
 
 \texttt{https://github.com/JusteRaimbault/ABMCitiesFirms}
 
-\textbf{Simulation data at}
+\bigskip
 
-\texttt{https://doi.org/10.7910/DVN/UPX23S}
+\textbf{Simulation data at} \texttt{https://doi.org/10.7910/DVN/UPX23S}
 
 \bigskip
 
 \textbf{Acknowledgments}: thanks to the \textit{European Grid Infrastructure} for access to the infrastructure.
 
-
-}
-
-
-
-\sframe{Reserve slides}{
-
-\centering
-
-\Large
-
-\textbf{Reserve Slides}
 
 }
 
