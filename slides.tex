@@ -255,8 +255,8 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 
 \begin{itemize}
 	\item Current experiment: only network dynamics (short time scale)
-	\item One-factor sampling with 100 repetitions to assess statistical properties
-	\item Grid sampling with 20 repetitions for model behavior (2years 5months of computation)
+	\item One-factor sampling with 100 repetitions to assess statistical properties (good convergence, average sharpe ratios for indicators all larger than 5)
+	\item Grid sampling with 20 repetitions for model behavior %(2years 5months of computation)
 \end{itemize}
 
 }
@@ -277,21 +277,17 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 }
 
 
-\sframe{Statistical convergence}{
+%\sframe{Statistical convergence}{
 
-$\rightarrow$ Good convergence for most indicators: average sharpes ratios on a one-factor sampling above 5 (except for metropolization index $\simeq 1.5$)
+%$\rightarrow$ Good convergence for most indicators: average sharpes ratios on a one-factor sampling above 5 (except for metropolization index $\simeq 1.5$)
 
 % + histograms
 
-\bigskip
+%\bigskip
+%}
 
 
-
-
-}
-
-
-\sframe{Interaction decay}{
+\sframe{Effect of interaction decay}{
     
     % One factor sampling results
     %  20190924_162740_ONEFACTOR_REPLICATIONS_SYNTHETIC_GRID
@@ -303,7 +299,7 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
     
     \footnotesize
     
-    \textit{(Left) Internationalization index decreases exponentially with gravity decay; (Right) Correlation between }
+    \textit{(Left) Internationalization index decreases exponentially with gravity decay; (Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime.}
     
 }
 
@@ -312,7 +308,7 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
 % du coup je ne comprend pas bien comment interpreter
 %  => c'est pas dans le temps, c'est en fonction du parametre de gravity ; internationalization comme c'est la modularite elle est minimisee plus c'est internataional
 
-\sframe{Sector proximity}{
+\sframe{Effect of sector proximity}{
     
     % One factor sampling results
     %  20190924_162740_ONEFACTOR_REPLICATIONS_SYNTHETIC_GRID
@@ -320,7 +316,11 @@ $\rightarrow$ Good convergence for most indicators: average sharpes ratios on a 
      \includegraphics[width=0.48\textwidth]{figures/internationalization-gammaSectors_errorbars.png}
     \includegraphics[width=0.48\textwidth]{figures/rhoDegreeSize-gammaSectors_errorbars.png}
     
-    % et lq c'est quoi lq difference :'( c'est quoi le one factor sampling?
+    \medskip
+    \footnotesize
+    
+    \textit{(Left) Internationalization varies linearly with sector proximity $\gamma_S$; (Right) Correlation between degree and size exhibits a maximum, witnessing an intermediate regime where size is the most important}
+    
     
 }
 
