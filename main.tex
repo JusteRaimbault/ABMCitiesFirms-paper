@@ -78,7 +78,8 @@ The city network evolves at discrete time steps the following way:
     \end{equation}
     
     \item The ``geopolitical/sociocultural'' distance remains abstract and should be parametrized (see setup below) and estimated in the data-driven setting.
-    \item \textcolor{red} TODO the path dependency $w_{ij}$ could (or should ?) be decomposed into in/out degree for origin and destination ? (then stronger self-reinforcment effect)
+    \item %\textcolor{red}
+    TODO the path dependency $w_{ij}$ could (or should ?) be decomposed into in/out degree for origin and destination ? (then stronger self-reinforcment effect)
     \end{itemize}
 \end{enumerate}
 
@@ -108,6 +109,23 @@ Let consider the simplest synthetic setup possible:
 \end{itemize}
 
 ! links depend on the sectors: cobb douglas for sector proximity should depend on sector composition ? or several functions ?
+
+
+\subsubsection{Real data setup}
+
+Data sources:
+\begin{itemize}
+	\item ORBIS database for company links
+	\item GHS UCDB for GDP of urban built-up areas
+	\item Functional urban areas (JRC-EC) for consistent ontology and spatial join between the different sources
+\end{itemize}
+
+If the links are ``complete'' within Europe, the model (i) can be initialized at $t_0$ with the network corresponding to the first date in the dataset; (ii) adjustment error is computed on the later dates.
+
+More probably, we may have to work on an extract of the ORBiS database including only links from and to UK-based companies
+
+
+
 
 \subsection{Model indicators}
 
