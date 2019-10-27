@@ -149,19 +149,33 @@ More probably, we may have to work on an extract of the AMADEUS database includi
 
 \subsection{Model indicators}
 
-\textit{find some indicators for polarization : when big cities take everything or when local clusters organize}
 
-Network indicators:
-
-\begin{itemize}
-    \item weighted degree distribution (\textit{if it is fat-tailed, log-log power law exponent and adjusted r-squared})
-\end{itemize}
-
-Sector structure indicators:
+\subsubsection{Geographical indicators:}
 
 \begin{itemize}
-    \item sector diversity (Herfindhal ?) 
+    \item Internationalisation (modularity of countries in the network)
+    \item Metropolisation (correlation between weighted degree and city size)
+    \item Regionalisation (correlation between length and flow of links, stratified by size of extremities)
+    \item Specialisation (correlation between sector proximity and flow of links, stratified by size of extremities)
 \end{itemize}
+
+
+\subsubsection{Network and flows indicators:}
+
+%  networkModularity, networkAvgCommunitySize, networkDegreeHierarchy, networkAvgDegree, networkDegreeEntropy, flowsHierarchy, flowsEntropy, rhoDegreeSize, rhoFlowDistancePos, rhoFlowDistance
+
+\begin{itemize}
+    \item Louvain modularity, community sizes
+    \item Degree and flows distribution (average, hierarchy, entropy)
+    \item Correlations (degree-size, flow-distance)
+\end{itemize}
+
+% possible other indics:
+% weighted degree distribution (\textit{if it is fat-tailed, log-log power law exponent and adjusted r-squared})
+%Sector structure indicators: sector diversity (Herfindhal ?) 
+
+
+
 
 
 \subsection{Model parameters}
@@ -179,12 +193,34 @@ Sector structure indicators:
 %    https://www.groups.ma.tum.de/en/statistics/research/vine-copula-models/
 %    R package : https://github.com/tnagler/VineCopula
 
-The model is implemented in NetLogo and integrated into the OpenMOLE platform for model exploration \cite{reuillon2013openmole}.
+The model is implemented in NetLogo and integrated into the OpenMOLE platform for model exploration \cite{reuillon2013openmole}. NetLogo provides a good compromise between performance and interactive prototyping and exploration.
+%We use in particular data structures providing good performances for the type of operations needed (matrices operations for the construction of the utility function e.g.).
+
+
+
+%%%%%%%%%%%%%
+\begin{figure}
+    \includegraphics[width=0.48\textwidth]{figures/ex_alleq-highgravity_seed-12102_t1500.png}\hspace{0.1cm}
+    \includegraphics[width=0.48\textwidth]{figures/ex_alleq-lowgravity_seed-12102_t1500.png}	
+    \caption{Example of simulated networks at $t=1500$, with a high (resp. low) gravity decay parameter on the left (resp. right).\label{fig:example}}
+\end{figure}
+%%%%%%%%%%%%%
+
+
 
 \subsection{Synthetic city systems}
 
 \subsubsection{Sensitivity analysis and grid exploration}
 
+\paragraph{One factor sampling}
+% 20190924_162740_ONEFACTOR_REPLICATIONS_SYNTHETIC_GRID
+
+
+\begin{figure}
+	\includegraphics[width=0.48\textwidth]{figures/internationalization-gravityDecay_errorbars.png}
+    \includegraphics[width=0.48\textwidth]{figures/rhoDegreeSize-gravityDecay_errorbars.png}\\
+    
+\end{figure}
 
 
 
