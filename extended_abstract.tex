@@ -1,0 +1,107 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+%\usepackage{natbib}
+\usepackage{multicol}
+\usepackage{graphicx}
+\pagenumbering{gobble}
+\usepackage{color}
+
+\newcommand{\ea}[1]{{\color{blue}  #1}}
+
+\title{\vspace{-2cm}A generative model for urban firm networks}
+\author{J. Raimbault$^{1,2,3}$, N. Zdanowska$^{1,3}$ and E. Arcaute$^1$\\\medskip\small
+$^{1}$ Centre for Advanced Spatial Analysis, UCL; $^{2}$ UPS CNRS 3611 ISC-PIF; $^{3}$ UMR CNRS 8504 G{\'e}ographie-cit{\'e}s
+}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%\begin{abstract}
+%    We introduce a generative network model for urban networks of interactions between firms. The growth of the network is simulated by adding new firm ownership links randomly, with probabilities determined by several factors, namely the economic size of origin and destination urban areas, industrial sector proximity, the strength of previous links, and geographical and socio-cultural distance. Simulation on synthetic systems of cities unveil phase transitions when changing interaction distance, and non-trivial patterns in model behavior. Future work include the calibration of the model on real company links for Europe.
+%\end{abstract}
+
+%\vspace{0.5cm}
+
+
+The emergence of a global network of cities, defined by the interactions between firms, is a salient feature of recent globalization processes \cite{taylor2001specification}.  
+\ea{Understanding the drivers for growth for such a network, can be used to foster innovation through} 
+%Understanding drivers of this urban network growth have several concrete and theoretical implications, including 
+policies for local economic clusters \cite{turkina2016structure}, \ea{development of strategic industries for the global insertion of regions}
+%regional insertion into the global network 
+\cite{dawley2019creating}, 
+%strategic positioning of %
+cities \cite{gluckler2016relational} and
+countries \cite{martinus2019brokerage}.\ea{Linkages are characterized by interactions of different nature and determined by economic, socio-cultural, or geopolitical proximity \cite{martinus2018global}.}
+%The role of different types of proximity, such as economic, socio-cultural, or geopolitical proximity, in the establishment of urban linkages have been shown empirically \cite{martinus2018global}.
+%The type of linkage can furthermore be of different nature, such as firm linkages, services, economic exchanges \cite{pan2017mapping}.
+
+This paper focuses on economic relations between urban areas defined by ownership links of firms. Since transnational firms structure is one of the determinant of the global economic space, it is one of the proxies to unveil geographical structures. \cite{2019arXiv191014652Z}. 
+\ea{This work} introduces a generative network model to simulate the growth of such linkages at urban areas scale within the evolutionary systems of cities framework \cite{pumain2018evolutionary}. 
+%Existing generative urban network models generally operate at a more abstract level with spatial interactions \cite{dai2016generative} or with other types of processes such as economic exchanges \cite{cottineau2015growing}. The model is at the level of urban areas.
+We combine multiple factors which influence link formation, including economic intensity of origin and destination of urban areas, industrial sector proximity, the strength of previous links, and geographical and socio-cultural distance. The model allows thus to compare the effect of different factors on the final network structure, and to extrapolate their actual effect when calibrated on real data.
+
+
+%\section{Generative network model}
+
+Formally, the model grows links between cities which are characterized by their economic size $E_i$ (GDP) and their economic structure $S_{ik}$ in terms of activity sectors (probability distribution of firms within $K$ sectors). Starting with an existing network or no links, the model iteratively adds links, following a probability given by a generalized Cobb-Douglas function \cite{vilcu2011geometric} as 
+\[
+p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
+\]
+where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, \ea{$s(S_{ik},S_{jk})$ is similarity function between activity sectors $S_{ik}$ and $S_{jk}$}, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance. When a link already exists between two areas, its weight is incremented by one. The model is stopped either when a final time is reached or when a given number of links have been added. This formulation can be understood both as an economic utility, but also as a generalization of spatial interaction models. Model parameters are the Cobb-Douglas weights $\gamma_F,\gamma_T,\gamma_W,\gamma_s$ and \ea{distance}
+%gravity 
+decay parameters $\gamma_G,\gamma_D$. Note that the model includes path-dependency through the influence of previous links, and thus can not be reduced to a simple statistical model. The role of space furthermore introduces more complexity, yielding a generative model which has to be simulated.
+
+We consider several macroscopic indicators to quantify the generated network. First, geographical structures are captured by (i) internationalisation (modularity of countries in the network); (ii) metropolisation (correlation between weighted degree and city size); (iii) regionalisation (correlation between length and flow of links, stratified by size of extremities); and (iv) Specialisation (correlation between sector proximity and flow of links, stratified by size of extremities). We also consider network indicators including Louvain modularity, community sizes, degree and link weight distributions (described by their average, hierarchy, and entropy), and correlations between degree and city size, and between link weight and distance.
+
+%\section{Results}
+
+The model is implemented in NetLogo and integrated into the OpenMOLE platform for model exploration to distribute the computation on high performance computing infrastructures. We first apply the model on synthetic systems of cities, at a continent scale with properties to resemble Europe: (i) 700 cities with an empirical power-law from the Global Human Settlements database for economic sizes; (ii) clustered into 30 countries; (iii) with synthetic distribution of sectors following log-normal distributions adjusted such that large cities have more high-value activities and are more diverse. \ea{The} network is generated from an empty initial network until \ea{reaching} $t_f=1500$. A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms the good statistical convergence (average Sharpe ratios for indicators all larger than 5). \ea{The} model behaviour is then studied with a grid sampling for parameters and 20 repetitions (\ea{the} computations run on the European Grid Infrastructure, \ea{and are} equivalent to 2.5 years of CPU time).
+
+We show in Fig. 1 examples of generated networks, with very contrasted patterns obtained with different spatial interaction ranges. This behavior is confirmed when plotting the internationalization index against 
+%gravity, 
+\ea{the distance}, which shows an exponential decay. Similarly, the correlation between city weighted degree and city size exhibit a behaviour that can be interpreted as a phase transition between local and global networks. Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network, we obtain a maximal integration in term of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. 
+%this next sentence is very difficult to understand. I'm not sure it's worth leavbing it in the abstract:
+%The maximal average furthermore size depends on the role of sectors $\gamma_S$, in a decreasing manner when origin size is deactivated ($\gamma_F=0$), and increasing when it is activated ($\gamma_F=1$), witnessing a complex interaction between processes through this qualitative inversion.
+\ea{The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area.}
+
+\ea{As a matter of validation, the model is implemented for real data for Europe}
+%An application on real data for Europe is currently being implemented, 
+joining Functional Urban Areas with the Global Human Settlement Database for cities and their characteristics, with the AMADEUS database produced by the Bureau Van Dijk on ownership links between firms in Europe between 2010 and 2018 at postcode level in all types of sectors.
+
+%\section{Future work}
+
+\ea{Several scenarios are considered taking into consideration the current and future economic challenges, such as those given by Brexit.}
+%Several model extensions and applications can be considered.
+
+
+
+\begin{figure}
+\vspace{-2cm}
+\begin{center}
+    \begin{minipage}[c]{0.25\textwidth}
+        \includegraphics[width=\textwidth]{figures/ex_alleq-lowgravity_seed-12102_t1500.png}\\
+        \includegraphics[width=\textwidth]{figures/ex_alleq-highgravity_seed-12102_t1500.png}
+    \end{minipage}
+    \begin{minipage}[c]{0.6\linewidth}
+     \includegraphics[width=0.48\textwidth]{figures/internationalization-gravityDecay_errorbars.png}
+    \includegraphics[width=0.48\textwidth]{figures/rhoDegreeSize-gravityDecay_errorbars.png}\\
+    \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+    \end{minipage}
+    \end{center}
+    \caption{\footnotesize\textbf{(Left column)} Example of simulated networks for a synthetic system of cities, with low gravity range (top) and high gravity range (bottom); \textbf{(Top right)} Internationalization and correlation between size and degree as a function of \ea{distance for different decay parameters}; \textbf{(Bottom right)}}
+\end{figure}
+
+
+\footnotesize
+
+
+\begin{multicols}{2}
+
+\bibliographystyle{unsrt}
+\bibliography{biblio}
+
+\end{multicols}
+
+\end{document}
