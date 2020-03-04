@@ -1,9 +1,9 @@
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[margin=1in]{geometry}
-\usepackage{natbib}
-\usepackage{graphicx}
-\usepackage{mdframed}
+\usepackage{natbib,graphicx,mdframed,hyperref,threeparttable}
+
+
 
 \title{An agent-based model for city networks based on interactions between firms}
 
@@ -11,8 +11,9 @@
 
 \begin{document}
 
-\author{J. Raimbault$^{1,2,3}$, N. Zdanowska$^{1,3}$ and E. Arcaute$^1$\\\medskip\small
-$^{1}$ Centre for Advanced Spatial Analysis, UCL; $^{2}$ UPS CNRS 3611 ISC-PIF; $^{3}$ UMR CNRS 8504 G{\'e}ographie-cit{\'e}s
+\author{J. Raimbault$^{1,2,3,\ast}$, N. Zdanowska$^{1,3}$ and E. Arcaute$^1$\\\medskip\small
+$^{1}$ Centre for Advanced Spatial Analysis, UCL; $^{2}$ UPS CNRS 3611 ISC-PIF; $^{3}$ UMR CNRS 8504 G{\'e}ographie-cit{\'e}s\\
+$^{\ast}$ \texttt{juste.raimbault@polytechnique.edu}
 }
 
 \maketitle
@@ -48,7 +49,8 @@ The rest of this paper is organized as follows: we first proceed to an empirical
 
 % stats to describe the structure of the database, nb of total links, nodes, missing values? + nb of firms per country,  total turnover generated per country etc..
 
-Companies from the AMADEUS database are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the GHS-FUA dataset for functional urban areas \cite{Florczyk2019ghs}, which are the relevant objects for applying our model. Starting from a firm-level dataset of 1,562,862 nodes and  1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. Weight of links are obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} s_{kl} \cdot T_l$ where $s_{kl}$ of the ownership share of company $l$ by company $k$ and $T_l$ the turnover of company $l$. Node attributes include an economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with area-level GDP included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$), so we expect to capture size effects while keeping the consistence of a single main data source. An other attribute of nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the fourth digit for the NACE classification in the raw data. We consider the first level classification (21 categories) and compute sector proportions accordingly.
+Companies from the AMADEUS database are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the GHS-FUA dataset for functional urban areas \cite{Florczyk2019ghs}, which are the relevant objects for applying our model. Starting from a firm-level dataset of 1,562,862 nodes and  1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. Weight of links are obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} p_{kl} \cdot T_l$ where $p_{kl}$ of the ownership share of company $l$ by company $k$ and $T_l$ the turnover of company $l$. Node attributes include an economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with area-level GDP included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$), so we expect to capture size effects while keeping the consistence of a single main data source. An other attribute of nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the fourth digit for the NACE classification in the raw data. We consider the first level classification (21 categories) and compute sector proportions accordingly. This allows us to define an industrial proximity matrix between urban areas, taking a cosine similarity between vectors as $s_{ij} = \sum_{k=1}^{K} S_{ik}\cdot S_{jk}$ where $S_{ik}$ are sector proportions.
+
 
 The urban network has heavy tail weighted degree and edge weight distributions, as shown in Fig.~\ref{fig:nwdist}. We fit power law and log-normal distributions, including minimal value cutoff following \cite{clauset2009power}, using the \texttt{powerlaw} R package \cite{powerlawpackage}. For both, log-normal distributions appear to be a better fit ($\mu=18.8$, $\sigma=2.3$ for weighted degree; $\mu=13.8$, $\sigma=2.8$ for edge weight), and include a much broader range of the empirical distributions with lower estimated cut-offs. These heavy tail properties suggest the relevance of a generative model including self-reinforcing processes which are known to produce such distributions.
 
@@ -66,8 +68,34 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 Regarding the community structure of the network, different modularity maximization algorithms (run on the undirected corresponding network) give a same undirected modularity of 0.38, and a directed modularity \citep{nicosia2009extending} of 0.34 for the greedy algorithm of \citep{clauset2004finding} and 0.36 for the Louvain algorithm \citep{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows has a certain regional integration. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities.
 
 
-To have a first insight into factors playing a role in the formation of links, we proceed to a statistical analysis which is similar to unconstrained spatial interaction models \cite{wilson1975some}.
+To have a first insight into factors playing a role in the formation of links, we proceed to a statistical analysis which is similar to unconstrained spatial interaction models \cite{wilson1975some}. We test five different statistical models, including progressively the processes candidate to be included in the network generative model. The most general model is
+\[
+\log(w_{ij}) = \log(d_{ij}) + \log(T_i) + \log(T_j) + \log(s_{ij}) + \alpha_{c_i,c_j} + \varepsilon_{ij}
+\]
+Estimation results are given in Table~\ref{tab:reg}.
 % poisson \cite{flowerdew1988fitting}
+
+
+%%%%%%%%%%%%%
+\begin{table}[h]
+\caption{Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, we give the proportion of significant coefficients (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link.\label{tab:reg}}
+\medskip
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Model  & (1) & (2) & (3) & (4) & (5) \\ 
+\hline
+$\log(d_{ij})$ &      -0.06** (0.03) &   -0.11** (0.05)  & -0.41*** (0.02)  & -0.35*** (0.04)  &  -0.26*** ($5\cdot 10^{-6}$) \\
+$\log(T_i)$ &   &   & 0.56*** (0.01) &  0.56*** (0.01) & 0.79*** ($2\cdot 10^{-6}$) \\
+$\log(T_j)$ &     &   & 0.39*** (0.01) &  0.39*** (0.01) & 0.66***  ($1.5\cdot 10^{-6}$) \\
+$\log(s_{ij})$ &     &   &  &  0.19*** (0.07) & 0.53*** ($9\cdot 10^{-6}$)  \\
+Countries &    &  28.3\% &   &  26.5\% & 100\% \\
+\hline
+$R^2$ &       0.00059   &  0.17 & 0.21 &  0.31  &  0.56 \\
+AIC &        44304   &  43578  &  42131  & 41917 &  $4.41\cdot 10^{11}$ \\
+\hline
+\end{tabular}
+\end{table}
+%%%%%%%%%%%%%
 
 
 
@@ -89,10 +117,8 @@ p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{
 
 where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, $s(S_{ik},S_{jk})$ is similarity function between activity sectors $S_{ik}$ and $S_{jk}$, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance. In the case of an already existing link between two areas, the weight of the latter is incremented by one. The model is stopped either when a final time is reached or when a given number of links have been added. This formulation can be considered both as an economic utility and a generalization of spatial interaction models.
 
-We take a cosine similarity between the sector structures, given with such probability vectors (size effect is already taken into account) by
-\begin{equation}
-    s\left(S_{ik},S_{jk}\right) = \sum_{k=1}^{K} S_{ik} S_{jk}
-\end{equation}
+%We take a cosine similarity between the sector structures, given with such probability vectors (size effect is already taken into account) by
+
 
 Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalize the exponents to 1 (which is different than renormalizing the probability), to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrized (see setup below) and estimated in the data-driven setting.
 
@@ -242,8 +268,8 @@ Several possible extensions of the current work can be undertaken in the future 
 % - towards a model with firm agents? (multi-scale ABM)
 
 
-\bibliographystyle{apalike}
-%\bibliographystyle{unsrt}
+%\bibliographystyle{apalike}
+\bibliographystyle{unsrt}
 \bibliography{biblio}
 
 \end{document}
