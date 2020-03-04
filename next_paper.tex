@@ -1,0 +1,121 @@
+\documentclass{article}
+
+
+\begin{document}
+
+% possible target Journal of Economic Geography? https://academic.oup.com/joeg/
+% there is also Economic Geography- % https://www.tandfonline.com/toc/recg20/95/4?nav=tocList
+%the editor is Jose Rodriguez-Pose from LSE, I just spoke to him at RSA conf, maybe it will be less econometric than JEG
+
+
+\section{Empirical analysis}
+
+% Data sources:
+%\begin{itemize}
+%	\item AMADEUS database for company links
+%	\item GHS UCDB for GDP of urban built-up areas
+%	\item Functional urban areas (JRC-EC) for consistent ontology and spatial join between the different sources
+%	\item Cities GDP can also be computed by aggregating company data: correlation between this approach and the GHS one must be checked: OK
+%\end{itemize}
+
+
+% TODO stat models justifying processes included:
+% - poisson regression if we count a number of links?
+% - country couples fixed effect to estimate the country distance matrix (as a function of interaction range ?)
+% - multilevel modeling ?
+% - distribution and properties (spatial stats ?) of sector distributions and similarities
+
+
+\section{Model}
+
+%\item Economic structure of cities are evolved with a city interaction model which can be
+%    \begin{itemize}
+%        \item a direct interaction model, according to
+%        \begin{equation}
+%            \Delta E_i = g_0\cdot E_i + w_G \cdot \sum_j V_{ij}/<V_{ij}>
+%        \end{equation}
+%        \item the Marius model with economic exchanges
+%    \end{itemize}
+%    \textit{Baseline: no evolution - on short time spans may be relevant ?}
+
+% city size (taking not population but an economic variable related to firms avoids adding the dimension of population, simplifies the model) $\rightarrow$ can be combined with geographical distance with a classical interaction model, see \cite{cottineau2015growing}, \cite{raimbault2018indirect}, \cite{favaro2011gibrat}
+
+% \textit{rq: as these are done sequentially, it is equivalent to have a fixed time step and a number of linkages per time step, or to do it link by link - in the data-driven version the actual values shall be parametrised, while in the synthetic version this has no importance}
+% -> No because of path dep
+
+% TODO the path dependency $w_{ij}$ could (or should ?) be decomposed into in/out degree for origin and destination ? (then stronger self-reinforcment effect)
+
+% These competing drivers are combined - how ? \textit{Options: (i) multiplicative function to get probabilities; (ii) generalization with a multi-attribute Cobb-Douglas; (iii) multi-objective optimization depending on sectors, using Pareto fronts ? - needs empirical evidence; (iv) copula-based combination as done by \cite{2019arXiv190505106C} - copula parameters are free or estimated from real data ?}
+
+
+% Cosine similarity
+% (\textit{should be amended/validated/tested with an asymmetric function in a further version})
+
+% ! links depend on the sectors: cobb douglas for sector proximity should depend on sector composition ? or several functions ?
+
+
+
+% possible other indics:
+% weighted degree distribution (\textit{if it is fat-tailed, log-log power law exponent and adjusted r-squared})
+%Sector structure indicators: sector diversity (Herfindhal ?) 
+
+
+\section{Data}
+
+%%%
+% with new dataset we do not have a subsample of companies within a specific country anymore
+%More probably, we may have to work on an extract of the AMADEUS database including only links from and to UK-based companies. This constraints imposes modifications on the level to remain consistent:
+%\begin{itemize}
+%    \item the adjustment error can only be partial and computed on the UK links only
+%    \item an initialization method for the missing links must be implemented (e.g. through a statistical analysis? not far from the model then)
+%    \item the model can be run without initial links, and an additional parameter sets the duration necessary to reach the time considered as the first date
+%\end{itemize}
+
+%If the links are ``complete'' within Europe, the model (i) can be initialized at $t_0$ with the network corresponding to the first date in the dataset; (ii) adjustment error is computed on the later dates.
+% -> pb of dates - can not have a truly dynamical calibration
+
+
+
+\begin{table}
+    \caption{List of parameters, associated processes, and ranges.}
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    Parameter & Name & Process & Range \\\hline
+      $\gamma_F$ & Origin &  & $\left[0;10\right]$ \\
+    $\gamma_T$ & Destination & & $\left[0;10\right]$ \\
+    $\gamma_W$ & Previous links & Self-reinforcement & $\left[0;10\right]$  \\
+    $\gamma_D = \frac{1}{d_G}$ & Geographical distance & & $\left[0;10000\right]$ \\
+    $\gamma_G  = \frac{1}{d_G}$ & Socio-cultural distance & & $\left[0;10000\right]$ \\\hline
+    \end{tabular}
+    \end{center}
+\end{table}
+
+
+
+
+\section{Results}
+
+% Implementation
+% Netlogo for vis + scala into spatialdata / urbangrowth ?
+
+% On vine copulas :
+%    https://link.springer.com/article/10.1023/A:1016725902970
+%    https://www.groups.ma.tum.de/en/statistics/research/vine-copula-models/
+%    R package : https://github.com/tnagler/VineCopula
+% Q: what would be the meaning on parametrizing interaction function with a real Vine copula? non-linear interactions? (on log, linear combination of factors)
+
+%We use in particular data structures providing good performances for the type of operations needed (matrices operations for the construction of the utility function e.g.).
+
+
+
+%\subsubsection{PSE}
+
+%\subsubsection{A virtual case study: subsystem-xit}
+
+% Q: do we do some "hybrid experiments"? - ex synthetic system of cities but real sector distribution
+
+
+
+
+\end{document}
