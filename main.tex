@@ -68,17 +68,16 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 Regarding the community structure of the network, different modularity maximization algorithms (run on the undirected corresponding network) give a same undirected modularity of 0.38, and a directed modularity \citep{nicosia2009extending} of 0.34 for the greedy algorithm of \citep{clauset2004finding} and 0.36 for the Louvain algorithm \citep{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows has a certain regional integration. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities.
 
 
-To have a first insight into factors playing a role in the formation of links, we proceed to a statistical analysis which is similar to unconstrained spatial interaction models \cite{wilson1975some}. We test five different statistical models, including progressively the processes candidate to be included in the network generative model. The most general model is
+To have a first insight into factors playing a role in the formation of links, we proceed to a statistical analysis which is similar to unconstrained spatial interaction models \cite{wilson1975some}. We test five different statistical models, including progressively the processes candidate to be included in the network generative model. The most general statistical model is
 \[
 \log(w_{ij}) = \log(d_{ij}) + \log(T_i) + \log(T_j) + \log(s_{ij}) + \alpha_{c_i,c_j} + \varepsilon_{ij}
 \]
-Estimation results are given in Table~\ref{tab:reg}.
-% poisson \cite{flowerdew1988fitting}
+where $\alpha_{c_i,c_j}$ is a fixed effect term for the couple of countries $c_i,c_j$. We use a multiplicative form by taking logarithms as it is usually done for spatial interaction models. Estimation results are given in Table~\ref{tab:reg}. We also fit a Poisson generalized linear model with a logarithmic link on the rounded weights \cite{flowerdew1988fitting}. We find that distance alone (model 1) has a significant negative effect but with an explained variance close to zero. The second model adds fixed effects by pair of countries, for which around a third are significant, and with a better $R^2$ of 0.17. Adding origin and destination economic size (turnovers $T_i$ and $T$, model 3) slightly improve the explanative power, but the best model among the linear ones is the model 4 with all factors and fixed effects, both in terms of explained variance ($R^2 = 0.31$) and Akaike information criterion (what means that there is no overfitting). The Poisson model with all variables is much better regarding pseudo-$R^2$ and provides much more significant estimates (all fixed effects significant and much smaller standard deviations). Across all models, we find consistent qualitative stylized facts: (i) distance has a negative influence; (ii) economic sizes have a positive influence, with the size of the origin being more important (what is consistent with ownership links, strongly driven by decision at the headquarters); (iii) industrial proximity has a positive influence, i.e. similarity is more important than complementarity for this dimension; (iv) an important part of country fixed-effects are significant; and (v) the order of magnitude of the influence of each factor is roughly the same, in the sense that no process totally dominates the others. This suggests the relevance of including all these different dimensions in the network generative model.
 
 
 %%%%%%%%%%%%%
 \begin{table}[h]
-\caption{Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, we give the proportion of significant coefficients (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link.\label{tab:reg}}
+\caption{Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, we give the proportion of significant coefficients (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link. For this model, AIC is not given as not comparable, and the pseudo-$R^2$ is given.\label{tab:reg}}
 \medskip
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
@@ -91,7 +90,7 @@ $\log(s_{ij})$ &     &   &  &  0.19*** (0.07) & 0.53*** ($9\cdot 10^{-6}$)  \\
 Countries &    &  28.3\% &   &  26.5\% & 100\% \\
 \hline
 $R^2$ &       0.00059   &  0.17 & 0.21 &  0.31  &  0.56 \\
-AIC &        44304   &  43578  &  42131  & 41917 &  $4.41\cdot 10^{11}$ \\
+AIC &        44304   &  43578  &  42131  & 41917 &   \\
 \hline
 \end{tabular}
 \end{table}
