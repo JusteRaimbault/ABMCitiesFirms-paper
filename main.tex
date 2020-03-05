@@ -72,12 +72,12 @@ To have a first insight into factors playing a role in the formation of links, w
 \[
 \log(w_{ij}) = \log(d_{ij}) + \log(T_i) + \log(T_j) + \log(s_{ij}) + \alpha_{c_i,c_j} + \varepsilon_{ij}
 \]
-where $\alpha_{c_i,c_j}$ is a fixed effect term for the couple of countries $c_i,c_j$. We use a multiplicative form by taking logarithms as it is usually done for spatial interaction models. Estimation results are given in Table~\ref{tab:reg}. We also fit a Poisson generalized linear model with a logarithmic link on the rounded weights \cite{flowerdew1988fitting}. We find that distance alone (model 1) has a significant negative effect but with an explained variance close to zero. The second model adds fixed effects by pair of countries, for which around a third are significant, and with a better $R^2$ of 0.17. Adding origin and destination economic size (turnovers $T_i$ and $T$, model 3) slightly improve the explanative power, but the best model among the linear ones is the model 4 with all factors and fixed effects, both in terms of explained variance ($R^2 = 0.31$) and Akaike information criterion (what means that there is no overfitting). The Poisson model with all variables is much better regarding pseudo-$R^2$ and provides much more significant estimates (all fixed effects significant and much smaller standard deviations). Across all models, we find consistent qualitative stylized facts: (i) distance has a negative influence; (ii) economic sizes have a positive influence, with the size of the origin being more important (what is consistent with ownership links, strongly driven by decision at the headquarters); (iii) industrial proximity has a positive influence, i.e. similarity is more important than complementarity for this dimension; (iv) an important part of country fixed-effects are significant; and (v) the order of magnitude of the influence of each factor is roughly the same, in the sense that no process totally dominates the others. This suggests the relevance of including all these different dimensions in the network generative model.
+where $\alpha_{c_i,c_j}$ is a fixed effect term for the couple of countries $c_i,c_j$. We use a multiplicative form by taking logarithms as it is usually done for spatial interaction models. Furthermore, origin and/or destination constrained models are not relevant in our case as links include not only turnover but also a share of ownership. Estimation results are given in Table~\ref{tab:reg}. We also fit a Poisson generalized linear model with a logarithmic link on the rounded weights \cite{flowerdew1988fitting}. We find that distance alone (model 1) has a significant negative effect but with an explained variance close to zero. The second model adds fixed effects by pair of countries, for which around a third are significant, and with a better $R^2$ of 0.17. Adding origin and destination economic size (turnovers $T_i$ and $T$, model 3) slightly improve the explanative power, but the best model among the linear ones is the model 4 with all factors and fixed effects, both in terms of explained variance ($R^2 = 0.31$) and Akaike information criterion (what means that there is no overfitting). The Poisson model with all variables is much better regarding pseudo-$R^2$ and provides much more significant estimates (all fixed effects significant and much smaller standard deviations). Across all models, we find consistent qualitative stylized facts: (i) distance has a negative influence; (ii) economic sizes have a positive influence, with the size of the origin being more important (what is consistent with ownership links, strongly driven by decision at the headquarters); (iii) industrial proximity has a positive influence, i.e. similarity is more important than complementarity for this dimension; (iv) an important part of country fixed-effects are significant; and (v) the order of magnitude of the influence of each factor is roughly the same, in the sense that no process totally dominates the others. This suggests the relevance of including all these different dimensions in the generative network model.
 
 
 %%%%%%%%%%%%%
 \begin{table}[h]
-\caption{Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, we give the proportion of significant coefficients (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link. For this model, AIC is not given as not comparable, and the pseudo-$R^2$ is given.\label{tab:reg}}
+\caption{Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, we give the proportion of significant coefficients (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link. We compare model performance using $R^2$, Mean Square Error, and Akaike Information Criterion. For the Poisson model, AIC is not given as not comparable, and the pseudo-$R^2$ is given.\label{tab:reg}}
 \medskip
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
@@ -90,6 +90,7 @@ $\log(s_{ij})$ &     &   &  &  0.19*** (0.07) & 0.53*** ($9\cdot 10^{-6}$)  \\
 Countries &    &  28.3\% &   &  26.5\% & 100\% \\
 \hline
 $R^2$ &       0.00059   &  0.17 & 0.21 &  0.31  &  0.56 \\
+MSE & 7.75 & 6.84 & 6.10 & 5.33 & 8.72 \\
 AIC &        44304   &  43578  &  42131  & 41917 &   \\
 \hline
 \end{tabular}
@@ -114,48 +115,25 @@ Let $1 \leq i \leq N$ cities defined at time $t$ by their economic structure suc
 p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
 \end{equation}
 
-where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, $s(S_{ik},S_{jk})$ is similarity function between activity sectors $S_{ik}$ and $S_{jk}$, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance. In the case of an already existing link between two areas, the weight of the latter is incremented by one. The model is stopped either when a final time is reached or when a given number of links have been added. This formulation can be considered both as an economic utility and a generalization of spatial interaction models.
-
-%We take a cosine similarity between the sector structures, given with such probability vectors (size effect is already taken into account) by
+where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, $s(S_{ik},S_{jk})$ is a similarity function between activity sectors $S_{ik}$ and $S_{jk}$ taken as a cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance. In the case of an already existing link between two areas, the weight of the latter is incremented by a unit volume $w_0$. The model is stopped either when a final time is reached or when the cumulated volume of links reaches a target quantity. This formulation can be considered both as an economic utility model and a generalization of spatial interaction models.
 
 
-Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalize the exponents to 1 (which is different than renormalizing the probability), to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrized (see setup below) and estimated in the data-driven setting.
 
-
-We assume no evolution of economic size in this simple version of the model, which means that adjusted parameter are valid on a restricted time period
+Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalize the exponents to 1 (which is different than renormalizing the probability), to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrized (see setup below) and estimated in the data-driven setting. We assume no evolution of economic size in this simple version of the model, which means that adjusted parameter are valid on a restricted time period.
 
 
 \subsection{Model setup}
 
+Besides model dynamics, its initialization (or parametrization on real data) regarding the spatial distribution, sizes, countries and industrial sector compositions, is also important to understand model behavior. \cite{raimbault2019space} furthermore showed that the initial spatial configuration can have significant impacts on model outcomes. We therefore consider two versions: one with a synthetic system of cities which can be stochastically repeated, and one other based on real data.
+
 \paragraph{Synthetic setup}
 
-We build the model on a synthetic system of cities, at the scale of a continent with properties similar to Europe: (i) 700 cities with an empirical power-law from the Global Human Settlements database for economic sizes; (ii) clustered into 30 countries; (iii) with synthetic distribution of sectors following log-normal distributions adjusted in a way that large cities have more high-value activities and are more diverse. The network is generated from an empty initial network until reaching $t_f=1500$.
+The synthetic system of cities is generated to be at the scale of a continent with properties similar to Europe: (i) $N=700$ cities with an empirical power-law from the Global Human Settlements database for economic sizes ($\alpha = 1.1$), distributed randomly into a uniform and isotropic square space of width $d_{max}=3000km$; (ii) clustered into $C = 20$ countries using a k-means algorithm (this remains consistent with non-correlated city sizes at the scale of the countries as our cities are randomly distributed in space \citep{simini2019testing}); (iii) with synthetic distribution of sectors following log-normal distributions adjusted in a way that large cities have more high-value activities and are more diverse. More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretized and renormalized to be a vector of probabilities. In synthetic experiments, the network is generated from an empty initial network until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
 
+     
+\paragraph{Real setup}
 
-A simple synthetic setup is considered.
-\begin{itemize}
-    \item cities are distributed randomly in a uniform and isotropic space. The total width of the space $d_{max}$ fixed to 3000km to be approximatively the size of Europe. The number of cities is fixed as $N=700$ to similarly match the European urban system structure (GHS database \citep{Florczyk2019ghs}).
-    \item city sizes are attributed with a scaling law (equivalent to have a Zipf law for population and a scaling law for economic size), following an exponent $\beta_0$ (fixed at $\beta_0 = 1.1$ in most experiments when not specified, approximate value for GDP from the GHS database, see \citep{raimbault:halshs-02284897})
-    % from the GHS database : scaling GDP - pop ~ 1.1 for Europe, rank size 0.94 -> 1.034 : take 1.1 to simplify - can be paramterized ?
-    \item country boundaries are constructed to obtain an approximately equal coverage of the space for a fixed number of countries, what remains consistent with non-correlated city sizes at the scale of the countries as our cities are randomly distributed in space \citep{simini2019testing} (\textit{Note: on this point this may be realistic if staying at a continental level, although we should include realistic size of countries; this paper is surely wrong when changing the dataset used and the scale of analysis, working at the scale of Mega-city regions e.g.}). Therefore, we do a basic spatial k-means clustering with $C = 20$ countries and attribute the country accordingly.
-    \item firm sector structure: 
-    \begin{itemize}
-        \item random probabilities
-        \item uniform: then the term of proximity is cancelled, no interest
-        \item function of size: larger cities are more diverse, larger cities have more knowledge-based sectors. Test 1: log-normal with slightly increasing width and shifting mode.
-        % mode of log normal is exp(mu - sigma ^ 2) ; variance is [exp(sigma^2) - 1]*exp(2 mu + sigma ^ 2)
-        % when the pdf is 1 / (x sigma sqrt(2 pi)) * exp (- (ln x - mu) ^ 2 / 2 sigma^2 )
-        % -> for largest city stddev = sqrt(variance) = fields / 2 ; for smallest sigma = 1 / nfields
-        %  ==> solving for mu and sigma with linear mode and variance as a function of log(E_i)
-        % => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X)-1) - ln(e_i)
-        % => mu = sigma^2 + ln(e_i)
-        %    ~ somehow dirty and not sure that most of the distrib for highest values is within [0,1]
-    \end{itemize}
-\end{itemize}
-
-
-
-
+The real setup is done using the empirical network analyzed above. Urban areas are distributed according to their positions in the real geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modeling, by considering fixed-effect coefficients estimated for each pair of countries. Initial network is empty, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij} / t_{f}$ when the number of time steps $t_f$ is given as a parameter.
 
 
 \subsection{Model parameters and indicators}
@@ -169,22 +147,22 @@ We consider several macroscopic indicators to quantify the generated network. Fi
 
 \section{Model exploration and calibration}
 
-The model is implemented in NetLogo, which provides a good compromise between performance and interactive prototyping and exploration \cite{railsback2017improving}. Numerical experiments are done by integrating the model into the OpenMOLE software for model exploration \cite{reuillon2013openmole}, which provides sensitivity analysis and calibration methods and a transparent access to high-performance computing infrastructures.
-
-Model source code, aggregated network data (raw initial firm network can not be made available for data ownership reasons), and results are available on the open git repository of the project at \url{https://github.com/JusteRaimbault/ABMCitiesFirms}. Large simulation result files are available on the dataverse repository at \url{https://doi.org/10.7910/DVN/UPX23S}.
-
-We show in Fig.~\ref{fig:example} examples of generated networks, with very contrasted patterns obtained with different spatial interaction ranges.
+The model is implemented in NetLogo, which provides a good compromise between performance and interactive prototyping and exploration \cite{railsback2017improving}. Numerical experiments are done by integrating the model into the OpenMOLE software for model exploration \cite{reuillon2013openmole}, which provides sensitivity analysis and calibration methods and a transparent access to high-performance computing infrastructures. Model source code, aggregated network data (raw initial firm network can not be made available for data ownership reasons), and results are available on the open git repository of the project at \url{https://github.com/JusteRaimbault/ABMCitiesFirms}. Large simulation result files are available on the dataverse repository at \url{https://doi.org/10.7910/DVN/UPX23S}. We show in Fig.~\ref{fig:example} examples of generated networks, with very contrasted patterns obtained with different spatial interaction ranges. Low values of the gravity decay parameter yield local networks around main cities, while long interaction ranges yield more integrated networks. We also show networks simulated in the real setting.
 
 %%%%%%%%%%%%%
 \begin{figure}
     \includegraphics[width=0.48\textwidth]{figures/ex_alleq-highgravity_seed-12102_t1500.png}
     \includegraphics[width=0.48\textwidth]{figures/ex_alleq-lowgravity_seed-12102_t1500.png}\\
+    \begin{minipage}{0.48\textwidth}
     \begin{mdframed}
-    \includegraphics[width=0.48\textwidth]{figures/ex_real_highgravity_t1500.png}
+    \includegraphics[width=\textwidth]{figures/ex_real_highgravity_t1500.png}
     \end{mdframed}
+    \end{minipage}
+    \begin{minipage}{0.48\textwidth}
     \begin{mdframed}
-    \includegraphics[width=0.48\textwidth]{figures/ex_real_lowgravity_t1500.png}
+    \includegraphics[width=\textwidth]{figures/ex_real_lowgravity_t1500.png}
     \end{mdframed}
+    \end{minipage}
     \caption{Example of simulated networks at $t=1500$, for a synthetic system of cities (Top row) and the European urban network (Bottom row). , with a high (resp. low) gravity decay parameter for the left column (resp. right).\label{fig:example}}
 \end{figure}
 %%%%%%%%%%%%%
