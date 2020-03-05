@@ -203,55 +203,63 @@ Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.
 
 \paragraph{One factor sampling}
 
-A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms a good statistical convergence (average Sharpe ratios for indicators all larger than 5). We use thus 20 repetitions in following larger experiments (). Behavior of some indicators are shown in Fig.~\ref{fig:onefactor}.
+A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms a good statistical convergence (average Sharpe ratios for indicators all larger than 5). We use thus 20 repetitions in following larger experiments (in the case of a normal distribution, a 95\% confidence interval on the average is of size $2\sigma \cdot 1.96 / \sqrt{n}$, what gives $n=16$ repetitions for a CI of width of the standard deviation). Behavior of some indicators are shown in Fig.~\ref{fig:onefactor}. For example, internationalization and the correlation between economic size and weighted degree both show a phase transition as a function of $\gamma_G$, from a local to a global regime. The sector proximity parameter $\gamma_S$ influences the internationalization linearly, but induces a maximum for the correlation between size and degree, which can be interpreted as a setting where size and the total volume in a city are the most correlated.
 
+%%%%%%%%%%%%%
 \begin{figure}
-	\includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/internationalization-gravityDecay_errorbars.png}
-    \includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/rhoDegreeSize-gravityDecay_errorbars.png}\\
-    \includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/internationalization-gammaSectors_errorbars.png}
-    \includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/rhoDegreeSize-gammaSectors_errorbars.png}
+	\includegraphics[width=0.48\textwidth,height=0.2\textheight]{figures/internationalization-gravityDecay_errorbars.png}
+    \includegraphics[width=0.48\textwidth,height=0.2\textheight]{figures/rhoDegreeSize-gravityDecay_errorbars.png}\\
+    \includegraphics[width=0.48\textwidth,height=0.2\textheight]{figures/internationalization-gammaSectors_errorbars.png}
+    \includegraphics[width=0.48\textwidth,height=0.2\textheight]{figures/rhoDegreeSize-gammaSectors_errorbars.png}
     \caption{(Top Left) Internationalization index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalization varies linearly with sector proximity $\gamma_S$; (Bottom Right) Correlation between degree and size exhibits a maximum, witnessing an intermediate regime where size is the most important. \label{fig:onefactor}}
 \end{figure}
+%%%%%%%%%%%%%
 
 
 
 \paragraph{Grid exploration}
 
-The model behaviour is then studied with a grid sampling for parameters and 20 repetitions (the computations run on the European Grid Infrastructure, and are equivalent to 2.5 years of CPU time).
+The model behaviour is then studied with a grid sampling for parameters and 20 repetitions (the computations run on the European Grid Infrastructure, and are equivalent to 2.5 years of CPU time). Distance decay and sector  parameters are varied with 10 steps, other parameters with three. The influence of gravity decay parameters is confirmed when plotting the internationalization index against the distance, which exhibits an exponential decay as shown in Fig.~\ref{fig:internat}. It interacts with the role of sectors and the size of the origin, with a more significant effect of sector proximity when size has the largest influence (third panel).
 
-The influence of gravity decay parameters is confirmed when plotting the internationalization index against the distance, which shows an exponential decay. Similarly, the correlation between city weighted degree and city size exhibit a behaviour that can be interpreted as a phase transition between local and global networks. Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network, we obtain a maximal integration in term of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. All these experiments reveal a complex interplay between processes and how the model produces diverse stylized facts.
 
+%%%%%%%%%%%%%%
 \begin{figure}
     \includegraphics[width=\textwidth]{figures/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
-    \caption{The transition as a function of interaction range depends on the influence of origin size $\gamma_F$; sector proximity $\gamma_S$ plays a role only for a large influence of the origin.}
+    \caption{The transition as a function of interaction range depends on the influence of origin size $\gamma_F$; sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:internat}}
 \end{figure}
+%%%%%%%%%%%%%%
 
 
+Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network as shown in Fig.~\ref{fig:comsize}, we obtain a maximal integration in term of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. In particular, we observe a qualitative inversion of the role of $\gamma_S$ when introducing an effect of the origin (switching $\gamma_F$ from 0 to 1, first panel to second panel). The maximal community size disappears when $\gamma_F = 2$, implying a regime with small local communities where large cities mostly connect with there hinterland. These experiments reveal a complex interplay between processes and how the model produces diverse stylized facts.
 
+%%%%%%%%%%%%%%
 \begin{figure}
     \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
-	\caption{Maximal integration in term of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime; Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$; This regime disappear when origin size influence is too large}
+	\caption{Maximal integration in term of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime; Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$; This regime disappear when origin size influence is too large.\label{fig:comsize}}
 \end{figure}
+%%%%%%%%%%%%%%
 
 
-
-
-% Saltelli exploration of the model
-% -> confirm relative importance of params and search for inhomogeneity/interaction effects
 
 
 \subsection{Model calibration on the European urban network}
 
 
-As a matter of validation, the model is implemented for real data for Europe joining Functional Urban Areas with the Global Human Settlement Database for cities and their characteristics, with the AMADEUS database produced by the Bureau Van Dijk on ownership links between firms in Europe in 2018 at postcode level in all types of sectors.
+We then apply the model to a real system of cities by calibrating it on the European ownership network. Model setup is done following the real setup described above. The number of time steps $t_f$ is left as an additional parameter, which in a sense determines the granularity of the cumulative network generation process. The objective functions for calibration are the average mean squared error on logarithms of weights given by $\varepsilon_L = \frac{1}{N^2} \sum_{i,j} \left(\log w_{ij} - \log \hat{w}_{ij} \right)^2$ if $\hat{w}_{ij}$ are the simulated weights, and the logarithm of the mean squared error $\varepsilon_M = \log\left(\frac{1}{N^2} \sum_{i,j} \left(w_{ij} - \hat{w}_{ij}\right)^2 \right)$. \cite{raimbault2018indirect} showed that these two are complementary to calibrate urban systems models. Calibration is done using a genetic NSGA2 algorithm \cite{deb2002fast}, which is particularly suited for such a bi-objective calibration of a stochastic simulation model. We use a population of 200 and run the algorithm for 20,000 generations, on 1000 islands in parallel.
+
+%%%%%%%%%%%%%%
+\begin{figure}
+	\begin{center}
+    \includegraphics[width=0.5\textwidth]{figures/pareto_colorgammaLinks.png}
+    \end{center}
+	\caption{Pareto front obtained for the bi-objective model calibration.\label{fig:calibration}}
+\end{figure}
+%%%%%%%%%%%%%%
 
 
-
-\subsubsection{Model calibration}
-
-Calibration is done using a genetic NSGA2 algorithm, finding the parameter values giving network trajectories closest to reality. First results show in particular a role of the path-dependency parameter confirming the relevance of this complex generative model. Further work is needed to get more interpretations from this experiment, but our study demonstrates the feasibility of model calibration on real data. Several scenarios are considered taking into consideration the current and future economic challenges, such as those given by Brexit. The model may be applied in future work to assess policy issues and recommendations.
-
-
+We show in Fig.~\ref{fig:calibration} the calibration result, as a Pareto front of compromise points between the two objectives. These correspond to parameter values giving network trajectories closest to reality. The values for $\varepsilon_L$ are always lower than for statistical models, our model outperforming these in this predictive sense.
+% add discussion param values
+This furthermore shows in particular a role of the path-dependency parameter, which calibrated value is quite high (8 in average on the Pareto front), confirming the relevance of this complex generative model including path-dependency. These results altogether demonstrate the feasibility of model calibration on real data.
 
 
 %%%%%%%%%%%%%%%
@@ -262,6 +270,9 @@ This paper aimed at presenting a generative model for urban networks defined by 
 Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
+
+
+% Several scenarios are considered taking into consideration the current and future economic challenges, such as those given by Brexit. The model may be applied in future work to assess policy issues and recommendations.
 
 % - other formulation of the combination of factors
 %multi-objective optimization depending on sectors, using Pareto fronts ? - needs empirical evidence; (iv) copula-based combination as done by \cite{2019arXiv190505106C} - copula parameters are free or estimated from real data
