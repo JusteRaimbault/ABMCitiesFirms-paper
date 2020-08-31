@@ -103,7 +103,6 @@ The synthetic system of cities is generated to be at the scale of a continent wi
 More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretised and renormalised to be a vector of probabilities. See \ref{S2_Text} for all details of this synthetic setup.
 
 In synthetic experiments, the network is generated from an empty initial network until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
-%\todo{explore effect of $t_f$ and/or $w_0$; be closer to real setup?} % -> more interesting to explore effect of urban hierarchy
 
      
 \paragraph{Real setup}
@@ -115,7 +114,7 @@ Initial network is empty, and the real links are taken as targets for the genera
 
 \subsection*{Model parameters and indicators}
 
-The model parameters are the Cobb-Douglas weights $\gamma_F,\gamma_T,\gamma_W,\gamma_s$ and distance decay parameters $\gamma_G,\gamma_D$. As the model also includes path-dependency by integrating the influence of previous links, it can not be reduced to a simple statistical model. Finally, the role of space introduces even further complexity, yielding a generative model, which has to be simulated.
+The model parameters are the Cobb-Douglas weights $\gamma_O,\gamma_D,\gamma_W,\gamma_S$ and distance decay parameters $d_0,c_0$. As the model also includes path-dependency by integrating the influence of previous links, it can not be reduced to a simple statistical model. Finally, the role of space introduces even further complexity, yielding a generative model, which has to be simulated.
 
 We consider two main macroscopic indicators to quantify the generated network. Firstly geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries of Europe and sparse connections between cities of the same European country. In practice, modularity is computed by
 \begin{equation}
