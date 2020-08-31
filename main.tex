@@ -1,55 +1,148 @@
-\documentclass[11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[margin=1in]{geometry}
-\usepackage{natbib,graphicx,mdframed,hyperref,threeparttable,amssymb}
+\documentclass[10pt,letterpaper]{article}
+\input{header.tex}
 
-
-
-\title{\vspace{-2cm}A generative model for urban firm networks}
-
-\date{}
-
+\usepackage{ragged2e}
 \begin{document}
+\justify
+\vspace*{0.2in}
 
-\author{J. Raimbault$^{1,2,3,\ast}$, N. Zdanowska$^{1,3}$\smallskip\\
-$^{1}$ Centre for Advanced Spatial Analysis, UCL\\
-$^{2}$ UPS CNRS 3611 ISC-PIF\\
-$^{3}$ UMR CNRS 8504 G{\'e}ographie-cit{\'e}s\\
-$^{\ast}$ \texttt{juste.raimbault@polytechnique.edu}
+% Title must be 250 characters or less.
+\begin{flushleft}
+{\Large
+\textbf\newline{A generative model for urban firm networks} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
 }
+% alternative titles?
+% Modeling the growth of urban firm networks
+\newline
+% Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
+\\
+Juste Raimbault\textsuperscript{1,2,3*},
+Natalia Zdanowska\textsuperscript{1,3},
+Elsa Arcaute\textsuperscript{3}
+\\
+\bigskip
+\textbf{1} Centre for Advanced Spatial Analysis, UCL, London, United Kingdom
+\\
+\textbf{2} UPS CNRS 3611 ISC-PIF, Paris, France
+\\
+\textbf{3} UMR CNRS 8504 G{\'e}ographie-cit{\'e}s, Paris, France
+\\
+\bigskip
 
-\maketitle
-% NetSci format: A4, 11pt, 1in margin, max 12p + up to 3p references
+% Use the asterisk to denote corresponding authorship and provide email address in note below.
+* juste.raimbault@polytechnique.edu
 
-\begin{abstract}
-The emergence of entangled urban networks is a salient feature of globalisation processes. Understanding the drivers behind the growth of such networks, and in particular urban firm networks, is crucial for the economic resilience of urban systems. We introduce in this paper a generative network model for firm networks at the urban area level, which includes several complementary processes which are the economic size of urban areas at origin and destination, industrial sector proximity between firms, the strength of links from the past as well as the geographical and socio-cultural distance. An empirical network analysis on European firm ownership data confirms a role for each factor. We then simulate network growth for synthetic systems of cities, unveiling stylized facts such as a transition from a local to a global regime or a maximal integration achieved at an intermediate interaction range. We finally calibrate the model on the European network, outperforming statistical models and showing a strong role of path-dependency. Potential applications of the model include the study of mitigation policies for exogenous shocks such as economic crisis.
+\end{flushleft}
 
-    
-\end{abstract}
+% Plos one requirements https://journals.plos.org/plosone/s/submission-guidelines
+% Deadline for the Cities as Complex Systems Call for Papers: 4th September https://collections.plos.org/s/cities
+% Manuscripts can be any length. There are no restrictions on word count, number of figures, or amount of supporting information. 
+% PLOS uses “Vancouver” references style
+% We need to reorganise the paper to have more or less the following sections (which can be reordered or renamed):
+% 1. Title page: List title, authors, and affiliations as first page of manuscript 2. Abstract 3. Introduction 4. Materials and Methods 5. Results 6. Discussion 7. Conclusions (optional)
 
-\section{Introduction}
+\section*{Abstract}
+The emergence of interconnected urban networks is a crucial feature of globalisation processes. Understanding the drivers behind the growth of such networks -- in particular urban firm networks --, is essential for the economic resilience of urban systems. We introduce in this paper a generative network model for firm networks at urban area level including several complementary processes: the economic size of urban areas at origin and destination, industrial sector proximity between firms, the strength of links from the past, as well as the geographical and socio-cultural distance. An empirical network analysis on European firm ownership data confirms the relevance of each of these factors. We then simulate network growth for synthetic systems of cities, unveiling stylized facts such as a transition from a local to a global regime or a maximal integration achieved at an intermediate interaction range. We finally calibrate the model on the European network, outperforming statistical models and showing a strong role of path-dependency. Potential applications of the model include the study of mitigation policies to deal with exogenous shocks such as economic crisis or potential lockdowns of countries.
 
-The intensification of globalisation of the economy since the late 20th century resulted in the rise of the network society \cite{castells2000networksociety} and the emergence of a world-city system \cite{taylor2001specification}, characterized by highly interconnected urban centres at the global level \cite{sassen1991}. These interactions can be of different nature and determined by economic, socio-cultural, or geopolitical proximity implying spatial and non spatial patterns \cite{martinus2018global}. Interactions of economic nature between transnational firms, are together with trade among the most representative of the current economic trends \cite{taylor2001specification}. Understanding the drivers of growth and geographical properties of such a urban network, can be used to foster innovation in specific cities and to shape public policies for local industrial clusters \cite{turkina2016structure}. Straightening these city-interactions can be crucial for revitalising certain geographical areas \cite{Clarke2018}, by developing strategic industries for global insertion of regions \cite{dawley2019creating}, cities \cite{gluckler2016relational} and countries \cite{martinus2019brokerage}. The functioning of such a city-network and the position of cities within these networks \cite{gluckler2016relational} can also permit to infer the consequences of future exogenous shocks such as an economic crisis, a single market collapse or a post-Brexit scenario for the European Union.
-
-The use of network models to understand processes underlying the emergence and dynamics of such urban networks has already been widely tackled in the literature. \cite{dai2016simulating} propose a generative urban network model at the regional scale, combining geographical factors with network topological properties. Air transportation networks can also be understood as urban networks, and \cite{zanin2013modelling} reviews several models for such networks. Trade network have been extensively studied from complex networks perspective, but are generally driven at the country-level \cite{garlaschelli2005structure} because of lack of city-level data. Input-output models, mostly used in regional science to represent flows between geographical areas, are considered in some cases as a type of urban generative model \cite{jin1993generation}. In this stream of research, spatial interaction models \cite{dennett2013multilevel} can form the basis of urban network models for abstract flows \cite{dai2016generative} or physical infrastructure \cite{raimbault2018indirect}.
-
-
-In this paper we choose to focus on urban networks of firms to question how can we understand and capture geographical and economic processes as agglomeration economies \cite{Glaeser2001} characteristic to spatial economy \cite{Fujitaetal2001} within a generative model. The specific question we tackle is the complementarity of different processes to generate such urban networks. One originality of the present paper is to approach these issues within the system of cities framework \cite{berry1964cities}, where the position and dynamics of cities in the socio-economic world-wide space can be considered by their interactions with other cities \cite{pumain2018evolutionary}. We examine the interactions of European cities within firm linkages defined by corporate ownership links. Since transnational firms structure is one of the determinant of the global economic space, it provides one accurate proxy to unveil geographical structures \cite{2019arXiv191014652Z}. 
-
-More precisely, our contribution relies on the following points: (i) we propose an empirical analysis of the firm ownership urban network for the European Union, based on the Bureau Van Dijk's \emph {AMADEUS} database; (ii) we introduce a generative network model to simulate the growth of such linkages at urban areas scale, which combines multiple factors influencing link formation, as economic intensity of origin and destination of urban areas, industrial sector proximity, the strength of previous links, and geographical and socio-cultural distance; (iii) the model allows us to compare the effect of different factors on the final network structure, which is extensively studied through model sensitivity analysis and exploration; and (iv) we calibrate the model on the empirical network.
+\linenumbers
 
 
-The rest of this paper is organized as follows: we first proceed to an empirical analysis of the network studied. We then describe the generative model for urban networks, and its sensitivity analysis and exploration on synthetic data. We then parametrize and calibrate the model on real European firm ownership data. We finally discuss implications of our results and possible extensions.
+\section*{Introduction}
+
+\cite{derudder2018central}
+\cite{storme2019introducing} cities firms interactions
+
+Networks constitute the new social morphology of our societies, since the intensification of globalisation of the economy in the late 20th century \cite{castells2000networksociety}. A world-city system has since then emerged \cite{taylor2001specification}, characterized by highly interconnected urban centres at the global level \cite{sassen1991}. These interactions can be of different nature and determined by economic, socio-cultural, or geopolitical proximity implying spatial and non-spatial patterns \cite{martinus2018global}. Interactions of economic nature between transnational firms, are together with international trade patterns among the most representative of the current economic trends \cite{taylor2001specification}. Understanding the drivers of growth and geographical properties of such an urban network, can be used to foster innovation in specific cities and to shape public policies for local industrial clusters \cite{turkina2016structure}. Straightening these city-interactions can be crucial for revitalising certain geographical areas \cite{Clarke2018}, by developing strategic industries for global integration of regions \cite{dawley2019creating}, cities \cite{gluckler2016relational} and countries \cite{martinus2019brokerage}. The functioning of such a city-network and the position of cities within these networks \cite{gluckler2016relational} can also permit to infer the consequences of future exogenous shocks such as an economic crisis, a post-Brexit scenario for the European Union or a single market collapse in the post-COVID19 future.
+
+The use of network models to understand processes underlying the emergence and dynamics of such networks has already been tackled in the literature, but still not extensively at city level. Generative urban network models combining geographical factors with network topological properties exist at the regional scale {\cite{dai2016simulating}}. %Air transportation networks can also be understood as urban networks. \cite{zanin2013modelling} reviews several models for such networks.
+Trade networks have been extensively studied from the complex networks perspective, but these are generally driven at the country-level \cite{garlaschelli2005structure} because of a lack of city-level data. Input-output models, mostly used in regional science to represent flows between geographical areas, are considered in some cases as a type of urban generative model \cite{jin1993generation}. In this stream of research, spatial interaction models \cite{dennett2013multilevel} can form the basis of urban network models for different types of flows \cite{dai2016generative} or physical infrastructure \cite{raimbault2018indirect}.
 
 
-\section{Empirical network analysis}
+In this paper we choose to focus on urban networks of firms to question and capture geographical and economic processes as internationalisation, metropolisation, regionalisation and specialisation of cities within a generative model. The specific question we tackle is the complementarity of different processes to generate such urban networks. The originality of the present paper is to examine these issues within the system of cities framework \cite{berry1964cities}. In this approach the position and dynamics of cities in the socio-economic world-wide space can be considered by their interactions with other cities \cite{pumain2018evolutionary}. We examine the interactions of European cities within firm linkages defined by corporate ownership links. Since transnational firms structure is one of the determinant of the global economic space, it provides one accurate proxy to unveil geo-economic structures \cite{2019arXiv191014652Z}. 
+
+More precisely, our contribution consists in the following: (i) we propose an empirical analysis of the firm ownership urban network in the European Union, based on the Bureau Van Dijk's \emph {AMADEUS} database \cite{AMADEUS2018}; (ii) we introduce a generative network model to simulate the growth of such linkages at urban areas scale, which combines multiple factors influencing link formation, as economic intensity of origin and destination of urban areas, industrial sector proximity, the strength of previous links, and geographical and socio-cultural distance; (iii) the model allows us to compare the effect of different factors on the final network structure, which is extensively studied through model sensitivity analysis and exploration; and (iv) we calibrate the model on the empirical network.
+
+
+The rest of this paper is organized as follows: We first describe the generative model for urban networks and proceed to an empirical analysis of the network used as a case study. We then do a sensitivity analysis and exploration of the model on synthetic data. The model is calibrated on real European firm ownership data. We finally discuss implications of our results and possible extensions.
+
+\section*{Materials and Methods}
+
+\subsection*{Generative urban network model}
+
+\subsubsection*{Rationale}
+
+The model is expected to capture a single macroscopic urban scale, i.e. the level of the urban system where basic entities are cities. Links are induced by underlying firms but these are not explicit. Cities are defined by their economic size, but also by an industrial sector profile. As the authors of \cite{martinus2018global} point out, a combination of several distances may play a role in establishing linkages. Geographical distance, industrial proximity and complementarity will typically be equally significant \cite{cottineau2020nested}. Therefore, we combine several processes driving network growth: (i) geographical proximity (in our case the crow-fly distance, but it can be generalized to any type of accessibility); (ii) geopolitical proximity, which captures the higher propensity to establish links within existing submarkets within the European common market (confirmed relevant by the fixed effect regression described above); (iii) city economic size, which has furthermore scaling laws properties; (iv) industrial proximity in terms of firm sector composition; (v) previous linkages (influence of already existing links in the past). This last point is crucial to capture accumulated effects and include path-dependency, which fits well the use of a simulation model instead of a more simple statistical model.
+
+
+\subsubsection*{Model description}
+
+Let $1 \leq i \leq N$ cities defined at time $t$ by their economic structure such that $E_i(t)$ is the total economic volume (GDP) for city $i$ and $S_{ik}(t)$ is a matrix giving economic volume proportions within each economic sector $k$, assuming $K$ economic sectors. Formally, the model creates links between cities which are characterized by their economic size $E_i$ (GDP) and economic structure $S_{ik}$ in terms of activity sectors (probability distribution of firms within $K$ sectors). Starting with an existing network with no links, the model iteratively adds links, following a probability given by a generalized Cobb-Douglas function \cite{vilcu2011geometric} as 
+
+\begin{equation}
+p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_O} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_D} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- d_{ij} / d_0\right) \cdot \exp \left(- c_{ij} / c_0\right)
+\end{equation}
+
+where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, $s(S_{ik},S_{jk})$ is a similarity function between activity sectors $S_{ik}$ and $S_{jk}$ taken as a cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance. In the case of an already existing link between two areas, the weight of the latter is incremented by a unit volume $w_0$. The model is stopped either when a final time is reached or when the cumulated volume of links reaches a target quantity. This formulation can be considered both as an economic utility model and a generalisation of spatial interaction models.
+
+
+
+Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalise the exponents to 1 (which is different than renormalising the probability), to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrised (see setup below) and estimated in the data-driven setting. We assume no evolution of economic size in this simple version of the model, which means that adjusted parameter are valid on a restricted time period.
+
+
+\subsubsection*{Model setup}
+
+Besides model dynamics, its initialisation (or parametrisation on real data) regarding the spatial distribution, sizes, countries and industrial sector compositions, is also important to understand model behavior. In addition  \cite{raimbault2019space} showed that the initial spatial configuration can have significant impacts on model outcomes. We therefore consider two versions: one with a synthetic system of cities which can be stochastically repeated, and one other based on real data.
+
+
+\paragraph{Synthetic setup}
+
+The synthetic system of cities is generated to be at the scale of a continent with properties similar to Europe: (i) $N=700$ cities with an empirical power-law from the Global Human Settlements database for economic sizes ($\alpha = 1.1$), distributed randomly into a uniform and isotropic square space of width $d_{max}=3000km$;
+(ii) clustered into $C = 20$ countries using a k-means algorithm (this remains consistent with non-correlated city sizes at the scale of the countries as our cities are randomly distributed in space \cite{simini2019testing});
+(iii) with synthetic distribution of sectors following log-normal distributions adjusted in a way that large cities have more high-value activities and are more diverse.
+
+More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretised and renormalised to be a vector of probabilities. See \ref{S2_Text} for all details of this synthetic setup.
+
+In synthetic experiments, the network is generated from an empty initial network until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
+%\todo{explore effect of $t_f$ and/or $w_0$; be closer to real setup?} % -> more interesting to explore effect of urban hierarchy
+
+     
+\paragraph{Real setup}
+
+The real setup is done using the empirical network analyzed above. Urban areas are distributed according to their positions in the actual geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modeling, by considering fixed-effect coefficients estimated for each pair of countries. See \ref{S2_Text} for more details on the construction of the socio-economic distance matrix.
+
+Initial network is empty, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij}^{(obs)} / t_{f}$ when the number of time steps $t_f$ is given as a parameter.
+
+
+\subsection*{Model parameters and indicators}
+
+The model parameters are the Cobb-Douglas weights $\gamma_F,\gamma_T,\gamma_W,\gamma_s$ and distance decay parameters $\gamma_G,\gamma_D$. As the model also includes path-dependency by integrating the influence of previous links, it can not be reduced to a simple statistical model. Finally, the role of space introduces even further complexity, yielding a generative model, which has to be simulated.
+
+We consider two main macroscopic indicators to quantify the generated network. Firstly geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries of Europe and sparse connections between cities of the same European country. In practice, modularity is computed by
+\begin{equation}
+
+\end{equation}
+% put the actual modularity
+% add some reference values - some kind of null model
+
+Secondly we consider the metropolisation indicator as the correlation between the weighted degree and the GDP of the city. With this indicator we capture the effect of large cities or metropolises of regional importance attracting the biggest amount of links and involved in high interactions with other cities. It is computed with a Pearson correlation estimator as
+\begin{equation}
+    M = \hat{\rho} \left[d_i , E_i \right]
+\end{equation}
+
+%I think we need to keep this paragraph but shorten it, because to my understanding network average community size is tested in Figure 5, but not the Louvain modularity for ex.
+%We also consider several network indicators as Louvain modularity, sizes of maximal modularity communities, degree and link weight distributions (described by their average, hierarchy, and entropy), and correlations between degree and city size, and between link weight and distance.
+
+We take a geographical approach to study the behavior of the generative model. Other related approaches include indicators of economic complexity \cite{hidalgo2007product}. % develop
+These are less relevant in our case as the sector structure of cities does not evolve in the model.
+
+\subsection*{Empirical data}
 
 % stats to describe the structure of the database, nb of total links, nodes, missing values? + nb of firms per country,  total turnover generated per country etc..
 
-Companies from the AMADEUS database are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the GHS-FUA dataset for Functional Urban Areas \cite{Florczyk2019ghs}, which are the most relevant objects for applying our model. Starting from a firm-level dataset of 1,562,862 nodes and  1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. Weight of links are obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} p_{kl} \cdot T_l$ where $p_{kl}$ of the ownership share of company $l$ by company $k$ and $T_l$ the turnover of company $l$. Node attributes include an economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with area-level GDP included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$), so we expect to capture size effects while keeping the consistence of a single main data source. An other attribute of nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the four digits of the NACE classification in the raw data. We consider the first level classification (21 categories) and compute sector proportions accordingly. This allows us to define an industrial proximity matrix between urban areas, taking a cosine similarity between vectors as $s_{ij} = \sum_{k=1}^{K} S_{ik}\cdot S_{jk}$ where $S_{ik}$ are sector proportions.
+Companies from \emph {AMADEUS} are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the Global Human Settlement dataset GHS-FUA for Functional Urban Areas \cite{Florczyk2019ghs} -- the most relevant objects for applying our model. Starting from a firm-level dataset of 1,562,862 nodes and 1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. The weight of links is obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} p_{kl} \cdot T_l$ where $p_{kl}$ of the ownership share of company $l$ by company $k$ and $T_l$ the turnover of company $l$. Node attributes include an economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with the GDP of the area-level included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$). We then expect to capture size effects while keeping the consistence of a single main data source. An other attribute of the nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the four digits of the NACE classification in the raw data \cite{EUROSTAT2008}. We consider the first level classification (21 categories) and compute sector proportions accordingly. This allows us to define an industrial proximity matrix between urban areas, taking a cosine similarity between vectors as $s_{ij} = \sum_{k=1}^{K} S_{ik}\cdot S_{jk}$ where $S_{ik}$ are sector proportions.
 
 
-The urban network has heavy tail weighted degree and edge weight distributions, as shown in Fig.~\ref{fig:nwdist}. We fit power law and log-normal distributions, including minimal value cutoff following \cite{clauset2009power}, using the \texttt{powerlaw} R package \cite{powerlawpackage}. For both, log-normal distributions appear to be a better fit ($\mu=18.8$, $\sigma=2.3$ for weighted degree; $\mu=13.8$, $\sigma=2.8$ for edge weight), and include a much broader range of the empirical distributions with lower estimated cut-offs. These heavy tail properties suggest the relevance of a generative model including self-reinforcing processes which are known to produce such distributions.
+The urban network has heavy tail weighted degree and edge weight distributions, as shown in Fig.~\ref{fig:nwdist}. We fit power law and log-normal distributions, including minimal value cutoff following \cite{clauset2009power}, using the \texttt{powerlaw} R package \cite{powerlawpackage}. For both, log-normal distributions appear to be a better fit ($\mu=18.8$, $\sigma=2.3$ for weighted degree; $\mu=13.8$, $\sigma=2.8$ for edge weight), and include a much broader range of the empirical distributions with lower estimated cut-offs. These heavy tail properties suggest the relevance of a generative model including self-reinforcing processes, which are known to produce such distributions.
 
 %%%%%%%%%%%%%
 \begin{figure}
@@ -62,19 +155,34 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 %%%%%%%%%%%%%
 
 
-Regarding the community structure of the network, different modularity maximisation algorithms (run on the undirected corresponding network) give a same undirected modularity of 0.38, and a directed modularity \cite{nicosia2009extending} of 0.34 for the greedy algorithm of \cite{clauset2004finding} and 0.36 for the Louvain algorithm \cite{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows present certain regional patterns. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities.
+Regarding the community structure of the network, different modularity maximisation algorithms (run on the undirected corresponding network) give the same undirected modularity of 0.38, and a directed modularity \cite{nicosia2009extending} of 0.34 for the greedy algorithm of \cite{clauset2004finding} and 0.36 for the Louvain algorithm \cite{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows present certain regional patterns. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities. We show in Fig.~\ref{fig:map_communities} a map of the communities obtained.
+
+%%%%%%%%%%%%%%
+\begin{figure}
+    \centering
+    \includegraphics{}
+    \caption{{\bf Map of network communities obtained by modularity maximisation.}}
+    \label{fig:map_communities}
+\end{figure}
+%%%%%%%%%%%%%%
 
 
-To have a first insight into factors playing a role in the formation of links, we proceed to a statistical analysis similar to unconstrained spatial interaction models \cite{wilson1975some}. We test five different statistical models, including progressively the processes candidate to be included in the network generative model. The most general statistical model is
-\[
+\subsubsection*{Statistical analysis}
+
+In order to understand which are the most determining geo-economic factors influencing creation of links between cities, we run a statistical analysis as applied in the case of unconstrained spatial interaction models \cite{wilson1975some}. We test five different statistical models, including progressively the processes to be included in the network generative model. The most general statistical model is:
+
+\begin{equation}
 \log(w_{ij}) = \log(d_{ij}) + \log(T_i) + \log(T_j) + \log(s_{ij}) + \alpha_{c_i,c_j} + \varepsilon_{ij}
-\]
-where $\alpha_{c_i,c_j}$ is a fixed effect term for the couple of countries $c_i,c_j$. We use a multiplicative form by taking logarithms as it is usually done for spatial interaction models. Furthermore, origin and/or destination constrained models are not relevant in our case as links include not only turnover but also a share of ownership. Estimation results are given in Table~\ref{tab:reg}. We also fit a Poisson generalized linear model with a logarithmic link on the rounded weights \cite{flowerdew1988fitting}. We find that distance alone (model 1) has a significant negative effect but with an explained variance close to zero. The second model adds fixed effects by pair of countries, for which around a third are significant, and with a better $R^2$ of 0.17. Adding origin and destination economic size (turnovers $T_i$ and $T$, model 3) slightly improves the explanative power, but the best model among the linear ones is the model 4 with all factors and fixed effects, both in terms of explained variance ($R^2 = 0.31$) and Akaike information criterion. The latter indicates the absence of overfitting. The Poisson model with all variables is much better regarding pseudo-$R^2$ and provides much more significant estimates (all fixed effects significant and much smaller standard deviations). Across all models, we find consistent qualitative stylized facts: (i) distance has a negative influence; (ii) economic sizes have a positive influence, with the size of the origin being more important (what is consistent with ownership links, strongly driven by decision at the headquarters); (iii) industrial proximity has a positive influence, i.e. similarity is more important than complementarity for this dimension; (iv) an important part of country fixed-effects are significant; and (v) the order of magnitude of the influence of each factor is roughly the same, in the sense that no process totally dominates the others. This suggests the relevance of including all these different dimensions in the generative network model.
+\end{equation}
+
+where $\alpha_{c_i,c_j}$ is a fixed effect term for the coupling of countries $c_i,c_j$. A multiplicative form is applied by taking logarithms as usually done for spatial interaction models. Furthermore, origin and/or destination constrained models are not relevant in our case, as links include information about the turnover and a share of ownership at the same time. Estimation results are given in Table~\ref{tab:reg}. We also fit a Poisson generalized linear model with a logarithmic link on the rounded weights \cite{flowerdew1988fitting}. The findings show that when distance only is taken into account (model 1), it has a significant negative effect on link creation, but with an explained variance close to zero. Model 2 adds fixed effects by pair of countries, for which around a third are significant, and with a better $R^2$ of 0.17. Adding the economic size at origin and destination (turnovers $T_i$ and $T$, model 3) slightly improves the explanative power (model 3). The best model among the linear ones is the model 4, with all factors and fixed effects, both in terms of explained variance ($R^2 = 0.31$) and Akaike information criterion. Model 4 also indicates the absence of overfitting. Model 5, which is a Poisson model with all variables is much a better fit regarding pseudo-$R^2$ and provides much more significant estimates (all fixed effects significant and much smaller standard deviations). Across all models, consistent qualitative stylized facts regarding link creation between cities are revealed: (i) distance has a negative influence; (ii) economic sizes have a positive effect, with the size of the origin city being more important (consistent in the ownership links context, as strongly driven by decision at the headquarter/owner level); (iii) industrial proximity has a positive influence, i.e. similarity is more important than complementarity for this dimension; (iv) an large part of country fixed-effects are statistically significant; and (v) the order of magnitude of the influence of each factor is roughly the same, which means that no process totally dominates the others.
+This confirms the relevance of including all these different dimensions in the generative network model, since they have a comparable explanatory role in statistical models.
 
 
 %%%%%%%%%%%%%
-\begin{table}[h]
-\caption{Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, we give the proportion of significant coefficients (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link. We compare model performance using $R^2$, Mean Square Error, and Akaike Information Criterion. For the Poisson model, AIC is not given as it is not comparable, and the pseudo-$R^2$ is given either.\label{tab:reg}}
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{{\bf Statistical models.} Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, the proportion of significant coefficients is attributed (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link. We compare model performance using $R^2$, Mean Square Error, and Akaike Information Criterion. For the Poisson model (model 5), AIC is not given as it is not comparable, and the pseudo-$R^2$ is given either. \label{tab:reg}}
 \medskip
 \begin{tabular}{|l|c|c|c|c|c|}
 \hline
@@ -91,59 +199,19 @@ MSE & 7.75 & 6.84 & 6.10 & 5.33 & 8.72 \\
 AIC &        44304   &  43578  &  42131  & 41917 &   \\
 \hline
 \end{tabular}
+\end{adjustwidth}
 \end{table}
 %%%%%%%%%%%%%
 
-
-
-\section{Model}
-
-\subsection{Rationale}
-
-The model is expected to capture a single macroscopic urban scale, i.e. the level of the urban system where basic entities are cities. Links are induced by underlying firms but these are not explicit. Cities are defined by their economic size, but also by an industrial sector profile. As \cite{martinus2018global} point out, a combination of several distances may play a role in establishing linkages. Geographical distance, industrial proximity and complementarity will typically be equally significant \cite{cottineau2020nested}. Therefore, we combine several processes driving network growth: (i) geographical proximity (in our case the crow-fly distance, but it can be generalized to any type of accessibility); (ii) geopolitical proximity, which captures the higher propensity to establish links within existing submarkets despite the European common market (confirmed relevant by the fixed effect regression described above); (iii) city economic size, which has furthermore scaling laws properties; (iv) industrial proximity in terms of firm sector composition; (v) previous linkages (influence of history). This last point is crucial to capture accumulated effects and include path-dependency, which fits well the use of a simulation model instead of a more simple statistical model.
+%\todo{which model is what is not clear between the text and the table / econometric conventions}
 
 
 
-\subsection{Model description}
-
-Let $1 \leq i \leq N$ cities defined at time $t$ by their economic structure such that $E_i(t)$ is the total economic volume (GDP) for city $i$ and $S_{ik}(t)$ is a matrix giving economic volume proportions within each economic sector $k$, assuming $K$ economic sectors. Formally, the model creates links between cities which are characterized by their economic size $E_i$ (GDP) and economic structure $S_{ik}$ in terms of activity sectors (probability distribution of firms within $K$ sectors). Starting with an existing network with no links, the model iteratively adds links, following a probability given by a generalized Cobb-Douglas function \cite{vilcu2011geometric} as 
-
-\begin{equation}
-p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
-\end{equation}
-
-where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, $s(S_{ik},S_{jk})$ is a similarity function between activity sectors $S_{ik}$ and $S_{jk}$ taken as a cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance. In the case of an already existing link between two areas, the weight of the latter is incremented by a unit volume $w_0$. The model is stopped either when a final time is reached or when the cumulated volume of links reaches a target quantity. This formulation can be considered both as an economic utility model and a generalisation of spatial interaction models.
 
 
+%\section*{Results}
 
-Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalize the exponents to 1 (which is different than renormalising the probability), to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrised (see setup below) and estimated in the data-driven setting. We assume no evolution of economic size in this simple version of the model, which means that adjusted parameter are valid on a restricted time period.
-
-
-\subsection{Model setup}
-
-Besides model dynamics, its initialisation (or parametrisation on real data) regarding the spatial distribution, sizes, countries and industrial sector compositions, is also important to understand model behavior. In addition  \cite{raimbault2019space} showed that the initial spatial configuration can have significant impacts on model outcomes. We therefore consider two versions: one with a synthetic system of cities which can be stochastically repeated, and one other based on real data.
-
-
-\paragraph{Synthetic setup}
-
-The synthetic system of cities is generated to be at the scale of a continent with properties similar to Europe: (i) $N=700$ cities with an empirical power-law from the Global Human Settlements database for economic sizes ($\alpha = 1.1$), distributed randomly into a uniform and isotropic square space of width $d_{max}=3000km$; (ii) clustered into $C = 20$ countries using a k-means algorithm (this remains consistent with non-correlated city sizes at the scale of the countries as our cities are randomly distributed in space \citep{simini2019testing}); (iii) with synthetic distribution of sectors following log-normal distributions adjusted in a way that large cities have more high-value activities and are more diverse. More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretised and renormalised to be a vector of probabilities. In synthetic experiments, the network is generated from an empty initial network until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
-
-     
-\paragraph{Real setup}
-
-The real setup is done using the empirical network analyzed above. Urban areas are distributed according to their positions in the actual geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modeling, by considering fixed-effect coefficients estimated for each pair of countries. Initial network is empty, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij} / t_{f}$ when the number of time steps $t_f$ is given as a parameter.
-
-
-\subsection{Model parameters and indicators}
-
-
-The model parameters are the Cobb-Douglas weights $\gamma_F,\gamma_T,\gamma_W,\gamma_s$ and distance decay parameters $\gamma_G,\gamma_D$. The model also includes path-dependency by integrating the influence of previous links. Therefore it can not be reduced to a simple statistical model. Finally, the role of space introduces even further complexity, yielding a generative model, which has to be simulated.
-
-We consider several macroscopic indicators to quantify the generated network. Firstly, geographical structures are captured by (i) internationalisation (modularity of countries in the network); (ii) metropolisation (correlation between weighted degree and city size). Two other thematic indicators, which are regionalisation (correlation between length and flow of links, stratified by size of extremities), and specialisation (correlation between sector proximity and flow of links, stratified by size of extremities), are not included in this study for the sake of simplicity as each has a high dimension. We also consider several network indicators as Louvain modularity, sizes of maximal modularity communities, degree and link weight distributions (described by their average, hierarchy, and entropy), and correlations between degree and city size, and between link weight and distance.
-
-
-
-\section{Model exploration and calibration}
+\section*{Model exploration and calibration}
 
 The model is implemented in NetLogo, which provides a good compromise between performance and interactive prototyping and exploration \cite{railsback2017improving}. Numerical experiments are done by integrating the model into the OpenMOLE software for model exploration \cite{reuillon2013openmole}, which provides sensitivity analysis and calibration methods and a transparent access to high-performance computing infrastructures. Model source code, aggregated network data (raw initial firm network can not be made available for data ownership reasons), and results are available on the open Git repository of the project at \url{https://github.com/JusteRaimbault/ABMCitiesFirms}. Large simulation result files are available on the dataverse repository at \url{https://doi.org/10.7910/DVN/UPX23S}. We show in Fig.~\ref{fig:example} examples of generated networks, with very contrasted patterns obtained with different spatial interaction ranges. Low values of the gravity decay parameter yield local networks around main cities, while long interaction ranges yield more integrated networks. We also show networks simulated in the real setting.
 
@@ -166,32 +234,13 @@ The model is implemented in NetLogo, which provides a good compromise between pe
 %%%%%%%%%%%%%
 
 
-\subsection{Synthetic city systems}
+\subsection*{Synthetic city systems}
 
 We first study extensively the behavior of the model on synthetic systems of cities, to isolate its intrinsic behavior independently of a contingent geographical situation.
 
 \paragraph{Sensitivity analysis}
 
-A global sensitivity analysis first unveils an aggregated influence of parameters on model indicators. We apply Saltelli's Global Sensitivity method introduced by \cite{saltelli2008global}. This produces values for each parameter and each output of a first order sensitivity index, defined as $Var\left[\mathbb{E}_{\mathbf{X}_{\sim i}}\left(Y_j | X_i\right)\right] / Var\left[Y\right]$, for parameter $X_i$ and output $Y_j$, $\mathbf{X}_{\sim i}$ being all other parameters. This captures the total influence of $X_i$ all other things being equal. The total order index is given by $\mathbb{E}_{\mathbf{X}_{\sim i}} \left[Var(Y_j | \mathbf{X}_{\sim i})\right] / Var\left[Y_j\right]$ and captures non-homogeneity in behavior and interaction between parameters. Indices were estimated with a Sobol sequence sampling of 20,000 model runs \cite{saltelli2010variance}. We give in Table~\ref{tab:saltelli} estimated results. We find that indicators related to modularity (internationalisation and optimal modularity) are mostly influenced by geographical parameters. On the contrary, indicators of network structure are driven by origin and destination sizes. Sectors and link history have a second order by not negligible role. Altogether, the analysis witnesses of strong interaction effects between parameters, since for several indicators the total order index is one order of magnitude larger than the first order index. This means that the generative model captures some complex behavior of the system. The very different important parameters depending on outputs studied confirms the relevance of a more exhaustive grid exploration.
-
-
-%%%%%%%%%%%%%
-\begin{table}
-\caption{Saltelli sensitivity indices, for indicators in rows and parameters in columns. We give for each pair the first order index (F) and the total order index (T).\label{tab:saltelli}}
-\hspace{-1cm}\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
- & \multicolumn{2}{|c|}{$\gamma_G$} & \multicolumn{2}{|c|}{$\gamma_D$} & \multicolumn{2}{|c|}{$\gamma_S$} & \multicolumn{2}{|c|}{$\gamma_W$} & \multicolumn{2}{|c|}{$\gamma_F$} & \multicolumn{2}{|c|}{$\gamma_T$} \\
- & F & T & F & T & F & T & F & T & F & T & F & T \\
- \hline
-Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.009 & $4\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
-Metropolisation & 0.02 & 0.1 & 0.02 & 0.2 & 0.002 & 0.1 & 0.001 & 0.09 & 0.2 & 0.6 & 0.3 & 0.6 \\
-Modularity & 0.3 & 0.4 & 0.6 & 0.6 & 0.004 & 0.02 & $3\cdot 10^{-4}$ & 0.01 & 0.005 & 0.03 & 0.002 & 0.03 \\
-Avg. com. size & 0.008 & 0.09 & 0.01 & 0.1 & 0.002 & 0.07 & 0.003 & 0.04 & 0.3 & 0.6 & 0.4 & 0.6 \\
-Degree entropy & 0.006 & 0.02 & 0.003 & 0.02 & 0.006 & 0.03 & 0.008 & 0.02 & 0.5 & 0.5 & 0.5 & 0.5 \\
-Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.5 & 0.4 & 0.5 \\\hline
-\end{tabular}
-\end{table}
-%%%%%%%%%%%%%
+A global sensitivity analysis first unveils an aggregated influence of parameters on model indicators. We apply Saltelli's Global Sensitivity method introduced by \cite{saltelli2008global}. This produces values for each parameter and each output of a first order sensitivity index, defined as $Var\left[\mathbb{E}_{\mathbf{X}_{\sim i}}\left(Y_j | X_i\right)\right] / Var\left[Y\right]$, for parameter $X_i$ and output $Y_j$, $\mathbf{X}_{\sim i}$ being all other parameters. This captures the total influence of $X_i$ all other things being equal. The total order index is given by $\mathbb{E}_{\mathbf{X}_{\sim i}} \left[Var(Y_j | \mathbf{X}_{\sim i})\right] / Var\left[Y_j\right]$ and captures non-homogeneity in behavior and interaction between parameters. Indices were estimated with a Sobol sequence sampling of 20,000 model runs \cite{saltelli2010variance}. We give in \ref{S4_Text} the full estimated results. To summarize, we find that indicators related to modularity (internationalisation and optimal modularity) are mostly influenced by geographical parameters. On the contrary, indicators of network structure are driven by origin and destination sizes. The influence of sectors and historical links has a secondary but not negligible role. Altogether, the analysis witnesses of strong interaction effects between parameters, since for several indicators the total order index is one order of magnitude larger than the first order index. This means that the generative model captures some complex behavior of the system. % The very different important parameters depending on outputs studied confirms the relevance of a more exhaustive grid exploration.
 
 
 
@@ -224,19 +273,24 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 %%%%%%%%%%%%%%
 
 
-Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network as shown in Fig.~\ref{fig:comsize}, we obtain a maximal integration in term of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. In particular, we observe a qualitative inversion of the role of $\gamma_S$ when introducing an effect of the origin (switching $\gamma_F$ from 0 to 1, first panel to second panel). The maximal community size disappears when $\gamma_F = 2$, implying a regime with small local communities where large cities mostly connect with there hinterland. These experiments reveal a complex interplay between processes and how the model produces diverse stylised facts.
+Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network as shown in Fig.~\ref{fig:comsize}, we obtain a maximal integration in terms of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. In particular, we observe a qualitative inversion of the role of $\gamma_S$ when introducing an effect of the origin (switching $\gamma_F$ from 0 to 1, first panel to second panel). The maximal community size disappears when $\gamma_F = 2$, implying a regime with small local communities where large cities mostly connect with there hinterland. These experiments reveal a complex interplay between processes and how the model produces diverse stylised facts.
 
 %%%%%%%%%%%%%%
 \begin{figure}
     \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
-	\caption{Maximal integration in term of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime; Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$; This regime disappear when origin size influence is too large.\label{fig:comsize}}
+	\caption{Maximal integration in terms of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime; Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$; This regime disappear when origin size influence is too large.\label{fig:comsize}}
 \end{figure}
 %%%%%%%%%%%%%%
 
 
+\paragraph{Impact of urban hierarchy}
+
+We run a specific experiment to study the impact of urban hierarchy on firms dynamics.
 
 
-\subsection{Model calibration on the European urban network}
+
+
+\subsection*{Model calibration on the European urban network}
 
 
 We then apply the model to a real system of cities by calibrating it on the European ownership network. Model setup is done following the real setup described above. The number of time steps $t_f$ is left as an additional parameter, which in a sense determines the granularity of the cumulative network generation process. The objective functions for calibration are the average mean squared error on logarithms of weights given by $\varepsilon_L = \frac{1}{N^2} \sum_{i,j} \left(\log w_{ij} - \log \hat{w}_{ij} \right)^2$ if $\hat{w}_{ij}$ are the simulated weights, and the logarithm of the mean squared error $\varepsilon_M = \log\left(\frac{1}{N^2} \sum_{i,j} \left(w_{ij} - \hat{w}_{ij}\right)^2 \right)$. \cite{raimbault2018indirect} showed that these two are complementary to calibrate urban systems models. Calibration is done using a genetic NSGA2 algorithm \cite{deb2002fast}, which is particularly suited for such a bi-objective calibration of a simulation model. Stochasticity is taken into account by adding the estimation confidence as an additional objective, and we filter the final population to have at least 20 samples. We use a population of 200 individuals and run the algorithm for 20,000 generations, on 1000 islands in parallel.
@@ -245,7 +299,7 @@ We then apply the model to a real system of cities by calibrating it on the Euro
 %%%%%%%%%%%%%%
 \begin{figure}
 	\begin{center}
-    \includegraphics[width=0.5\textwidth]{figures/pareto_colorgammaOrigin.png}
+    \includegraphics[width=0.75\textwidth]{figures/pareto_colorgammaOrigin.png}
     \end{center}
 	\caption{Pareto front obtained for the bi-objective model calibration for $\varepsilon_L$ and $\varepsilon_M$ objectives. $\varepsilon_L$ can be compared to the MSE of statistical models fitted above, and the generative model outperform these for several parametrizations (lowest MSE 5.33 for statistical models). Point size gives the number of stochastic samples and color the value of $\gamma_F$.\label{fig:calibration}}
 \end{figure}
@@ -256,22 +310,263 @@ We show in Fig.~\ref{fig:calibration} the calibration result, as a Pareto front 
 
 When considering optimal points with $\varepsilon_L < 5.0$, the adjusted parameters are: long range gravity interactions and socio-economic interactions given by $d_G = 1/\gamma_G = 5205 \pm 1775$ and $d_D = 1/ \gamma_D = 109 \pm 29$ (the maximal $g_{ij}$ is 11.8); a stronger influence of destination than origin as $\gamma_F = 1.45 \pm 0.09$ and $\gamma_T = 2.0 \pm 0.06$; a comparable influence of sectors as $\gamma_S = 1.75 \pm 0.17$; a fine time granularity as $t_f = 4960 \pm 109$; and a very strong influence of previous links as $\gamma_W = 7.99 \pm 3.77$. This last point furthermore shows in particular a role of the path-dependency parameter, confirming the relevance of this complex generative model including path-dependency. The interaction of this process with others implies an inversion of the relative importance of origin and destination (on the contrary to statistical models). The fact that calibrated interaction distances are large is consistent with long range economic interactions within Europe. Besides these stylized facts, these calibration results altogether demonstrate the feasibility of model application to real data.
 
+\subsection*{Application: impact of economic shock}
+
+Based on calibrated parameter values, we design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), and natural disasters such as COVID-19. We simulate a full border closure by setting $\gamma_D = 0$, and intermediate scenarios. Setting also $\gamma_G$ to 0 allows simulating inter-country lock-downs.
+% run simulations
+% note that time scales are in fact smaller - or assume that crisis keeping border closed is rather long
+
+
 
 %%%%%%%%%%%%%%%
-\section{Discussion}
+\section*{Discussion}
 
-This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe. The simulation on a synthetic system of cities provides an broad knowledge on model behavior in its parameter space, and its calibration suggests its potential application to policy issues. This kind of model can indeed have practical applications in the future in terms of testing the effect of exogenous shocks in the socio-economic structure as the upcoming effect of Brexit on the European market.
+This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from Amadeus dataset. The simulation on a synthetic system of cities provides an broad knowledge on model behavior in its parameter space, and its calibration suggests its potential application to policy issues. This kind of model can therefore have practical applications in the future in terms of testing the effect of exogenous shocks in the socio-economic structure: as the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to COVID19 on the single market and on the strongly foreign dependent economic sectors (see Appendix).
 
-Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
+Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance and should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
 
 
+
+
+
+
+\section*{Supporting information}
+
+\paragraph*{S1 Text.}
+\label{S1_Text}
+{\bf UK's economic sectors dependent on international links.}
+
+\paragraph*{S2 Text.}
+\label{S2_Text}
+{\bf Socio-economic distance matrix.}
+
+
+\paragraph*{S3 Text.}
+\label{S3_Text}
+{\bf Synthetic model setup.}
+
+\paragraph*{S4 Text.}
+\label{S4_Text}
+{\bf Sensitivity analysis.}
+
+
+\section*{Acknowledgments}
+
+Results obtained in this paper were computed on the vo.complex-system.eu virtual organization of the European Grid Infrastructure (http://www.egi.eu). We thank the European Grid Infrastructure and its supporting National Grid Initiatives (France-Grilles in particular) for providing the technical support and infrastructure.
+
+
+\bibliographystyle{plos2015}
+\bibliography{biblio}
+
+
+%%%%%%%%%%%%%
+\newpage
+\section*{S1 Text: UK's economic sectors dependent on international links}
+
+
+Based on \emph {AMADEUS} dataset, the most vulnerable economic sectors in the United Kingdom have been highlighted. The later are the ones due to be mostly affected by eventual future lock-downs of the international economy (international ownership links). 
+
+When considering the UK sectors generating the highest turnover in 2018 mostly dependent on foreign capital they own (out-going links from the UK) these are extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods. In terms of in-going links to the UK, activities of head offices and holding companies, sale of cars and manufacture of motor vehicles are sectors mostly dependent on foreign ownership coming from abroad.
+
+\FloatBarrier
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{Top 10 UK industries depending on foreign ownership expressed in total turnover (out-going links from the UK)\label{tab:uk_outgoing}}
+\centering
+\medskip
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Classification  & NACE Industries & Total turnover \\ 
+\hline
+1 &     Extraction of crude petroleum &   96,458,258,642  \\
+\hline
+2 & Manufacture of tobacco products &  5,477,272,464  \\
+\hline
+3 & Manufacture of basic pharmaceutical products &  4,825,881,930 \\
+\hline
+4 &  Retail sale in non-specialised stores with food, beverages or tobacco predominating  &   3,681,373,374  \\
+\hline
+5 &  Wireless telecommunications activities &   3,379,297,218  \\
+\hline
+6 & Event catering activities & 2,871,593,754  \\
+\hline
+7 &  Other mining and quarrying n.e.c. &  1,590,548,873  \\
+\hline
+8 & Business and other management consultancy activities &  1,394,373,014 \\
+\hline
+9 &  Activities of head offices &  1,322,692,365 \\
+\hline
+10 & Manufacture of air and spacecraft and related machinery &  1,292,065,497 \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{Top 10 UK industries depending on foreign ownership expressed in total turnover (in-going links to the UK)\label{tab:uk_ingoing}}
+\centering
+\medskip
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Classification  & NACE Industries & Total turnover \\ 
+\hline
+1 &      Activities of head offices &  358,099,870  \\
+\hline
+2 & Activities of holding companies  & 259,008,123  \\
+\hline
+3 & Other business support service activities n.e.c. & 183,098,170 \\
+\hline
+4 &  Security and commodity contracts brokerage  &  72,482,167 \\
+\hline
+5 &  Manufacture of motor vehicles  &   65,162,757 \\
+\hline
+6 &  Sale of cars and light motor vehicles  &    61,019,026  \\
+\hline
+7 &  Other financial service activities, except insurance and pension funding & 47,003,937 \\
+\hline
+8 &  Other personal service activities n.e.c.  & 37,926,668  \\
+\hline
+9 &  Wholesale of solid, liquid and gaseous fuels and related products & 36,693,362 \\
+\hline
+10 &  Other information technology and computer service activities  &  35,668,779 \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+\newpage
+When expressed in total number of links, activities mostly dependent on out-going links from the UK are activities of holding companies, of head offices and fund management activities. In terms of in-going links these are business and consultancy activities and renting and operating of own and leased real estate.
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{Top 10 UK industries depending on foreign ownership expressed in total links (out-going links from the UK)\label{tab:uk_outgoinglinks}}
+\centering
+\medskip
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Classification  & NACE Industries & Total links \\ 
+\hline
+1 & Activities of holding companies &   686  \\
+\hline
+2 & Other business support service activities n.e.c.  &  567  \\
+\hline
+3 & Activities of head offices &  503 \\
+\hline
+4 &  Fund management activities &   407  \\
+\hline
+5 &  Business and other management consultancy activities &  398  \\
+\hline
+6 &  Extraction of crude petroleum &  366  \\
+\hline
+7 &  Other activities auxiliary to financial services, except insurance and pension funding & 240 \\
+\hline
+8 &  Development of building projects  & 221 \\
+\hline
+9 &  Manufacture of basic pharmaceutical products &  212 \\
+\hline
+10 &  Other information technology and computer service activities  &  181 \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+
+\begin{table}[!ht]
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{Top 10 UK industries depending on foreign ownership expressed in total links (in-going links to the UK)\label{tab:uk_ingoinglinks}}
+\centering
+\medskip
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Classification  & NACE Industries & Total links \\ 
+\hline
+1 &      Other business support service activities n.e.c. &   16,140  \\
+\hline
+2 & Renting and operating of own or leased real estate  &  6,320  \\
+\hline
+3 & Business and other management consultancy activities &  6,094  \\
+\hline
+4 &  Activities of head offices &   5,628  \\
+\hline
+5 &  Computer consultancy activities &   5,047  \\
+\hline
+6 &  Activities of holding companies &  4,728  \\
+\hline
+7 &  Other personal service activities n.e.c. &  3,996 \\
+\hline
+8 &  Development of building projects &  3,946 \\
+\hline
+9 &  Other information technology and computer service activities &  3,757 \\
+\hline
+10 &  Other financial service activities, except insurance and pension funding  &  3,321 \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+
+
+%%%%%%%%%%%%%%%%%%
 \newpage
 
+\section*{S2 Text: Socio-economic distance matrix}
 
-%\bibliographystyle{apalike}
-\bibliographystyle{unsrt}
-\bibliography{biblio}
+% \todo{more detail / descriptive stats of the matrix / function of the distance between countries}
+
+%%%%%%%%%%%%%%%%%%
+\newpage
+
+\section*{S3 Text: Synthetic model setup}
+
+The rationale for the synthetic sector setup is the following:
+\begin{itemize}
+    \item 
+\end{itemize}
+
+%solve for mu,sigma of the log-normal as a function of gdp
+%       we aim at having a log-normal mostly in [0,1] such that
+%       (mode,variance) =  1 / K for the smallest log(E_i) and = 1/2 for the largest log(E_i)
+%        writing
+%        e_i = (log(E_i) - log(E_imin))/(log(E_imax) - log(E_imin)) * (1/2 - 1/K) + 1/K
+%        this yields
+%         (1)  mu - sigma^2 = log(e_i)
+%         (2) -3 sigma^2 - 2 log(exp(sigma^2) - 1) = log(e_i)
+%        => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)
+
+
+
+%%%%%%%%%%%%%%%%%%
+\newpage
+
+\section*{S4 Text: Sensitivity analysis}
+
+
+
+%%%%%%%%%%%%%
+\begin{table}
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{Saltelli sensitivity indices, for indicators in rows and parameters in columns. We give for each pair the first order index (F) and the total order index (T).\label{tab:saltelli}}
+\hspace{-1cm}\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{2}{|c|}{$\gamma_G$} & \multicolumn{2}{|c|}{$\gamma_D$} & \multicolumn{2}{|c|}{$\gamma_S$} & \multicolumn{2}{|c|}{$\gamma_W$} & \multicolumn{2}{|c|}{$\gamma_F$} & \multicolumn{2}{|c|}{$\gamma_T$} \\
+ & F & T & F & T & F & T & F & T & F & T & F & T \\
+ \hline
+Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.009 & $4\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
+Metropolisation & 0.02 & 0.1 & 0.02 & 0.2 & 0.002 & 0.1 & 0.001 & 0.09 & 0.2 & 0.6 & 0.3 & 0.6 \\
+Modularity & 0.3 & 0.4 & 0.6 & 0.6 & 0.004 & 0.02 & $3\cdot 10^{-4}$ & 0.01 & 0.005 & 0.03 & 0.002 & 0.03 \\
+Avg. com. size & 0.008 & 0.09 & 0.01 & 0.1 & 0.002 & 0.07 & 0.003 & 0.04 & 0.3 & 0.6 & 0.4 & 0.6 \\
+Degree entropy & 0.006 & 0.02 & 0.003 & 0.02 & 0.006 & 0.03 & 0.008 & 0.02 & 0.5 & 0.5 & 0.5 & 0.5 \\
+Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.5 & 0.4 & 0.5 \\\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+%%%%%%%%%%%%%
+
+
+
+
 
 \end{document}
