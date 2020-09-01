@@ -1,0 +1,64 @@
+\input{si.tex}
+\begin{document}
+\vspace*{0.35in}
+\justify
+
+\section*{S2 Text: Model setup and sensitivity analysis}
+
+
+\subsection*{Socio-economic distance matrix}
+
+% \todo{more detail / descriptive stats of the matrix / function of the distance between countries}
+
+
+
+\subsection*{Synthetic model setup}
+
+The rationale for the synthetic sector setup is the following:
+\begin{itemize}
+    \item Sectors distributions follow log-normal densities with most mass in $\left[0;1\right]$
+\end{itemize}
+
+%solve for mu,sigma of the log-normal as a function of gdp
+%       we aim at having a log-normal mostly in [0,1] such that
+%       (mode,variance) =  1 / K for the smallest log(E_i) and = 1/2 for the largest log(E_i)
+%        writing
+%        e_i = (log(E_i) - log(E_imin))/(log(E_imax) - log(E_imin)) * (1/2 - 1/K) + 1/K
+%        this yields
+%         (1)  mu - sigma^2 = log(e_i)
+%         (2) -3 sigma^2 - 2 log(exp(sigma^2) - 1) = log(e_i)
+%        => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)
+
+
+
+
+
+\section*{Sensitivity analysis}
+
+
+
+%%%%%%%%%%%%%
+\begin{table}
+\begin{adjustwidth}{-2.25in}{0in}
+\caption{Saltelli sensitivity indices, for indicators in rows and parameters in columns. We give for each pair the first order index (F) and the total order index (T).\label{tab:saltelli}}
+\hspace{-1cm}\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{2}{|c|}{$\gamma_G$} & \multicolumn{2}{|c|}{$\gamma_D$} & \multicolumn{2}{|c|}{$\gamma_S$} & \multicolumn{2}{|c|}{$\gamma_W$} & \multicolumn{2}{|c|}{$\gamma_O$} & \multicolumn{2}{|c|}{$\gamma_D$} \\
+ & F & T & F & T & F & T & F & T & F & T & F & T \\
+ \hline
+Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.009 & $4\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
+Metropolisation & 0.02 & 0.1 & 0.02 & 0.2 & 0.002 & 0.1 & 0.001 & 0.09 & 0.2 & 0.6 & 0.3 & 0.6 \\
+Modularity & 0.3 & 0.4 & 0.6 & 0.6 & 0.004 & 0.02 & $3\cdot 10^{-4}$ & 0.01 & 0.005 & 0.03 & 0.002 & 0.03 \\
+Avg. com. size & 0.008 & 0.09 & 0.01 & 0.1 & 0.002 & 0.07 & 0.003 & 0.04 & 0.3 & 0.6 & 0.4 & 0.6 \\
+Degree entropy & 0.006 & 0.02 & 0.003 & 0.02 & 0.006 & 0.03 & 0.008 & 0.02 & 0.5 & 0.5 & 0.5 & 0.5 \\
+Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.5 & 0.4 & 0.5 \\\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+%%%%%%%%%%%%%
+
+
+
+
+
+\end{document}
