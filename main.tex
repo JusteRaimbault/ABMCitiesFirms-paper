@@ -154,6 +154,8 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 
 Regarding the community structure of the network, different modularity maximisation algorithms (run on the undirected corresponding network) give the same undirected modularity of 0.38, and a directed modularity \cite{nicosia2009extending} of 0.34 for the greedy algorithm of \cite{clauset2004finding} and 0.36 for the Louvain algorithm \cite{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows present certain regional patterns. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities. We show in Fig.~\ref{fig:fig2} a map of the communities obtained.
 
+% comment upon Netherlands Poland cluster justifying the ownership from Netherlands of polish firms (Zdanowska, 2018+ Zdanowska 2019) + Germany Czech Republic Hungary Romania Bulgaria corridor (firms+ trade road to Turkey)
+
 %%%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
@@ -257,12 +259,12 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 %%%%%%%%%%%%%%
 
 
-Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network as shown in Fig.~\ref{fig:comsize}, we obtain a maximal integration in terms of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. In particular, we observe a qualitative inversion of the role of $\gamma_S$ when introducing an effect of the origin (switching $\gamma_F$ from 0 to 1, first panel to second panel). The maximal community size disappears when $\gamma_F = 2$, implying a regime with small local communities where large cities mostly connect with there hinterland. These experiments reveal a complex interplay between processes and how the model produces diverse stylised facts.
+Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network as shown in Fig.~\ref{fig:comsize}, we obtain a maximal integration in terms of communities at an intermediate value of the gravity decay, what can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. In particular, we observe a qualitative inversion of the role of $\gamma_S$ when introducing an effect of the origin (switching $\gamma_O$ from 0 to 1, first panel to second panel). The maximal community size disappears when $\gamma_O = 2$, implying a regime with small local communities where large cities mostly connect with there hinterland. These experiments reveal a complex interplay between processes and how the model produces diverse stylised facts.
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=\textwidth]{figures/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
-	\caption{Maximal integration in terms of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime; Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$; This regime disappear when origin size influence is too large.\label{fig:comsize}}
+    \includegraphics[width=\textwidth]{figures/Fig6.png}
+	\caption{Maximal integration in terms of community size is achieved at an intermediate value of $d_G$: emergence of a regional regime; Maximal size depends on the role of sectors $\gamma_S$, in a decreasing way when origin size is deactivated, and increasing way when $\gamma_F=1$; This regime disappear when origin size influence is too large.\label{fig:fig6}}
 \end{figure}
 %%%%%%%%%%%%%%
 
@@ -273,24 +275,34 @@ We run a specific experiment to study the impact of urban hierarchy on firms dyn
 We change the initial hierarchy $\alpha$ from 0.2 to 2.0 with a step of 0.1, and also vary interaction range $d_0$.
 
 
+%%%%%%%%%%%%%
+\begin{figure}
+    \begin{center}
+        %\includegraphics[width=\linewidth]{figures/Fig7.png}
+    \end{center}
+    \caption{\textbf{Impact of urban hierarchy.}\label{fig:fig7}}
+\end{figure}
+%%%%%%%%%%%%%
+
+
 
 \subsection*{Model calibration on the European urban network}
 
 
-We then apply the model to a real system of cities by calibrating it on the European ownership network. Model setup is done following the real setup described above. The number of time steps $t_f$ is left as an additional parameter, which in a sense determines the granularity of the cumulative network generation process. The objective functions for calibration are the average mean squared error on logarithms of weights given by $\varepsilon_L = \frac{1}{N^2} \sum_{i,j} \left(\log w_{ij} - \log \hat{w}_{ij} \right)^2$ if $\hat{w}_{ij}$ are the simulated weights, and the logarithm of the mean squared error $\varepsilon_M = \log\left(\frac{1}{N^2} \sum_{i,j} \left(w_{ij} - \hat{w}_{ij}\right)^2 \right)$. \cite{raimbault2018indirect} showed that these two are complementary to calibrate urban systems models. Calibration is done using a genetic NSGA2 algorithm \cite{deb2002fast}, which is particularly suited for such a bi-objective calibration of a simulation model. Stochasticity is taken into account by adding the estimation confidence as an additional objective, and we filter the final population to have at least 20 samples. We use a population of 200 individuals and run the algorithm for 20,000 generations, on 1000 islands in parallel.
+We then apply the model to a real system of cities by calibrating it on the European ownership network. Model setup is done following the real setup described above. The number of time steps $t_f$ is left as an additional parameter, which in a sense determines the granularity of the cumulative network generation process. The objective functions for calibration are the average mean squared error on logarithms of weights given by $\varepsilon_L = \frac{1}{N^2} \sum_{i,j} \left(\log w_{ij} - \log \hat{w}_{ij} \right)^2$ if $\hat{w}_{ij}$ are the simulated weights, and the logarithm of the mean squared error $\varepsilon_M = \log\left(\frac{1}{N^2} \sum_{i,j} \left(w_{ij} - \hat{w}_{ij}\right)^2 \right)$. \cite{raimbault2018indirect} showed that these two are complementary to calibrate urban systems models. Calibration is done using a genetic NSGA2 algorithm \cite{deb2002fast}, which is particularly suited for such a bi-objective calibration of a simulation model. Stochasticity is taken into account by adding the estimation confidence as an additional objective, and we filter the final population to have at least 20 samples. We use a population of 200 individuals and run the algorithm for 50,000 generations, on 1000 islands in parallel.
 
 
 %%%%%%%%%%%%%%
 \begin{figure}
 	\begin{center}
-    \includegraphics[width=0.75\textwidth]{figures/pareto_colorgammaOrigin.png}
+    \includegraphics[width=0.75\linewidth]{figures/Fig8.png}
     \end{center}
-	\caption{Pareto front obtained for the bi-objective model calibration for $\varepsilon_L$ and $\varepsilon_M$ objectives. $\varepsilon_L$ can be compared to the MSE of statistical models fitted above, and the generative model outperform these for several parametrizations (lowest MSE 5.33 for statistical models). Point size gives the number of stochastic samples and color the value of $\gamma_F$.\label{fig:calibration}}
+	\caption{\textbf{Model calibration results.} Pareto front obtained for the bi-objective model calibration for $\varepsilon_L$ and $\varepsilon_M$ objectives. $\varepsilon_L$ can be compared to the MSE of statistical models fitted above, and the generative model outperform these for several parametrizations (lowest MSE 5.33 for statistical models). Point size gives the number of stochastic samples and color the value of $\gamma_O$.\label{fig:fig8}}
 \end{figure}
 %%%%%%%%%%%%%%
 
 
-We show in Fig.~\ref{fig:calibration} the calibration result, as a Pareto front of compromise points between the two objectives. As the mean squared error on logarithm is the same than the one for statistical models, it can be directly compared. The other objective would correspond to statistical models directly on variables: therefore, our model covers in a sense a set of intermediate models which make a compromise between the two objectives, and is therefore much more flexible. The values for $\varepsilon_L$ are for a large proportion of points lower than for statistical models, our model outperforming these in this predictive sense. As shown in Fig.~\ref{fig:calibration}, increasing values for $\gamma_F$ lead to better performance regarding $\varepsilon_L$: increasing the importance of the origin will provide a better fit on all order of magnitudes of link weights (while $\varepsilon_M$ favors mostly the largest links given the fat-tail distribution).
+We show in Fig.~\ref{fig:fig8} the calibration result, as a Pareto front of compromise points between the two objectives. As the mean squared error on logarithm is the same than the one for statistical models, it can be directly compared. The other objective would correspond to statistical models directly on variables: therefore, our model covers in a sense a set of intermediate models which make a compromise between the two objectives, and is therefore much more flexible. The values for $\varepsilon_L$ are for a large proportion of points lower than for statistical models, our model outperforming these in this predictive sense. As shown in Fig.~\ref{fig:fig7}, increasing values for $\gamma_O$ lead to better performance regarding $\varepsilon_L$: increasing the importance of the origin will provide a better fit on all order of magnitudes of link weights (while $\varepsilon_M$ favors mostly the largest links given the fat-tail distribution).
 
 When considering optimal points with $\varepsilon_L < 5.0$, the adjusted parameters are: long range gravity interactions and socio-economic interactions given by $d_0 = 5972 \pm 2148$ and $c_0 = 113 \pm 33$ (the maximal $c_{ij}$ is 11.8); a stronger influence of destination than origin as $\gamma_O = 1.46 \pm 0.10$ and $\gamma_D = 2.0 \pm 0.05$; a comparable influence of sectors as $\gamma_S = 1.76 \pm 0.21$; a fine time granularity as $t_f = 4951 \pm 124$; and a very strong influence of previous links as $\gamma_W = 6.43 \pm 4.11$. This last point furthermore shows in particular a role of the path-dependency parameter, confirming the relevance of this complex generative model including path-dependency. The interaction of this process with others implies an inversion of the relative importance of origin and destination (on the contrary to statistical models). The fact that calibrated interaction distances are large is consistent with long range economic interactions within Europe. Besides these stylized facts, these calibration results altogether demonstrate the feasibility of model application to real data.
 
@@ -305,16 +317,11 @@ Based on calibrated parameter values, we design scenarios to evaluate the impact
 %%%%%%%%%%%%%%%
 \section*{Discussion}
 
-This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from Amadeus dataset. The simulation on a synthetic system of cities provides an broad knowledge on model behavior in its parameter space, and its calibration suggests its potential application to policy issues. This kind of model can therefore have practical applications in the future in terms of testing the effect of exogenous shocks in the socio-economic structure: as the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to COVID19 on the single market and on the strongly foreign dependent economic sectors (see Appendix).
+This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from Amadeus dataset. The simulation on a synthetic system of cities provides an broad knowledge on model behavior in its parameter space, and its calibration suggests its potential application to policy issues. This kind of model can therefore have practical applications in the future in terms of testing the effect of exogenous shocks in the socio-economic structure as the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to COVID19 on the single market and on the strongly foreign dependent economic sectors. More precisely the UK sectors generating the highest turnover in 2018 mostly dependent on foreign capital they own (out-going links from the UK) are extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods. In terms of in-going links to the UK, activities of head offices and holding companies, sale of cars and manufacture of motor vehicles are sectors mostly dependent on foreign ownership coming from abroad.
 
 Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance and should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
-
-
-
-
-
 
 \section*{Supporting information}
 
@@ -324,16 +331,10 @@ Several possible extensions of the current work can be undertaken in the future 
 
 \paragraph*{S2 Text.}
 \label{S2_Text}
-{\bf Socio-economic distance matrix.}
+{\bf Model setup and sensitivity analysis.}
 
+Socio-economic distance matrix, Synthetic model setup and Sensitivity analysis.
 
-\paragraph*{S3 Text.}
-\label{S3_Text}
-{\bf Synthetic model setup.}
-
-\paragraph*{S4 Text.}
-\label{S4_Text}
-{\bf Sensitivity analysis.}
 
 
 \section*{Acknowledgments}
@@ -343,212 +344,6 @@ Results obtained in this paper were computed on the vo.complex-system.eu virtual
 
 \bibliographystyle{plos2015}
 \bibliography{biblio}
-
-
-%%%%%%%%%%%%%
-\newpage
-\section*{S1 Text: UK's economic sectors dependent on international links}
-
-
-Based on \emph {AMADEUS} dataset, the most vulnerable economic sectors in the United Kingdom have been highlighted. The later are the ones due to be mostly affected by eventual future lock-downs of the international economy (international ownership links). 
-
-When considering the UK sectors generating the highest turnover in 2018 mostly dependent on foreign capital they own (out-going links from the UK) these are extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods. In terms of in-going links to the UK, activities of head offices and holding companies, sale of cars and manufacture of motor vehicles are sectors mostly dependent on foreign ownership coming from abroad.
-
-\FloatBarrier
-
-\begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in}
-\caption{Top 10 UK industries depending on foreign ownership expressed in total turnover (out-going links from the UK)\label{tab:uk_outgoing}}
-\centering
-\medskip
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Classification  & NACE Industries & Total turnover \\ 
-\hline
-1 &     Extraction of crude petroleum &   96,458,258,642  \\
-\hline
-2 & Manufacture of tobacco products &  5,477,272,464  \\
-\hline
-3 & Manufacture of basic pharmaceutical products &  4,825,881,930 \\
-\hline
-4 &  Retail sale in non-specialised stores with food, beverages or tobacco predominating  &   3,681,373,374  \\
-\hline
-5 &  Wireless telecommunications activities &   3,379,297,218  \\
-\hline
-6 & Event catering activities & 2,871,593,754  \\
-\hline
-7 &  Other mining and quarrying n.e.c. &  1,590,548,873  \\
-\hline
-8 & Business and other management consultancy activities &  1,394,373,014 \\
-\hline
-9 &  Activities of head offices &  1,322,692,365 \\
-\hline
-10 & Manufacture of air and spacecraft and related machinery &  1,292,065,497 \\
-\hline
-\end{tabular}
-\end{adjustwidth}
-\end{table}
-
-\begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in}
-\caption{Top 10 UK industries depending on foreign ownership expressed in total turnover (in-going links to the UK)\label{tab:uk_ingoing}}
-\centering
-\medskip
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Classification  & NACE Industries & Total turnover \\ 
-\hline
-1 &      Activities of head offices &  358,099,870  \\
-\hline
-2 & Activities of holding companies  & 259,008,123  \\
-\hline
-3 & Other business support service activities n.e.c. & 183,098,170 \\
-\hline
-4 &  Security and commodity contracts brokerage  &  72,482,167 \\
-\hline
-5 &  Manufacture of motor vehicles  &   65,162,757 \\
-\hline
-6 &  Sale of cars and light motor vehicles  &    61,019,026  \\
-\hline
-7 &  Other financial service activities, except insurance and pension funding & 47,003,937 \\
-\hline
-8 &  Other personal service activities n.e.c.  & 37,926,668  \\
-\hline
-9 &  Wholesale of solid, liquid and gaseous fuels and related products & 36,693,362 \\
-\hline
-10 &  Other information technology and computer service activities  &  35,668,779 \\
-\hline
-\end{tabular}
-\end{adjustwidth}
-\end{table}
-
-\newpage
-When expressed in total number of links, activities mostly dependent on out-going links from the UK are activities of holding companies, of head offices and fund management activities. In terms of in-going links these are business and consultancy activities and renting and operating of own and leased real estate.
-
-\begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in}
-\caption{Top 10 UK industries depending on foreign ownership expressed in total links (out-going links from the UK)\label{tab:uk_outgoinglinks}}
-\centering
-\medskip
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Classification  & NACE Industries & Total links \\ 
-\hline
-1 & Activities of holding companies &   686  \\
-\hline
-2 & Other business support service activities n.e.c.  &  567  \\
-\hline
-3 & Activities of head offices &  503 \\
-\hline
-4 &  Fund management activities &   407  \\
-\hline
-5 &  Business and other management consultancy activities &  398  \\
-\hline
-6 &  Extraction of crude petroleum &  366  \\
-\hline
-7 &  Other activities auxiliary to financial services, except insurance and pension funding & 240 \\
-\hline
-8 &  Development of building projects  & 221 \\
-\hline
-9 &  Manufacture of basic pharmaceutical products &  212 \\
-\hline
-10 &  Other information technology and computer service activities  &  181 \\
-\hline
-\end{tabular}
-\end{adjustwidth}
-\end{table}
-
-
-\begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in}
-\caption{Top 10 UK industries depending on foreign ownership expressed in total links (in-going links to the UK)\label{tab:uk_ingoinglinks}}
-\centering
-\medskip
-\begin{tabular}{|l|c|c|c|c|}
-\hline
-Classification  & NACE Industries & Total links \\ 
-\hline
-1 &      Other business support service activities n.e.c. &   16,140  \\
-\hline
-2 & Renting and operating of own or leased real estate  &  6,320  \\
-\hline
-3 & Business and other management consultancy activities &  6,094  \\
-\hline
-4 &  Activities of head offices &   5,628  \\
-\hline
-5 &  Computer consultancy activities &   5,047  \\
-\hline
-6 &  Activities of holding companies &  4,728  \\
-\hline
-7 &  Other personal service activities n.e.c. &  3,996 \\
-\hline
-8 &  Development of building projects &  3,946 \\
-\hline
-9 &  Other information technology and computer service activities &  3,757 \\
-\hline
-10 &  Other financial service activities, except insurance and pension funding  &  3,321 \\
-\hline
-\end{tabular}
-\end{adjustwidth}
-\end{table}
-
-
-%%%%%%%%%%%%%%%%%%
-\newpage
-
-\section*{S2 Text: Socio-economic distance matrix}
-
-% \todo{more detail / descriptive stats of the matrix / function of the distance between countries}
-
-%%%%%%%%%%%%%%%%%%
-\newpage
-
-\section*{S3 Text: Synthetic model setup}
-
-The rationale for the synthetic sector setup is the following:
-\begin{itemize}
-    \item 
-\end{itemize}
-
-%solve for mu,sigma of the log-normal as a function of gdp
-%       we aim at having a log-normal mostly in [0,1] such that
-%       (mode,variance) =  1 / K for the smallest log(E_i) and = 1/2 for the largest log(E_i)
-%        writing
-%        e_i = (log(E_i) - log(E_imin))/(log(E_imax) - log(E_imin)) * (1/2 - 1/K) + 1/K
-%        this yields
-%         (1)  mu - sigma^2 = log(e_i)
-%         (2) -3 sigma^2 - 2 log(exp(sigma^2) - 1) = log(e_i)
-%        => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)
-
-
-
-%%%%%%%%%%%%%%%%%%
-\newpage
-
-\section*{S4 Text: Sensitivity analysis}
-
-
-
-%%%%%%%%%%%%%
-\begin{table}
-\begin{adjustwidth}{-2.25in}{0in}
-\caption{Saltelli sensitivity indices, for indicators in rows and parameters in columns. We give for each pair the first order index (F) and the total order index (T).\label{tab:saltelli}}
-\hspace{-1cm}\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
-\hline
- & \multicolumn{2}{|c|}{$\gamma_G$} & \multicolumn{2}{|c|}{$\gamma_D$} & \multicolumn{2}{|c|}{$\gamma_S$} & \multicolumn{2}{|c|}{$\gamma_W$} & \multicolumn{2}{|c|}{$\gamma_F$} & \multicolumn{2}{|c|}{$\gamma_T$} \\
- & F & T & F & T & F & T & F & T & F & T & F & T \\
- \hline
-Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.009 & $4\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
-Metropolisation & 0.02 & 0.1 & 0.02 & 0.2 & 0.002 & 0.1 & 0.001 & 0.09 & 0.2 & 0.6 & 0.3 & 0.6 \\
-Modularity & 0.3 & 0.4 & 0.6 & 0.6 & 0.004 & 0.02 & $3\cdot 10^{-4}$ & 0.01 & 0.005 & 0.03 & 0.002 & 0.03 \\
-Avg. com. size & 0.008 & 0.09 & 0.01 & 0.1 & 0.002 & 0.07 & 0.003 & 0.04 & 0.3 & 0.6 & 0.4 & 0.6 \\
-Degree entropy & 0.006 & 0.02 & 0.003 & 0.02 & 0.006 & 0.03 & 0.008 & 0.02 & 0.5 & 0.5 & 0.5 & 0.5 \\
-Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.5 & 0.4 & 0.5 \\\hline
-\end{tabular}
-\end{adjustwidth}
-\end{table}
-%%%%%%%%%%%%%
-
 
 
 
