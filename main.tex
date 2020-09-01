@@ -9,10 +9,10 @@
 % Title must be 250 characters or less.
 \begin{flushleft}
 {\Large
-\textbf\newline{A generative model for urban firm networks} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
+\textbf\newline{Modeling growth of urban firm networks} % Please use "sentence case" for title and headings (capitalize only the first word in a title (or heading), the first word in a subtitle (or subheading), and any proper nouns).
 }
 % alternative titles?
-% Modeling the growth of urban firm networks
+% Old title Generative Urban Network Model
 \newline
 % Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
 \\
@@ -116,11 +116,11 @@ Initial network is empty, and the real links are taken as targets for the genera
 
 The model parameters are the Cobb-Douglas weights $\gamma_O,\gamma_D,\gamma_W,\gamma_S$ and distance decay parameters $d_0,c_0$. As the model also includes path-dependency by integrating the influence of previous links, it can not be reduced to a simple statistical model. Finally, the role of space introduces even further complexity, yielding a generative model, which has to be simulated.
 
-We consider two main macroscopic indicators to quantify the generated network. Firstly geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries of Europe and sparse connections between cities of the same European country. In practice, directed modularity is computed by
+We consider two main macroscopic indicators to quantify the generated network. Firstly geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries of Europe and sparse connections between cities of the same European country. In practice, modularity is computed by
 \begin{equation}
-    
+    I = \frac{1}{2 \left|E\right|} \cdot \sum_{i,j} \left(w_{ij} - \frac{d_i d_j}{2 \left|E\right|}\right) \mathbb{1}_{c_i = c_j}
 \end{equation}
-% put the actual modularity
+where $d_i$ is the weighted degree of cities and $c_i$ the countries.
 % add some reference values - some kind of null model
 
 Secondly we consider the metropolisation indicator as the correlation between the weighted degree and the GDP of the city. With this indicator we capture the effect of large cities or metropolises of regional importance attracting the biggest amount of links and involved in high interactions with other cities. It is computed with a Pearson correlation estimator as
@@ -154,8 +154,7 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 
 Regarding the community structure of the network, different modularity maximisation algorithms (run on the undirected corresponding network) give the same undirected modularity of 0.38, and a directed modularity \cite{nicosia2009extending} of 0.34 for the greedy algorithm of \cite{clauset2004finding} and 0.36 for the Louvain algorithm \cite{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows present certain regional patterns. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities. We show in Fig.~\ref{fig:fig2} a map of the communities obtained.
 
-% comment upon Netherlands Poland cluster justifying the ownership from Netherlands of polish firms (Zdanowska, 2018+ Zdanowska 2019) + Germany Czech Republic Hungary Romania Bulgaria corridor (firms+ trade road to Turkey)
-
+The communities reflect characteristic socio-cultural structures and cross-border economic ties throughout Europe. Cities in France, Belgium and Luxembourg belong to the same cluster as they share French as a common business language, but also cross-border tax arrangements creating easier economic interactions \cite{DecovilleDurand2019}. Cities of the United Kingdom and Ireland are in the same cluster for the same socio-cultural proximity matters, so as Sweden, Finland, Estonia, Latvia and Lithuania. The cluster composed of Dutch and Polish cities is justified by the fact that firms from the Netherlands are among the first foreign owners of polish firms since 2010, ranked even before the German ones \cite{2019arXiv191014652Z}. The cluster including cities in Germany, Czech Republic, Austria, Slovakia, Hungary and partly in Romania, find its origin in the dependence of the Central and Eastern European economy on German and Austrian large companies mostly from the automotive sector (ie. Audi, Volkswagen). In addition all cities of the later cluster have in common to be at the intersection of a very important freight transport route in Europe from Germany to Turkey \cite{Zdanowska2017}. 
 %%%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
@@ -227,7 +226,7 @@ We first study extensively the behavior of the model on synthetic systems of cit
 
 \paragraph{Sensitivity analysis}
 
-A global sensitivity analysis first unveils an aggregated influence of parameters on model indicators. We apply Saltelli's Global Sensitivity method introduced by \cite{saltelli2008global}. This produces values for each parameter and each output of a first order sensitivity index, defined as $Var\left[\mathbb{E}_{\mathbf{X}_{\sim i}}\left(Y_j | X_i\right)\right] / Var\left[Y\right]$, for parameter $X_i$ and output $Y_j$, $\mathbf{X}_{\sim i}$ being all other parameters. This captures the total influence of $X_i$ all other things being equal. The total order index is given by $\mathbb{E}_{\mathbf{X}_{\sim i}} \left[Var(Y_j | \mathbf{X}_{\sim i})\right] / Var\left[Y_j\right]$ and captures non-homogeneity in behavior and interaction between parameters. Indices were estimated with a Sobol sequence sampling of 20,000 model runs \cite{saltelli2010variance}. We give in \ref{S4_Text} the full estimated results. To summarize, we find that indicators related to modularity (internationalisation and optimal modularity) are mostly influenced by geographical parameters. On the contrary, indicators of network structure are driven by origin and destination sizes. The influence of sectors and historical links has a secondary but not negligible role. Altogether, the analysis witnesses of strong interaction effects between parameters, since for several indicators the total order index is one order of magnitude larger than the first order index. This means that the generative model captures some complex behavior of the system. % The very different important parameters depending on outputs studied confirms the relevance of a more exhaustive grid exploration.
+A global sensitivity analysis first unveils an aggregated influence of parameters on model indicators. We apply Saltelli's Global Sensitivity method introduced by \cite{saltelli2008global}. This produces values for each parameter and each output of a first order sensitivity index, defined as $Var\left[\mathbb{E}_{\mathbf{X}_{\sim i}}\left(Y_j | X_i\right)\right] / Var\left[Y_j\right]$, for parameter $X_i$ and output $Y_j$, $\mathbf{X}_{\sim i}$ being all other parameters. This captures the total influence of $X_i$ all other things being equal. The total order index is given by $\mathbb{E}_{\mathbf{X}_{\sim i}} \left[Var(Y_j | \mathbf{X}_{\sim i})\right] / Var\left[Y_j\right]$ and captures non-homogeneity in behavior and interaction between parameters. Indices were estimated with a Sobol sequence sampling of 20,000 model runs \cite{saltelli2010variance}. We give in \ref{S4_Text} the full estimated results. To summarize, we find that indicators related to modularity (internationalisation and optimal modularity) are mostly influenced by geographical parameters. On the contrary, indicators of network structure are driven by origin and destination sizes. The influence of sectors and historical links has a secondary but not negligible role. Altogether, the analysis witnesses of strong interaction effects between parameters, since for several indicators the total order index is one order of magnitude larger than the first order index. This means that the generative model captures some complex behavior of the system.
 
 
 
@@ -271,7 +270,7 @@ Other indicators exhibit non-trivial patterns. For example, when considering ave
 
 \paragraph{Impact of urban hierarchy}
 
-We run a specific experiment to study the impact of urban hierarchy on firms dynamics. Rank-size law in cities is a central stylized fact to urban theories, despite the discussions on how to estimate the power-law exponent, its actual values \cite{cottineau2017metazipf} and how its depends on the definition of cities considered \cite{corral2020truncated}. In that particular context, understanding how this parameter can impact urban dynamics within artificial systems of cities in which it can be modified to extreme values not observed in real systems, should inform on underlying processes. % too abstract: clarify why hypothetical systems of cities bring info on real ones
+We run a specific experiment to study the impact of urban hierarchy on firms dynamics. Rank-size law in cities is a central stylized fact to urban theories, despite the discussions on how to estimate the power-law exponent, its actual values \cite{cottineau2017metazipf} and how its depends on the definition of cities considered \cite{corral2020truncated}. In that particular context, understanding how this parameter can impact urban dynamics within artificial systems of cities in which it can be modified to extreme values not observed in real systems, should inform on underlying processes. % too abstract: clarify why hypothetical systems of cities bring info on real ones \cite{raimbault2019space}
 We change the initial hierarchy $\alpha$ from 0.2 to 2.0 with a step of 0.1, and also vary interaction range $d_0$.
 
 
@@ -313,13 +312,23 @@ Based on calibrated parameter values, we design scenarios to evaluate the impact
 % note that time scales are in fact smaller - or assume that crisis keeping border closed is rather long
 
 
+%%%%%%%%%%%%%%
+\begin{figure}
+	\begin{center}
+    %\includegraphics[width=\linewidth]{figures/Fig9.png}
+    \end{center}
+	\caption{\textbf{Application of the calibrated model to an economic shock scenario.}\label{fig:fig9}}
+\end{figure}
+%%%%%%%%%%%%%%
+
+
 
 %%%%%%%%%%%%%%%
 \section*{Discussion}
 
-This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from Amadeus dataset. The simulation on a synthetic system of cities provides an broad knowledge on model behavior in its parameter space, and its calibration suggests its potential application to policy issues. This kind of model can therefore have practical applications in the future in terms of testing the effect of exogenous shocks in the socio-economic structure as the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to COVID19 on the single market and on the strongly foreign dependent economic sectors. More precisely the UK sectors generating the highest turnover in 2018 mostly dependent on foreign capital they own (out-going links from the UK) are extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods. In terms of in-going links to the UK, activities of head offices and holding companies, sale of cars and manufacture of motor vehicles are sectors mostly dependent on foreign ownership coming from abroad.
+This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from Amadeus dataset. The simulation on a synthetic system of cities provides a broad knowledge on model behavior in its parameter space. Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance and should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
 
-Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance and should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
+The calibration of model suggests its potential application to policy issues and can therefore have practical applications in the future. For example the effect of exogenous shocks in the socio-economic structure could be tested as the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to further pandemic outbreaks on the single market. In this sense the UK economic sectors mostly dependent on foreign capital and generating the highest turnovers in 2018 could be examined: extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods (in terms of out-going links from the UK) ; activities of head offices and holding companies, sale of cars and manufacture of motor vehicles (in terms of in-going links to the UK).
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
 
