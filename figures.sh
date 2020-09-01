@@ -16,3 +16,9 @@ montage figuresraw/ex_alleq-highgravity_seed-12102_t1500.png figuresraw/ex_alleq
 
 # Fig 4
 montage figuresraw/internationalisation-gravityDecay_errorbars.png figuresraw/metropolisation-gravityDecay_errorbars.png figuresraw/internationalisation-gammaSectors_errorbars.png figuresraw/metropolisation-gammaSectors_errorbars.png -tile 2x2 -geometry +"$HORIZONTALPADDING"+"$VERTICALPADDING" -resize "$WIDTH"x figures/Fig4.png
+
+# Fig 5
+cp figuresraw/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png figures/Fig5.png
+
+# Fig 6
+cp figuresraw/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png figures/Fig6.png
