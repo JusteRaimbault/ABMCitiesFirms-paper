@@ -158,9 +158,10 @@ Regarding the community structure of the network, different modularity maximisat
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \centering
-    \includegraphics{}
-    \caption{{\bf Map of network communities obtained by modularity maximisation.}}
+    \begin{center}
+    \includegraphics[width=\linewidth]{figures/map_communities_louvain.png}
+    \end{center}
+    \caption{{\bf Map of network communities obtained by modularity maximisation.} Area of circles gives the population with the Functional Urban Area, and color the community it belongs to. Urban Areas in communities of size smaller than 3 were not colored for readability.}
     \label{fig:map_communities}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -202,13 +203,9 @@ AIC &        44304   &  43578  &  42131  & 41917 &   \\
 \end{table}
 %%%%%%%%%%%%%
 
-%\todo{which model is what is not clear between the text and the table / econometric conventions}
 
 
 
-
-
-%\section*{Results}
 
 \section*{Model exploration and calibration}
 
@@ -284,8 +281,8 @@ Other indicators exhibit non-trivial patterns. For example, when considering ave
 
 \paragraph{Impact of urban hierarchy}
 
-We run a specific experiment to study the impact of urban hierarchy on firms dynamics.
-
+We run a specific experiment to study the impact of urban hierarchy on firms dynamics. Rank-size law in cities is a central stylized fact to urban theories, despite the discussions on how to estimate the power-law exponent, its actual values \cite{cottineau2017metazipf} and how its depends on the definition of cities considered \cite{corral2020truncated}. In that particular context, understanding how this parameter can impact urban dynamics within artificial systems of cities in which it can be modified to extreme values not observed in real systems, should inform on underlying processes. % too abstract: clarify why hypothetical systems of cities bring info on real ones
+We change the initial hierarchy $\alpha$ from 0.2 to 2.0 with a step of 0.1, and also vary interaction range $d_0$.
 
 
 
@@ -307,7 +304,7 @@ We then apply the model to a real system of cities by calibrating it on the Euro
 
 We show in Fig.~\ref{fig:calibration} the calibration result, as a Pareto front of compromise points between the two objectives. As the mean squared error on logarithm is the same than the one for statistical models, it can be directly compared. The other objective would correspond to statistical models directly on variables: therefore, our model covers in a sense a set of intermediate models which make a compromise between the two objectives, and is therefore much more flexible. The values for $\varepsilon_L$ are for a large proportion of points lower than for statistical models, our model outperforming these in this predictive sense. As shown in Fig.~\ref{fig:calibration}, increasing values for $\gamma_F$ lead to better performance regarding $\varepsilon_L$: increasing the importance of the origin will provide a better fit on all order of magnitudes of link weights (while $\varepsilon_M$ favors mostly the largest links given the fat-tail distribution).
 
-When considering optimal points with $\varepsilon_L < 5.0$, the adjusted parameters are: long range gravity interactions and socio-economic interactions given by $d_G = 1/\gamma_G = 5205 \pm 1775$ and $d_D = 1/ \gamma_D = 109 \pm 29$ (the maximal $g_{ij}$ is 11.8); a stronger influence of destination than origin as $\gamma_F = 1.45 \pm 0.09$ and $\gamma_T = 2.0 \pm 0.06$; a comparable influence of sectors as $\gamma_S = 1.75 \pm 0.17$; a fine time granularity as $t_f = 4960 \pm 109$; and a very strong influence of previous links as $\gamma_W = 7.99 \pm 3.77$. This last point furthermore shows in particular a role of the path-dependency parameter, confirming the relevance of this complex generative model including path-dependency. The interaction of this process with others implies an inversion of the relative importance of origin and destination (on the contrary to statistical models). The fact that calibrated interaction distances are large is consistent with long range economic interactions within Europe. Besides these stylized facts, these calibration results altogether demonstrate the feasibility of model application to real data.
+When considering optimal points with $\varepsilon_L < 5.0$, the adjusted parameters are: long range gravity interactions and socio-economic interactions given by $d_0 = 5205 \pm 1775$ and $c_0 = 109 \pm 29$ (the maximal $c_{ij}$ is 11.8); a stronger influence of destination than origin as $\gamma_O = 1.45 \pm 0.09$ and $\gamma_D = 2.0 \pm 0.06$; a comparable influence of sectors as $\gamma_S = 1.75 \pm 0.17$; a fine time granularity as $t_f = 4960 \pm 109$; and a very strong influence of previous links as $\gamma_W = 7.99 \pm 3.77$. This last point furthermore shows in particular a role of the path-dependency parameter, confirming the relevance of this complex generative model including path-dependency. The interaction of this process with others implies an inversion of the relative importance of origin and destination (on the contrary to statistical models). The fact that calibrated interaction distances are large is consistent with long range economic interactions within Europe. Besides these stylized facts, these calibration results altogether demonstrate the feasibility of model application to real data.
 
 \subsection*{Application: impact of economic shock}
 
