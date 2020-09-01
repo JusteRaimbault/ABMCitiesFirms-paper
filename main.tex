@@ -116,9 +116,9 @@ Initial network is empty, and the real links are taken as targets for the genera
 
 The model parameters are the Cobb-Douglas weights $\gamma_O,\gamma_D,\gamma_W,\gamma_S$ and distance decay parameters $d_0,c_0$. As the model also includes path-dependency by integrating the influence of previous links, it can not be reduced to a simple statistical model. Finally, the role of space introduces even further complexity, yielding a generative model, which has to be simulated.
 
-We consider two main macroscopic indicators to quantify the generated network. Firstly geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries of Europe and sparse connections between cities of the same European country. In practice, modularity is computed by
+We consider two main macroscopic indicators to quantify the generated network. Firstly geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries of Europe and sparse connections between cities of the same European country. In practice, directed modularity is computed by
 \begin{equation}
-
+    
 \end{equation}
 % put the actual modularity
 % add some reference values - some kind of null model
@@ -131,12 +131,10 @@ Secondly we consider the metropolisation indicator as the correlation between th
 %I think we need to keep this paragraph but shorten it, because to my understanding network average community size is tested in Figure 5, but not the Louvain modularity for ex.
 %We also consider several network indicators as Louvain modularity, sizes of maximal modularity communities, degree and link weight distributions (described by their average, hierarchy, and entropy), and correlations between degree and city size, and between link weight and distance.
 
-We take a geographical approach to study the behavior of the generative model. Other related approaches include indicators of economic complexity \cite{hidalgo2007product}. % develop
-These are less relevant in our case as the sector structure of cities does not evolve in the model.
+We take a geographical approach to study the behavior of the generative model. Other related approaches include indicators of economic complexity, estimating for example the diversity of products produced by countries and how they depend on each other \cite{hidalgo2007product}. These are less relevant in our case as the sector structure of cities does not evolve in the model.
 
 \subsection*{Empirical data}
 
-% stats to describe the structure of the database, nb of total links, nodes, missing values? + nb of firms per country,  total turnover generated per country etc..
 
 Companies from \emph {AMADEUS} are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the Global Human Settlement dataset GHS-FUA for Functional Urban Areas \cite{Florczyk2019ghs} -- the most relevant objects for applying our model. Starting from a firm-level dataset of 1,562,862 nodes and 1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. The weight of links is obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} p_{kl} \cdot T_l$ where $p_{kl}$ of the ownership share of company $l$ by company $k$ and $T_l$ the turnover of company $l$. Node attributes include an economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with the GDP of the area-level included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$). We then expect to capture size effects while keeping the consistence of a single main data source. An other attribute of the nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the four digits of the NACE classification in the raw data \cite{EUROSTAT2008}. We consider the first level classification (21 categories) and compute sector proportions accordingly. This allows us to define an industrial proximity matrix between urban areas, taking a cosine similarity between vectors as $s_{ij} = \sum_{k=1}^{K} S_{ik}\cdot S_{jk}$ where $S_{ik}$ are sector proportions.
 
@@ -145,24 +143,24 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 
 %%%%%%%%%%%%%
 \begin{figure}
-    \centering
-    \includegraphics[width=0.49\textwidth]{figures/edgeweight.png}
-    \includegraphics[width=0.49\textwidth]{figures/degreeDistr.png}
+    \begin{center}
+        \includegraphics[width=\linewidth]{figures/Fig1.png}
+    \end{center}
     \caption{Distributions of network properties. \textit{(Left)} Cumulated distribution for edge weight, with power law fit (red) and log-normal fit (green); \textit{(Right)} Cumulated distribution for weighted degree.}
     \label{fig:nwdist}
 \end{figure}
 %%%%%%%%%%%%%
 
 
-Regarding the community structure of the network, different modularity maximisation algorithms (run on the undirected corresponding network) give the same undirected modularity of 0.38, and a directed modularity \cite{nicosia2009extending} of 0.34 for the greedy algorithm of \cite{clauset2004finding} and 0.36 for the Louvain algorithm \cite{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows present certain regional patterns. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities. We show in Fig.~\ref{fig:map_communities} a map of the communities obtained.
+Regarding the community structure of the network, different modularity maximisation algorithms (run on the undirected corresponding network) give the same undirected modularity of 0.38, and a directed modularity \cite{nicosia2009extending} of 0.34 for the greedy algorithm of \cite{clauset2004finding} and 0.36 for the Louvain algorithm \cite{blondel2008fast}, corresponding to 36 communities (resp. 15). In comparison, with 29 countries, the classification of urban areas by country has a modularity of 0.32. This means that the structure of flows present certain regional patterns. Indeed, a null model assigning random labels with 30 communities, bootstrap 1000 times, yields an average modularity of $0.049 \pm 0.002$, confirming the statistical significance of these communities. We show in Fig.~\ref{fig:fig2} a map of the communities obtained.
 
 %%%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
-    \includegraphics[width=\linewidth]{figures/map_communities_louvain.png}
+    \includegraphics[width=\linewidth]{figures/Fig2.png}
     \end{center}
     \caption{{\bf Map of network communities obtained by modularity maximisation.} Area of circles gives the population with the Functional Urban Area, and color the community it belongs to. Urban Areas in communities of size smaller than 3 were not colored for readability.}
-    \label{fig:map_communities}
+    \label{fig:fig2}
 \end{figure}
 %%%%%%%%%%%%%%
 
@@ -209,23 +207,14 @@ AIC &        44304   &  43578  &  42131  & 41917 &   \\
 
 \section*{Model exploration and calibration}
 
-The model is implemented in NetLogo, which provides a good compromise between performance and interactive prototyping and exploration \cite{railsback2017improving}. Numerical experiments are done by integrating the model into the OpenMOLE software for model exploration \cite{reuillon2013openmole}, which provides sensitivity analysis and calibration methods and a transparent access to high-performance computing infrastructures. Model source code, aggregated network data (raw initial firm network can not be made available for data ownership reasons), and results are available on the open Git repository of the project at \url{https://github.com/JusteRaimbault/ABMCitiesFirms}. Large simulation result files are available on the dataverse repository at \url{https://doi.org/10.7910/DVN/UPX23S}. We show in Fig.~\ref{fig:example} examples of generated networks, with very contrasted patterns obtained with different spatial interaction ranges. Low values of the gravity decay parameter yield local networks around main cities, while long interaction ranges yield more integrated networks. We also show networks simulated in the real setting.
+The model is implemented in NetLogo, which provides a good compromise between performance and interactive prototyping and exploration \cite{railsback2017improving}. Numerical experiments are done by integrating the model into the OpenMOLE software for model exploration \cite{reuillon2013openmole}, which provides sensitivity analysis and calibration methods and a transparent access to high-performance computing infrastructures. Model source code, aggregated network data (raw initial firm network can not be made available for data ownership reasons), and results are available on the open Git repository of the project at \url{https://github.com/JusteRaimbault/ABMCitiesFirms}. Large simulation result files are available on the dataverse repository at \url{https://doi.org/10.7910/DVN/UPX23S}. We show in Fig.~\ref{fig:fig3} examples of generated networks, with very contrasted patterns obtained with different spatial interaction ranges. Low values of the gravity decay parameter yield local networks around main cities, while long interaction ranges yield more integrated networks. We also show networks simulated in the real setting.
 
 %%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=0.48\textwidth]{figures/ex_alleq-highgravity_seed-12102_t1500.png}
-    \includegraphics[width=0.48\textwidth]{figures/ex_alleq-lowgravity_seed-12102_t1500.png}\\
-    \begin{minipage}{0.48\textwidth}
-    \begin{mdframed}
-    \includegraphics[width=\textwidth]{figures/ex_real_highgravity_t1500.png}
-    \end{mdframed}
-    \end{minipage}
-    \begin{minipage}{0.48\textwidth}
-    \begin{mdframed}
-    \includegraphics[width=\textwidth]{figures/ex_real_lowgravity_t1500.png}
-    \end{mdframed}
-    \end{minipage}
-    \caption{Example of simulated networks at $t=1500$, for a synthetic system of cities (Top row) and the European urban network (Bottom row). , with a high (resp. low) gravity decay parameter for the left column (resp. right).\label{fig:example}}
+    \begin{center}
+        \includegraphics[width=\linewidth]{figures/Fig3.png}
+    \end{center}
+    \caption{Example of simulated networks at $t=1500$, for a synthetic system of cities (Top row) and the European urban network (Bottom row). , with a high (resp. low) gravity decay parameter for the left column (resp. right).\label{fig:fig3}}
 \end{figure}
 %%%%%%%%%%%%%
 
@@ -242,15 +231,14 @@ A global sensitivity analysis first unveils an aggregated influence of parameter
 
 \paragraph{One factor sampling}
 
-A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms a good statistical convergence (average Sharpe ratios for indicators all larger than 5). We use thus 20 repetitions in following larger experiments (in the case of a normal distribution, a 95\% confidence interval on the average is of size $2\sigma \cdot 1.96 / \sqrt{n}$, what gives $n=16$ repetitions for a CI of width of the standard deviation). Behavior of some indicators are shown in Fig.~\ref{fig:onefactor}. For example, internationalization and the correlation between economic size and weighted degree both show a phase transition as a function of $\gamma_G$, from a local to a global regime. The sector proximity parameter $\gamma_S$ influences the internationalization linearly, but induces a maximum for the correlation between size and degree, which can be interpreted as a setting where size and the total volume in a city are the most correlated.
+A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms a good statistical convergence (average Sharpe ratios for indicators all larger than 5). We use thus 20 repetitions in following larger experiments (in the case of a normal distribution, a 95\% confidence interval on the average is of size $2\sigma \cdot 1.96 / \sqrt{n}$, what gives $n=16$ repetitions for a CI of width of the standard deviation). Behavior of some indicators are shown in Fig.~\ref{fig:onefactor}. For example, internationalisation and metropolisation both show a transition as a function of $\gamma_G$, from a local to a global regime. The sector proximity parameter $\gamma_S$ influences the internationalization linearly, but induces a maximum for the correlation between size and degree, which can be interpreted as a setting where size and the total volume in a city are the most correlated.
 
 %%%%%%%%%%%%%
 \begin{figure}
-	\includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/internationalization-gravityDecay_errorbars.png}
-    \includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/rhoDegreeSize-gravityDecay_errorbars.png}\\
-    \includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/internationalization-gammaSectors_errorbars.png}
-    \includegraphics[width=0.48\textwidth,height=0.25\textheight]{figures/rhoDegreeSize-gammaSectors_errorbars.png}
-    \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) Correlation between degree and size exhibits a maximum, witnessing an intermediate regime where size is the most important. \label{fig:onefactor}}
+	\begin{center}
+	    \includegraphics[width=\linewidth]{figures/Fig4.png}
+	\end{center}
+    \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) Correlation between degree and size exhibits a maximum, witnessing an intermediate regime where size is the most important. \label{fig:fig4}}
 \end{figure}
 %%%%%%%%%%%%%
 
@@ -263,8 +251,8 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=\textwidth]{figures/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
-    \caption{The transition as a function of interaction range depends on the influence of origin size $\gamma_F$; sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:internat}}
+    \includegraphics[width=\linewidth]{figures/Fig5.png}
+    \caption{The transition as a function of interaction range depends on the influence of origin size $\gamma_O$; sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:fig5}}
 \end{figure}
 %%%%%%%%%%%%%%
 
