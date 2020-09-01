@@ -24,4 +24,8 @@ cp figuresraw/internationalization_countryGravityDecay200_gammaDestination0_face
 cp figuresraw/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png figures/Fig6.png
 
 # Fig 7
-cp figuresraw/pareto_colorgammaOrigin.png figures/Fig7.png
+
+# Fig 8
+cp figuresraw/pareto_colorgammaOrigin.png figures/Fig8.png
+
+# Fig 9
