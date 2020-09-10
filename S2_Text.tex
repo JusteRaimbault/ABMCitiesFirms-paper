@@ -1,22 +1,28 @@
-\input{si.tex}
-\begin{document}
-\vspace*{0.35in}
-\justify
+%\input{si.tex}
+%\begin{document}
+%\vspace*{0.35in}
+%\justify
 
 \section*{S2 Text: Model setup and sensitivity analysis}
 
 
 \subsection*{Socio-economic distance matrix}
 
-% \todo{more detail / descriptive stats of the matrix / function of the distance between countries}
+In the real model setup, socio-economic distance between countries $c_{ij}$ is constructed using fixed effects coefficients from the statistical model. 
 
 
 
 \subsection*{Synthetic model setup}
 
-The rationale for the synthetic sector setup is the following:
+The procedure for the synthetic sector setup is the following:
 \begin{itemize}
     \item Sectors distributions follow log-normal densities with most mass in $\left[0;1\right]$
+    \item Large cities are more innovative and more diverse. Assuming that sectors are ordered by innovativity (the larger the sector index the larger the innovativity), this assumption is translated by taking a mode and variance of 0.5 for the largest city and a mode and variance of $1/K$ for the smallest, and a linear interpolation between the two. For each city, we define
+    \[
+    \log(e_i) = \frac{(\log(E_i) - \log(E_{imin}))}{(\log(E_{imax}) - \log(E_{imin}))} * (1/2 - 1/K) + 1/K
+    \]
+    \item Log-normal parameters for each city are then fixed by $mu_i - sigma_i^2 = log(e_i)$ and $-3 sigma_i^2 - 2 log(exp(sigma_i^2) - 1) = log(e_i)$
+    \item $\sigma_i^2$ is the unique positive root of $f(X)=0$ with $f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)$
 \end{itemize}
 
 %solve for mu,sigma of the log-normal as a function of gdp
@@ -35,10 +41,10 @@ The rationale for the synthetic sector setup is the following:
 
 \section*{Sensitivity analysis}
 
-
+The table~\ref{tab:saltelli} gives the full results for the Global Sensitivity Analysis, for all model indicators and free parameters. We give the first order indices and the total indices.
 
 %%%%%%%%%%%%%
-\begin{table}
+\begin{table}[h!]
 \begin{adjustwidth}{-2.25in}{0in}
 \caption{Saltelli sensitivity indices, for indicators in rows and parameters in columns. We give for each pair the first order index (F) and the total order index (T).\label{tab:saltelli}}
 \hspace{-1cm}\begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
@@ -61,4 +67,4 @@ Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.
 
 
 
-\end{document}
+%\end{document}
