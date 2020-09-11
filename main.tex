@@ -31,15 +31,9 @@ Elsa Arcaute\textsuperscript{3}
 
 \end{flushleft}
 
-% Plos one requirements https://journals.plos.org/plosone/s/submission-guidelines
-% Deadline for the Cities as Complex Systems Call for Papers: 4th September https://collections.plos.org/s/cities
-% Manuscripts can be any length. There are no restrictions on word count, number of figures, or amount of supporting information. 
-% PLOS uses “Vancouver” references style
-% We need to reorganise the paper to have more or less the following sections (which can be reordered or renamed):
-% 1. Title page: List title, authors, and affiliations as first page of manuscript 2. Abstract 3. Introduction 4. Materials and Methods 5. Results 6. Discussion 7. Conclusions (optional)
 
 \section*{Abstract}
-The emergence of interconnected urban networks is a crucial feature of globalisation processes. Understanding the drivers behind the growth of such networks -- in particular urban firm networks --, is essential for the economic resilience of urban systems. We introduce in this paper a generative network model for firm networks at the urban area level including several complementary processes: the economic size of urban areas at origin and destination, industrial sector proximity between firms, the strength of links from the past, as well as the geographical and socio-cultural distance. An empirical network analysis on European firm ownership data confirms the relevance of each of these factors. We then simulate network growth for synthetic systems of cities, unveiling stylized facts such as a transition from a local to a global regime or a maximal integration achieved at an intermediate interaction range. We finally calibrate the model on the European network, outperforming statistical models and showing a strong role of path-dependency. Potential applications of the model include the study of mitigation policies to deal with exogenous shocks such as economic crisis or potential lockdowns of countries.
+The emergence of interconnected urban networks is a crucial feature of globalisation processes. Understanding the drivers behind the growth of such networks -- in particular urban firm networks --, is essential for the economic resilience of urban systems. We introduce in this paper a generative network model for firm networks at the urban area level including several complementary processes: the economic size of urban areas at origin and destination, industrial sector proximity between firms, the strength of links from the past, as well as the geographical and socio-cultural distance. An empirical network analysis on European firm ownership data confirms the relevance of each of these factors. We then simulate network growth for synthetic systems of cities, unveiling stylized facts such as a transition from a local to a global regime or a maximal integration achieved at an intermediate interaction range. We calibrate the model on the European network, outperforming statistical models and showing a strong role of path-dependency. Potential applications of the model include the study of mitigation policies to deal with exogenous shocks such as economic crisis or potential lockdowns of countries, which we illustrate with an application on stylized scenarios.
 
 \linenumbers
 
@@ -78,14 +72,11 @@ where $E  =  \sum_k E_k$, $W  = \sum_{i,j} w_{ij}$ weights of previous links, $s
 
 
 
-Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalise the exponents to 1 
-%(which is different than renormalising the probability), 
-to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrised (see setup below) and estimated in the data-driven setting. In this simple version of the model we assume an absence of evolution of economic size, which means that the adjusted parameters are valid on a restricted time period.
+Note that: (i) we consider an asymmetric influence of sizes, assuming that link directions are important (similarly the similarity function $s$ may be taken as asymmetric); (ii) the influence of previous links is similar to a preferential attachment process; (iii) we do not renormalise the exponents to 1 to ensure to include convex functions. The ``geopolitical/sociocultural'' distance remains abstract and should be parametrised (see setup below) and estimated in the data-driven setting. In this simple version of the model we assume an absence of evolution of economic size, which means that the adjusted parameters are valid on a restricted time period.
 
 
 \subsubsection*{Model setup}
 
-%Besides model dynamics, its initialisation (or parametrisation on real data) regarding the spatial distribution, sizes and industrial sector compositions, it remains important to understand the model behavior. 
 When setting the model, it is important to consider that different initial conditions (or parametrisation on real data), given by the spatial distribution, the sizes and industrial sector compositions, are going to affect the behaviour of the model. One of the authors \cite{raimbault2019space} has already shown that the initial spatial configuration can have significant impacts on model outcomes. We therefore consider two versions: one with a synthetic system of cities which can be stochastically repeated, and one other based on real data.
 
 
@@ -95,14 +86,14 @@ The synthetic system of cities is generated to be at the scale of a continent wi
 (ii) clustered into $C = 20$ countries using a k-means algorithm (this remains consistent with non-correlated city sizes at the scale of the countries as our cities are randomly distributed in space \cite{simini2019testing});
 (iii) with synthetic distribution of sectors following log-normal distributions adjusted in a way that large cities have more high-value activities and are more diverse.
 
-More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretised and renormalised to be a vector of probabilities. See \ref{S2_Text} for all details of this synthetic setup.
+More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretised and renormalised to be a vector of probabilities. See S2 Text for all details of this synthetic setup.
 
 In synthetic experiments, the network is generated from an initial complete network with dummy links of weight 1 until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
 
      
 \paragraph{Real setup}
 
-The real setup is done using the empirical network of ownership links. Urban areas are distributed according to their positions in the actual geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modeling, by considering fixed-effect coefficients estimated for each pair of countries. See \ref{S2_Text} for more details on the construction of the socio-economic distance matrix.
+The real setup is done using the empirical network of ownership links. Urban areas are distributed according to their positions in the actual geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modeling, by considering fixed-effect coefficients estimated for each pair of countries. See S2 Text for more details on the construction of the socio-economic distance matrix.
 
 The initial network is the same than in the synthetic setup, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij}^{(obs)} / t_{f}$ when the number of time steps $t_f$ is given as a parameter.
 
@@ -112,7 +103,7 @@ The model parameters are the Cobb-Douglas weights $\gamma_O,\gamma_D,\gamma_W,\g
 
 We consider two main macroscopic indicators to quantify the generated network. Firstly, geographical structures are captured by internationalisation (modularity of countries in the network). The situation of a minimised modularity corresponds to dense connections between cities of different countries in Europe and sparse connections between cities of the same European country. In practice, modularity is computed as follows
 \begin{equation}
-    I = \frac{1}{2 \left|E\right|} \cdot \sum_{i,j} \left(w_{ij} - \frac{d_i d_j}{2 \left|E\right|}\right) \mathbb{1}_{c_i = c_j}
+    I = \frac{1}{2 \left|E\right|} \cdot \sum_{i,j} \left(w_{ij} - \frac{d_i d_j}{2 \left|E\right|}\right) \mathbbm{1}_{c_i = c_j}
 \end{equation}
 where $d_i$ is the weighted degree of city $i$ in country $c_i$.
 
@@ -151,7 +142,7 @@ The communities reflect characteristic socio-cultural structures and cross-borde
     \begin{center}
     \includegraphics[width=\linewidth]{figures/Fig2.png}
     \end{center}
-    \caption{{\bf Map of network communities obtained by modularity maximisation.} The area of circles gives the population within the Functional Urban Area, and color the community it belongs to. Urban Areas in communities of size smaller than 3 were not colored for readability.}
+    \caption{{\bf Map of network communities obtained by modularity maximisation.} The area of circles gives the turnover within the Functional Urban Area, and color the community it belongs to. Urban Areas in communities of size smaller than 3 were not colored for readability.}
     \label{fig:fig2}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -300,7 +291,24 @@ When considering optimal points with $\varepsilon_L < 5.0$, the adjusted paramet
 
 \subsection*{Application: impact of economic shock}
 
-We finally design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), or other unpredicted human disasters such as the COVID-19 pandemic. We simulate border closures by rescaling $c_0$, and intra-country lock-downs by rescaling $d_0$ during the simulation, with other parameters being fixed to their default values. More precisely, with $t_f = 5000$, the model is run for $t_f / 2$ steps when parameters are changed as $\kappa_G \cdot d_0$ and $\kappa_C \cdot c_0$, and then run for the remaining time steps. We study the temporal trajectory of indicators to see the impact of the shock in time. The experiment is run for $(\kappa_G,\kappa_C)$ ranging between 0.2 (strong restrictions) to 1 (reference trajectory), with 100 model repetitions.
+We finally design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), or other unpredicted human disasters such as the COVID-19 pandemic. We simulate border closures by rescaling $c_0$, and intra-country lock-downs by rescaling $d_0$ during the simulation, with other parameters being fixed to their default values and the model setup in the real configuration. More precisely, with $t_f = 5000$, the model is run for $t_f / 2$ steps when parameters are changed as $\kappa_G \cdot d_0$ and $\kappa_C \cdot c_0$, and then run for the remaining time steps. We study the temporal trajectory of indicators to see the impact of the shock in time. The experiment is run for $(\kappa_G,\kappa_C)$ ranging between 0.2 (strong restrictions) to 1 (reference trajectory), with 100 model repetitions.
+
+Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the shock on internationalisation, but less on the average community size. The impact of changing $d_0$ is more important than $c_0$, but a combination of both yield the stronger effect. For minimal values of $\kappa_G$ and $\kappa_C$, internationalisation is more than doubled, confirming a reconfiguration of urban networks within countries. We confirm the statistical significance of effects observed in Fig.~\ref{fig:fig9} by comparing distributions with Kolmogorov-Smirnov (KS) tests. More precisely, we proceed for each indicator and each value of $(\kappa_G,\kappa_C)$ to a two-sided KS test between the statistical distribution of the indicator over repetitions at final time with the distribution in the reference configuration. For internationalisation, p-values of the test are all smaller than 0.002 for $\kappa_D < 0.6$ but all larger than $0.15$ for $\kappa_D \geq 0.6$, what means that the shock has a statistically significant impact only when interaction range is more than halved. For community size, significance (p-value smaller than 0.01) is reached only for the smallest value $\kappa_D = 0.2$. Thus, the trajectory of the urban network is rather resilient to moderate shocks. This application shows how the model could be applied to practical policy issues.
+
+% computePvalMat(res$internationalizationTS.98)
+%             [,1]         [,2]        [,3]         [,4]        [,5]
+%[1,] 4.884981e-15 4.440892e-16 0.000000000 0.0000000000 0.000000000
+%[2,] 1.364656e-03 9.570235e-06 0.001364656 0.0002468196 0.002318458
+%[3,] 8.127483e-01 6.993742e-01 0.999633292 0.4675585921 0.154538055
+%[4,] 5.806178e-01 8.127483e-01 0.366726444 0.6993741999 0.906206390
+%[5,] 8.127483e-01 2.809600e-01 0.210551633 0.4675585921 1.000000000
+% computePvalMat(res$networkAvgCommunitySizeTS.98)
+%             [,1]         [,2]         [,3]         [,4]         [,5]
+%[1,] 4.365916e-08 4.705150e-06 3.728748e-05 2.267454e-06 1.071070e-06
+%[2,] 5.410262e-02 6.993742e-01 6.302223e-03 1.545381e-01 4.675586e-01
+%[3,] 9.670685e-01 1.545381e-01 9.996333e-01 9.996333e-01 4.675586e-01
+%[4,] 4.675586e-01 5.806178e-01 4.675586e-01 9.670685e-01 6.993742e-01
+%[5,] 9.670685e-01 5.806178e-01 4.675586e-01 6.993742e-01 1.000000e+00
 
 
 
@@ -320,23 +328,24 @@ We finally design scenarios to evaluate the impact of economic shocks. These can
 
 This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from the Amadeus dataset. The simulation on a synthetic system of cities provides a broad knowledge on model behavior in its parameter space. Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance and should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
 
-The calibration of model suggests its potential application to policy issues and can therefore have practical applications in the future. For example the effect of exogenous shocks in the socio-economic structure could be tested as the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to further pandemic outbreaks on the single market. In this sense the UK economic sectors mostly dependent on foreign capital and generating the highest turnovers in 2018 could be examined: extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods (in terms of out-going links from the UK) ; activities of head offices and holding companies, sale of cars and manufacture of motor vehicles (in terms of in-going links to the UK).
+The calibration of model suggests its potential application to policy issues and can therefore have practical applications in the future. For example the effect of exogenous shocks in the socio-economic structure can be tested as we did in the stylized application example above. Such shocks can for example be the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to further pandemic outbreaks on the single market. In this sense the UK economic sectors mostly dependent on foreign capital and generating the highest turnovers in 2018 could be examined: extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods (in terms of out-going links from the UK) ; activities of head offices and holding companies, sale of cars and manufacture of motor vehicles (in terms of in-going links to the UK). We showed in our experiment that although the system is resilient to moderate shocks, strong restrictions have an important impact on internationalization and thus can be expected to have a detrimental effect on UK economy due to these foreign dependency links (see also S1 Text).
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
 
-% I believe than something on the results of the COVID/lockdown scenario should be commented in the discussion as well 
 
 \section*{Supporting information}
 
 \paragraph*{S1 Text.}
-\label{S1_Text}
+\label{S1Text}
 {\bf UK's economic sectors dependent on international links.}
 
+Summary of links between UK and the rest of the EU, by economic sector.
+
 \paragraph*{S2 Text.}
-\label{S2_Text}
+\label{S2Text}
 {\bf Model setup and sensitivity analysis.}
 
-Socio-economic distance matrix, Synthetic model setup and Sensitivity analysis.
+Details on the simulation model: summary statistics for the socio-economic distance matrix, procedure for the synthetic model setup and detailed Global Sensitivity Analysis.
 
 
 
