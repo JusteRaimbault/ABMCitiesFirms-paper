@@ -97,14 +97,14 @@ The synthetic system of cities is generated to be at the scale of a continent wi
 
 More precisely for this last point, assuming sectors are distributed continuously along a one-dimensional axis, cities are assumed to have a sector distribution with a log-normal density function. The largest city is constrained to have a standard deviation and a mode of $1/2$ and the smallest $1/K$, with a linear interpolation between the two for other cities. Parameters of the log-normal law are obtained by solving the corresponding two equations system for each city, and each distribution is discretised and renormalised to be a vector of probabilities. See \ref{S2_Text} for all details of this synthetic setup.
 
-In synthetic experiments, the network is generated from an empty initial network until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
+In synthetic experiments, the network is generated from an initial complete network with dummy links of weight 1 until reaching $t_f=1500$, with a unit link volume of $w_0 = 1$.
 
      
 \paragraph{Real setup}
 
 The real setup is done using the empirical network of ownership links. Urban areas are distributed according to their positions in the actual geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modeling, by considering fixed-effect coefficients estimated for each pair of countries. See \ref{S2_Text} for more details on the construction of the socio-economic distance matrix.
 
-Initial the network is empty, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij}^{(obs)} / t_{f}$ when the number of time steps $t_f$ is given as a parameter.
+The initial network is the same than in the synthetic setup, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij}^{(obs)} / t_{f}$ when the number of time steps $t_f$ is given as a parameter.
 
 \subsection*{Model parameters and indicators}
 
@@ -115,14 +115,12 @@ We consider two main macroscopic indicators to quantify the generated network. F
     I = \frac{1}{2 \left|E\right|} \cdot \sum_{i,j} \left(w_{ij} - \frac{d_i d_j}{2 \left|E\right|}\right) \mathbb{1}_{c_i = c_j}
 \end{equation}
 where $d_i$ is the weighted degree of city $i$ in country $c_i$.
-% add some reference values - some kind of null model
 
 Secondly, we consider the metropolisation indicator as the correlation between the weighted degree and the GDP of the city. With this indicator we capture the effect of large cities or metropolises of regional importance attracting the biggest amount of links and involved in high interactions with other cities. It is computed with a Pearson correlation estimator as
 \begin{equation}
     M = \hat{\rho} \left[d_i , E_i \right]
 \end{equation}
 
-%We take a geographical approach to study the behavior of the generative model. Other related approaches include indicators of economic complexity, estimating for example the diversity of products produced by countries and how they depend on each other \cite{hidalgo2007product}. These are less relevant in our case as the sector structure of cities does not evolve in the model.
 In this work, we do not consider the relationship between countries given their economic complexity, such as the framework developed by  \cite{hidalgo2007product}, where the diversity of products produced plays an essential role in determining co-dependencies and resilience.
 What we investigate instead, is the role of linkages given by geography and history, and hence, the sector structure of cities does not evolve within the model.
 
@@ -167,7 +165,7 @@ In order to understand the most determining geo-economic factors influencing the
 \log(w_{ij}) = \log(d_{ij}) + \log(T_i) + \log(T_j) + \log(s_{ij}) + \alpha_{c_i,c_j} + \varepsilon_{ij}
 \end{equation}
 where $\alpha_{c_i,c_j}$ is a fixed effect term for the coupling of countries $c_i,c_j$, and $T_i$, $T_j$ correspond to the turnovers of cities $i$ and $j$ respectively. 
-%A multiplicative form is applied by taking logarithms as usually done for spatial interaction models. Furthermore, origin and/or destination constrained models are not relevant in our case, as links include information about the turnover and a share of ownership at the same time. 
+
 This multiplicative form linearly transformed through logarithms is common practice for spatial interaction models. Note that no constraints are considered, since links include information about the turnover and a share of ownership at the same time. 
 Estimation results are given in Table~\ref{tab:reg}. We also fit a Poisson generalized linear model with a logarithmic link on the rounded weights \cite{flowerdew1988fitting}. The findings show that when distance only is taken into account (model 1), it has a significant negative effect on link creation, but with an explained variance close to zero. Model 2 adds fixed effects by pair of countries, for which around a third are significant, and with a better $R^2$ of 0.17. Adding the economic size at origin and destination (turnovers $T_i$ and $T$, model 3) slightly improves the explanatory power (model 3). The best model among the linear ones is the model 4, with all factors and fixed effects, both in terms of explained variance ($R^2 = 0.31$) and Akaike information criterion. Model 4 also indicates the absence of overfitting. Model 5, which is a Poisson model with all variables is much a better fit regarding pseudo-$R^2$ and provides much more significant estimates (all fixed effects significant and much smaller standard deviations). Across all models, consistent qualitative stylized facts regarding link creation between cities are revealed: (i) distance has a negative influence; (ii) economic sizes have a positive effect, with the size of the origin city being more important (consistent in the ownership links context, as strongly driven by decision at the headquarter/owner level); (iii) industrial proximity has a positive influence, i.e. similarity is more important than complementarity for this dimension; (iv) a large part of country fixed-effects are statistically significant; and (v) the order of magnitude of the influence of each factor is roughly the same, which means that no process totally dominates the others.
 This confirms the relevance of including all these different dimensions in the generative network model, since they have a comparable explanatory role in statistical models.
@@ -265,7 +263,7 @@ Other indicators exhibit non-trivial patterns. For example, when considering ave
 
 \paragraph{Impact of urban hierarchy}
 
-We run a specific experiment to study the impact of urban hierarchy on firms dynamics. Rank-size law in cities is a central stylized fact within urban theories, despite the discussions regarding the estimation of the power-law exponent, its actual values and its variation depending on the definition of cities considered \cite{cottineau2017metazipf,corral2020truncated}. In this particular context, understanding how this parameter can impact urban dynamics within artificial systems of cities -- in which it can be modified to extreme values non observable in real systems--, should bring evidence on underlying processes \cite{raimbault2019space}. We change the initial hierarchy $\alpha$ from 0.5 to 2.0 with a step of 0.1, and also vary the interaction range $d_0$.
+We run a specific experiment to study the impact of urban hierarchy on firms dynamics. Rank-size law in cities is a central stylized fact within urban theories, despite the discussions regarding the estimation of the power-law exponent, its actual values and its variation depending on the definition of cities considered \cite{cottineau2017metazipf,corral2020truncated}. In this particular context, understanding how this parameter can impact urban dynamics within artificial systems of cities -- in which it can be modified to extreme values non observable in real systems--, should bring evidence on underlying processes \cite{raimbault2019space}. We change the initial hierarchy $\alpha$ from 0.5 to 2.0 with a step of 0.1, and also vary the interaction range $d_0$. The behavior of internationalisation and metropolisation indicators are shown in Fig.~\ref{fig:fig7}. As expected, the hierarchy of the urban system has an important impact on model outcomes. We find that more hierarchical urban systems tend to produce more international networks (internationalisation indicator is a modularity which is minimized when networks span more accross different countries), what is consistent with the existence of globalized metropolis \cite{sassen1991global}. This effect is mitigated by lower interaction ranges. Regarding metropolisation, we observe a maximum values as a function of initial hierarchy consistent across different interaction ranges $d_0$. This means that a too high hierarchy is detrimental to the global metropolisation when considering all cities, what may be due to the fact that in such a case very large cities are capturing all flows, leaving nothing to intermediate and medium-sized cities. Interestingly, the optimal value $\alpha \simeq 1.3$ is not far from observed values (which usually range between 0.9 and 1.1 but can take larger values such as 1.5 when extending the urban system \cite{Raimbault_2020}), what may imply that this optimality property is endogenous to the emergence of urban systems and linked to their intrinsic hierarchy.
 
 
 
@@ -274,7 +272,7 @@ We run a specific experiment to study the impact of urban hierarchy on firms dyn
     \begin{center}
         \includegraphics[width=\linewidth]{figures/Fig7.png}
     \end{center}
-    \caption{\textbf{Impact of urban hierarchy.} (Left) Internationalisation \label{fig:fig7}}
+    \caption{\textbf{Impact of urban hierarchy.} (Left) Internationalisation as a function of the initial synthetic hierarchy $\alpha$, for different values of interaction range $d_0$ (color); (Right) Metropolisation as a function of $\alpha$, for different values of interaction range $d_0$ (color).\label{fig:fig7}}
 \end{figure}
 %%%%%%%%%%%%%
 
@@ -302,8 +300,8 @@ When considering optimal points with $\varepsilon_L < 5.0$, the adjusted paramet
 
 \subsection*{Application: impact of economic shock}
 
-Based on calibrated parameter values, we design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), or other  unpredicted human disasters such as the COVID-19 pandemic. We simulate a full border closure by setting $\gamma_D = 0$, and intermediate scenarios. Setting also $\gamma_G$ to 0 allows simulating inter-country lock-downs.
-% note that time scales are in fact smaller - or assume that crisis keeping border closed is rather long
+We finally design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), or other unpredicted human disasters such as the COVID-19 pandemic. We simulate border closures by rescaling $c_0$, and intra-country lock-downs by rescaling $d_0$ during the simulation, with other parameters being fixed to their default values. More precisely, with $t_f = 5000$, the model is run for $t_f / 2$ steps when parameters are changed as $\kappa_G \cdot d_0$ and $\kappa_C \cdot c_0$, and then run for the remaining time steps. We study the temporal trajectory of indicators to see the impact of the shock in time. The experiment is run for $(\kappa_G,\kappa_C)$ ranging between 0.2 (strong restrictions) to 1 (reference trajectory), with 100 model repetitions.
+
 
 
 %%%%%%%%%%%%%%
@@ -311,7 +309,7 @@ Based on calibrated parameter values, we design scenarios to evaluate the impact
 	\begin{center}
     \includegraphics[width=\linewidth]{figures/Fig9.png}
     \end{center}
-	\caption{\textbf{Application of the calibrated model to an economic shock scenario.}\label{fig:fig9}}
+	\caption{\textbf{Application of the calibrated model to an economic shock scenario.} All plots show the trajectory of indicators (internationalisation for the top row and average community size for the bottom row) in time, for different values of interaction decay rescaling $\kappa_G$ (color) and socio-economic distance rescaling $\kappa_C$ (panels). The vertical dotted red line shows the moment the economic shock is introduced and $d_0$ (respectively $c_0$) is set to $\kappa_G \cdot d_0$ (resp. $\kappa_C \cdot c_0$).\label{fig:fig9}}
 \end{figure}
 %%%%%%%%%%%%%%
 
