@@ -1,16 +1,25 @@
-%\input{si.tex}
-%\begin{document}
-%\vspace*{0.35in}
-%\justify
+\input{si.tex}
+
+\renewcommand{\thetable}{S2-\Alph{table}}
+
+\begin{document}
+\vspace*{0.35in}
+\justify
 
 \section*{S2 Text: Model setup and sensitivity analysis}
 
 
 \subsection*{Socio-economic distance matrix}
 
-In the real model setup, socio-economic distance between countries $c_{ij}$ is constructed using fixed effects coefficients from the statistical model. 
+In the real model setup, socio-economic distance between countries $c_{ij}$ is constructed using fixed effects coefficients from the statistical model. In Table~1 in main text, we estimated several statistical models, including some with fixed effects by pairs of countries. The socio-cultural distance between two countries is then taken as the opposite of the fixed effect coefficient for this pair, for the full statistical model. Summary statistics for the 29x29 matrix (28 EU countries and Jersey which is in the database a distinct country from UK but has an important total turnover since many British companies are located there for fiscal advantage reasons) are shown below in Table~\ref{tab:fixedeff}. We observe that distances are rather localized but with large outliers, and an important proportion are not defined (339 out of 841), corresponding to couple of countries having no exchange at all in the dataset.
 
-
+\begin{table}[h!]
+\caption{\textbf{Summary statistics of the socio-cultural distance estimated with a fixed effects model.}\label{tab:fixedeff}}
+\begin{tabular}{ccccccc}
+   Min. & 1st Qu. &  Median &  Mean &  3rd Qu. &  Max. &  NA's \\
+ -2.327 &  1.440 &  2.451 &  2.538 &  3.447 & 11.797 &  339 
+\end{tabular}
+\end{table}
 
 \subsection*{Synthetic model setup}
 
@@ -67,4 +76,4 @@ Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.
 
 
 
-%\end{document}
+\end{document}
