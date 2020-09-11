@@ -30,3 +30,4 @@ montage figuresraw/internationalization-alpha_colorgravityDecay_errorBar.png fig
 cp figuresraw/pareto_colorgammaOrigin.png figures/Fig8.png
 
 # Fig 9
+montage figuresraw/internationalization_Time_colorgravityScaleFactor_facetcountryScaleFactor.png figuresraw/networkAvgCommunitySize_Time_colorgravityScaleFactor_facetcountryScaleFactor.png -tile 1x2 -geometry +0+"$VERTICALPADDING" -resize "$WIDTH"x figures/Fig9.png
