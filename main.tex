@@ -125,9 +125,10 @@ The urban network has heavy tail weighted degree and edge weight distributions, 
 
 %%%%%%%%%%%%%
 \begin{figure}
-    \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig1.png}
-    \end{center}
+    %\begin{center}
+    %    \includegraphics[width=\linewidth]{figures/Fig1.png}
+    %\end{center}
+    \vspace{2cm}
     \caption{Distributions of network properties. \textit{(Left)} Cumulated distribution for edge weight, with power law fit (red) and log-normal fit (green); \textit{(Right)} Cumulated distribution for weighted degree.}
     \label{fig:nwdist}
 \end{figure}
@@ -139,9 +140,10 @@ When focusing on the community structure of the network, different modularity ma
 The communities reflect characteristic socio-cultural structures and cross-border economic ties throughout Europe. Cities in France, Belgium and Luxembourg belong to the same cluster as they share French as a common business language, but also cross-border tax arrangements creating easier economic interactions \cite{DecovilleDurand2019}. The same socio-cultural proximity effect is seen in cities of the United Kingdom and Ireland, and those of Sweden, Finland, Estonia, Latvia and Lithuania. The cluster composed of Dutch and Polish cities is justified by the fact that firms from the Netherlands are among the first foreign owners of polish firms since 2010 \cite{2019arXiv191014652Z}. The cluster including cities in Germany, Czech Republic, Austria, Slovakia, Hungary and partly in Romania, find its origin in the dependence of the Central and Eastern European economies on German and Austrian large companies mostly from the automotive sector (i.e. Audi, Volkswagen). In addition, all cities of the later cluster have in common to be at the intersection of a very important freight transport route in Europe from Germany to Turkey \cite{Zdanowska2017}. 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \begin{center}
-    \includegraphics[width=\linewidth]{figures/Fig2.png}
-    \end{center}
+    %\begin{center}
+    %\includegraphics[width=\linewidth]{figures/Fig2.png}
+    %\end{center}
+    \vspace{2cm}
     \caption{{\bf Map of network communities obtained by modularity maximisation.} The area of circles gives the turnover within the Functional Urban Area, and color the community it belongs to. Urban Areas in communities of size smaller than 3 were not colored for readability.}
     \label{fig:fig2}
 \end{figure}
@@ -164,7 +166,7 @@ This confirms the relevance of including all these different dimensions in the g
 
 %%%%%%%%%%%%%
 \begin{table}[!ht]
-\begin{adjustwidth}{-2.25in}{0in}
+\begin{adjustwidth}{-1in}{0in}
 \caption{{\bf Statistical models.} Ordinary Least Square estimations of statistical models explaining $\log(w_{ij})$ (standard errors in parenthesis). ***, ** and * respectively indicate 0.01, 0.05 and 0.1 levels of significance. For the fixed effect by origin-destination pairs of countries, the proportion of significant coefficients is attributed (where $p<0.1$). Models (1) to (4) are ordinary least square models, while model (5) is a Poisson generalized linear model with logarithmic link. We compare model performance using $R^2$, Mean Square Error, and Akaike Information Criterion. For the Poisson model (model 5), AIC is not given as it is not comparable. \label{tab:reg}}
 \medskip
 \begin{tabular}{|l|c|c|c|c|c|}
@@ -196,9 +198,10 @@ The model is implemented in NetLogo, which provides a good compromise between pe
 
 %%%%%%%%%%%%%
 \begin{figure}
-    \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig3.png}
-    \end{center}
+    %\begin{center}
+    %    \includegraphics[width=\linewidth]{figures/Fig3.png}
+    %\end{center}
+    \vspace{2cm}
     \caption{Example of simulated networks at $t=1500$, for a synthetic system of cities (Top row) and the European urban network (Bottom row), with a high (resp. low) gravity decay parameter for the left column (resp. right).\label{fig:fig3}}
 \end{figure}
 %%%%%%%%%%%%%
@@ -210,7 +213,7 @@ We first study extensively the behavior of the model on synthetic systems of cit
 
 \paragraph{Sensitivity analysis}
 
-A global sensitivity analysis first unveils an aggregated influence of parameters on model indicators. We apply Saltelli's Global Sensitivity method introduced by \cite{saltelli2008global}. This produces values for each parameter and each output of a first order sensitivity index, defined as $Var\left[\mathbb{E}_{\mathbf{X}_{\sim i}}\left(Y_j | X_i\right)\right] / Var\left[Y_j\right]$, for parameter $X_i$ and output $Y_j$, $\mathbf{X}_{\sim i}$ being all other parameters. This captures the total influence of $X_i$ all other things being equal. The total order index is given by $\mathbb{E}_{\mathbf{X}_{\sim i}} \left[Var(Y_j | \mathbf{X}_{\sim i})\right] / Var\left[Y_j\right]$ and captures non-homogeneity in behavior and interaction between parameters. Indices were estimated with a Sobol sequence sampling of 20,000 model runs \cite{saltelli2010variance}. We give in \ref{S4_Text} the full estimated results. To summarize, we find that indicators related to modularity (internationalisation and optimal modularity) are mostly influenced by geographical parameters. On the contrary, indicators of network structure are driven by origin and destination sizes. The influence of sectors and historical links has a secondary but not negligible role. Altogether, the analysis witnesses of strong interaction effects between parameters, since for several indicators the total order index is one order of magnitude larger than the first order index. This means that the generative model captures some complex behavior of the system.
+A global sensitivity analysis first unveils an aggregated influence of parameters on model indicators. We apply Saltelli's Global Sensitivity method introduced by \cite{saltelli2008global}. This produces values for each parameter and each output of a first order sensitivity index, defined as $Var\left[\mathbb{E}_{\mathbf{X}_{\sim i}}\left(Y_j | X_i\right)\right] / Var\left[Y_j\right]$, for parameter $X_i$ and output $Y_j$, $\mathbf{X}_{\sim i}$ being all other parameters. This captures the total influence of $X_i$ all other things being equal. The total order index is given by $\mathbb{E}_{\mathbf{X}_{\sim i}} \left[Var(Y_j | \mathbf{X}_{\sim i})\right] / Var\left[Y_j\right]$ and captures non-homogeneity in behavior and interaction between parameters. Indices were estimated with a Sobol sequence sampling of 20,000 model runs \cite{saltelli2010variance}. We give in S2 Text the full estimated results for sensitivity indices. To summarize, we find that indicators related to modularity (internationalisation and optimal modularity) are mostly influenced by geographical parameters. On the contrary, indicators of network structure are driven by origin and destination sizes. The influence of sectors and historical links has a secondary but not negligible role. Altogether, the analysis witnesses of strong interaction effects between parameters, since for several indicators the total order index is one order of magnitude larger than the first order index. This means that the generative model captures some complex behavior of the system.
 
 
 
@@ -220,9 +223,10 @@ A first numerical experiment of one-factor sampling on all Cobb-Douglas paramete
 
 %%%%%%%%%%%%%
 \begin{figure}
-	\begin{center}
-	    \includegraphics[width=\linewidth]{figures/Fig4.png}
-	\end{center}
+	%\begin{center}
+	%    \includegraphics[width=\linewidth]{figures/Fig4.png}
+	%\end{center}
+	\vspace{2cm}
     \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) Correlation between degree and size exhibits a maximum, witnessing an intermediate regime where size is the most important. \label{fig:fig4}}
 \end{figure}
 %%%%%%%%%%%%%
@@ -236,7 +240,8 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=\linewidth]{figures/Fig5.png}
+    %\includegraphics[width=\linewidth]{figures/Fig5.png}
+    \vspace{2cm}
     \caption{The transition as a function of interaction range depends on the influence of origin size $\gamma_O$; sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:fig5}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -246,7 +251,8 @@ Other indicators exhibit non-trivial patterns. For example, when considering ave
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=\textwidth]{figures/Fig6.png}
+    %\includegraphics[width=\textwidth]{figures/Fig6.png}
+    \vspace{2cm}
 	\caption{Maximal integration in terms of community size is achieved at an intermediate value of d$_o$: emergence of a regional regime; maximal size depends on the role of sectors $\gamma_S$ in a decreasing way when the origin size is deactivated, and in an increasing way when $\gamma_o=1$; this regime disappears when the influence of the origin size becomes too large.\label{fig:fig6}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -260,9 +266,10 @@ We run a specific experiment to study the impact of urban hierarchy on firms dyn
 
 %%%%%%%%%%%%%
 \begin{figure}
-    \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig7.png}
-    \end{center}
+    %\begin{center}
+    %    \includegraphics[width=\linewidth]{figures/Fig7.png}
+    %\end{center}
+    \vspace{2cm}
     \caption{\textbf{Impact of urban hierarchy.} (Left) Internationalisation as a function of the initial synthetic hierarchy $\alpha$, for different values of interaction range $d_0$ (color); (Right) Metropolisation as a function of $\alpha$, for different values of interaction range $d_0$ (color).\label{fig:fig7}}
 \end{figure}
 %%%%%%%%%%%%%
@@ -277,9 +284,10 @@ We then apply the model to a real system of cities by calibrating it on the Euro
 
 %%%%%%%%%%%%%%
 \begin{figure}
-	\begin{center}
-    \includegraphics[width=0.75\linewidth]{figures/Fig8.png}
-    \end{center}
+	%\begin{center}
+    %\includegraphics[width=0.75\linewidth]{figures/Fig8.png}
+    %\end{center}
+    \vspace{2cm}
 	\caption{\textbf{Model calibration results.} Pareto front obtained for the bi-objective model calibration for $\varepsilon_L$ and $\varepsilon_M$ objectives. $\varepsilon_L$ can be compared to the MSE of statistical models fitted above, and the generative model outperform these for several parametrizations (lowest MSE 5.33 for statistical models). Point size gives the number of stochastic samples and color the value of $\gamma_O$.\label{fig:fig8}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -289,11 +297,11 @@ We show in Fig.~\ref{fig:fig8} the calibration result, as a Pareto front of comp
 
 When considering optimal points with $\varepsilon_L < 5.0$, the adjusted parameters are: long range gravity interactions and socio-economic interactions given by $d_0 = 5972 \pm 2148$ and $c_0 = 113 \pm 33$ (the maximal $c_{ij}$ is 11.8); a stronger influence of destination than origin as $\gamma_O = 1.46 \pm 0.10$ and $\gamma_D = 2.0 \pm 0.05$; a comparable influence of sectors as $\gamma_S = 1.76 \pm 0.21$; a fine time granularity as $t_f = 4951 \pm 124$; and a very strong influence of previous links as $\gamma_W = 6.43 \pm 4.11$. This last point furthermore shows in particular a role of the path-dependency parameter, confirming the relevance of this complex generative model including path-dependency. The interaction of this process with others implies an inversion of the relative importance of origin and destination (on the contrary to statistical models). The fact that calibrated interaction distances are large is consistent with long range economic interactions within Europe. Besides these stylized facts, these calibration results altogether demonstrate the feasibility of model application to real data.
 
-\subsection*{Application: impact of economic shock}
+\section*{Application: impact of economic shock}
 
-We finally design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), or other unpredicted human disasters such as the COVID-19 pandemic. We simulate border closures by rescaling $c_0$, and intra-country lock-downs by rescaling $d_0$ during the simulation, with other parameters being fixed to their default values and the model setup in the real configuration. More precisely, with $t_f = 5000$, the model is run for $t_f / 2$ steps when parameters are changed as $\kappa_G \cdot d_0$ and $\kappa_C \cdot c_0$, and then run for the remaining time steps. We study the temporal trajectory of indicators to see the impact of the shock in time. The experiment is run for $(\kappa_G,\kappa_C)$ ranging between 0.2 (strong restrictions) to 1 (reference trajectory), with 100 model repetitions.
+We finally design scenarios to evaluate the impact of economic shocks. These can be the consequence of diverse factors, including socio-economic, geopolitical factors (example of Brexit), or other unpredicted human disasters such as the COVID-19 pandemic. We simulate border closures by rescaling $c_0$ -- the range parameter for socio-economic interactions --, and intra-country lock-downs by rescaling $d_0$ -- the range parameter for direct interactions -- during the simulation, with other parameters being fixed to their default values and the model setup in the real configuration. More precisely, with $t_f = 5000$, the model is run for $t_f / 2$ steps. Then, following two new rate parameters $\kappa_C \in \left[0;1\right]$ and $\kappa_G \in \left[0;1\right]$ defining the shock, model parameters are updated as $\kappa_G \cdot d_0$ and $\kappa_C \cdot c_0$. The model is then run for the remaining time steps until $t_f$. We study the temporal trajectory of indicators to see the impact of the shock in time. The experiment is run for $(\kappa_G,\kappa_C)$ ranging between 0.2 (strong restrictions) to 1 (reference trajectory), with 100 model repetitions.
 
-Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the shock on internationalisation, but less on the average community size. The impact of changing $d_0$ is more important than $c_0$, but a combination of both yield the stronger effect. For minimal values of $\kappa_G$ and $\kappa_C$, internationalisation is more than doubled, confirming a reconfiguration of urban networks within countries. We confirm the statistical significance of effects observed in Fig.~\ref{fig:fig9} by comparing distributions with Kolmogorov-Smirnov (KS) tests. More precisely, we proceed for each indicator and each value of $(\kappa_G,\kappa_C)$ to a two-sided KS test between the statistical distribution of the indicator over repetitions at final time with the distribution in the reference configuration. For internationalisation, p-values of the test are all smaller than 0.002 for $\kappa_D < 0.6$ but all larger than $0.15$ for $\kappa_D \geq 0.6$, what means that the shock has a statistically significant impact only when interaction range is more than halved. For community size, significance (p-value smaller than 0.01) is reached only for the smallest value $\kappa_D = 0.2$. Thus, the trajectory of the urban network is rather resilient to moderate shocks. This application shows how the model could be applied to practical policy issues.
+Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the shock on internationalisation, but less on the average community size. The impact of changing $d_0$ is more important than $c_0$, but a combination of both yield the stronger effect. For minimal values of $\kappa_G$ and $\kappa_C$, internationalisation is more than doubled, confirming a reconfiguration of urban networks within countries. We validate the statistical significance of effects observed in Fig.~\ref{fig:fig9} by comparing distributions with Kolmogorov-Smirnov (KS) tests. More precisely, we proceed for each indicator and value of $(\kappa_G,\kappa_C)$ to a two-sided KS test between the statistical distribution of the indicator over repetitions at final time with the distribution in the reference configuration. For internationalisation, p-values of the test are all smaller than 0.002 for $\kappa_D < 0.6$ but larger than $0.15$ for $\kappa_D \geq 0.6$. This means that the shock has a statistically significant impact only when interaction range is more than halved. For community size, significance (p-value smaller than 0.01) is reached only for the smallest value $\kappa_D = 0.2$. Thus, the trajectory of the urban network is rather resilient to moderate shocks. This application shows how the model could be applied to practical policy issues.
 
 % computePvalMat(res$internationalizationTS.98)
 %             [,1]         [,2]        [,3]         [,4]        [,5]
@@ -314,9 +322,10 @@ Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the sho
 
 %%%%%%%%%%%%%%
 \begin{figure}
-	\begin{center}
-    \includegraphics[width=\linewidth]{figures/Fig9.png}
-    \end{center}
+	%\begin{center}
+    %\includegraphics[width=\linewidth]{figures/Fig9.png}
+    %\end{center}
+    \vspace{2cm}
 	\caption{\textbf{Application of the calibrated model to an economic shock scenario.} All plots show the trajectory of indicators (internationalisation for the top row and average community size for the bottom row) in time, for different values of interaction decay rescaling $\kappa_G$ (color) and socio-economic distance rescaling $\kappa_C$ (panels). The vertical dotted red line shows the moment the economic shock is introduced and $d_0$ (respectively $c_0$) is set to $\kappa_G \cdot d_0$ (resp. $\kappa_C \cdot c_0$).\label{fig:fig9}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -328,7 +337,7 @@ Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the sho
 
 This paper aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from the Amadeus dataset. The simulation on a synthetic system of cities provides a broad knowledge on model behavior in its parameter space. Even in such a simple model (close to directly tractable stationary state) the behaviour is highly non-linear in many dimensions. Our study shows how crucial model exploration is to overcome hidden parameters (deactivated mechanisms or default parameter values). This paper emphasis on the fact that exploration of intrinsic dynamics on synthetic data is of great importance and should be driven before an application on real data so as to put aside the geographical effects from model dynamics.
 
-The calibration of model suggests its potential application to policy issues and can therefore have practical applications in the future. For example the effect of exogenous shocks in the socio-economic structure can be tested as we did in the stylized application example above. Such shocks can for example be the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to further pandemic outbreaks on the single market. In this sense the UK economic sectors mostly dependent on foreign capital and generating the highest turnovers in 2018 could be examined: extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods (in terms of out-going links from the UK) ; activities of head offices and holding companies, sale of cars and manufacture of motor vehicles (in terms of in-going links to the UK). We showed in our experiment that although the system is resilient to moderate shocks, strong restrictions have an important impact on internationalization and thus can be expected to have a detrimental effect on UK economy due to these foreign dependency links (see also S1 Text).
+The calibration of model suggests its potential application to policy issues and can therefore have practical applications in the future. For example the effect of exogenous shocks in the socio-economic structure can be tested as we did in the stylized application example above. Such shocks can for example be the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to further pandemic outbreaks on the single market. In this sense the UK economic sectors mostly dependent on foreign capital and generating the highest turnovers in 2018, that would be the most affected and worth examining in details are: extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods (in terms of out-going links from the UK) ; activities of head offices and holding companies, sale of cars and manufacture of motor vehicles (in terms of in-going links to the UK). We showed in our experiment that although the system is resilient to moderate shocks, strong restrictions have an important impact on internationalization and thus can be expected to have a detrimental effect on UK economy due to these foreign ownership links (see also S1 Text).
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
 
