@@ -1,5 +1,7 @@
-\documentclass[10pt,A4]{article}
+\documentclass[10pt,letterpaper]{article}
 \usepackage[top=0.85in,left=2.75in,footskip=0.75in]{geometry}
+
+\usepackage{placeins}
 
 % Use adjustwidth environment to exceed column width (see example table in text)
 \usepackage{changepage}
@@ -73,7 +75,7 @@
 \lhead{
 \includegraphics[width=1.6in]{figures/pone.png}
 }
-\rhead{Calibration of a Density-based Model of Urban Morphogenesis\vspace{2mm}}
+\rhead{Modeling growth of urban firm networks\vspace{2mm}}
 \rfoot{\thepage}
 \renewcommand{\footrule}{\hrule height 2pt \vspace{2mm}}
 \fancyheadoffset[L]{2.25in}
@@ -106,19 +108,6 @@
 \newcommand{\norm}[1]{\| #1 \|}
 
 
-%Yoann's commands
-\newcommand{\reels}{\mathbb{R}}
-\newcommand{\naturels}{\mathbb{N}}
-\newcommand{\relatifs}{\mathbb{Z}}
-\newcommand{\rat}{\mathbb{Q}}
-\newcommand{\complex}{\mathbb{C}}
-\newcommand{\esp}{\mathbb{E}}
-\newcommand{\proba}{\mathbb{P}}
-\newcommand{\var}{\operatorname{Var}}
-\newcommand{\cov}{\operatorname{Cov}}
-\newcommand{\Tau}{\mathrm{T}}
-
-
 
 % writing utilities
 
@@ -141,12 +130,6 @@
 
 
 %% END MACROS SECTION
-
-\begin{document}
-\input{S1_Text}
-\input{S2_Text}
-\end{document}
-
 
 
 

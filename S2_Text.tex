@@ -30,8 +30,8 @@ The procedure for the synthetic sector setup is the following:
     \[
     \log(e_i) = \frac{(\log(E_i) - \log(E_{imin}))}{(\log(E_{imax}) - \log(E_{imin}))} * (1/2 - 1/K) + 1/K
     \]
-    \item Log-normal parameters for each city are then fixed by $mu_i - sigma_i^2 = log(e_i)$ and $-3 sigma_i^2 - 2 log(exp(sigma_i^2) - 1) = log(e_i)$
-    \item $\sigma_i^2$ is the unique positive root of $f(X)=0$ with $f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)$
+    \item Log-normal parameters $(\mu_i,\sigma_i)$ for each city are then fixed by $\mu_i - \sigma_i^2 = \log(e_i)$ and $-3 \sigma_i^2 - 2 \log(\exp(\sigma_i^2) - 1) = log(e_i)$
+    \item $\sigma_i^2$ is the unique positive root of $f(X)=0$ with $f(X) = -3X - 2 \log(\exp(X) - 1) - \log(e_i)$ and $\mu_i = \log(e_i) + \sigma_i^2$.
 \end{itemize}
 
 %solve for mu,sigma of the log-normal as a function of gdp
