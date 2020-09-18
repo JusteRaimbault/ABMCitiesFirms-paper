@@ -4,11 +4,11 @@
 
 \title
 [A generative model for urban firm networks]{A generative model for urban firm networks}
-\author[Raimbault \and Zdanowska \and Arcaute]{J.~Raimbault$^{1,2,3\ast}$ \and N. Zdanowska$^{1,3}$ \and E. Arcaute$^{1}$\\\medskip
-$^{\ast}$\texttt{j.raimbault@ucl.ac.uk}
+\author[Raimbault \and Zdanowska]{J.~Raimbault$^{1,2,3\ast}$ \and N. Zdanowska$^{1,3}$\\\medskip
+$^{\ast}$\texttt{n.zdanowska@ucl.ac.uk}
 }
 
-\institute[UCL]{$^{1}$CASA, UCL\\
+\institute[UCL]{$^{1}$Center for Advanced Spatial Analysis, University College London\\
 $^{2}$UPS CNRS 3611 Complex Systems Institute Paris\\
 $^{3}$UMR CNRS 8504 G{\'e}ographie-cit{\'e}s
 }
@@ -16,8 +16,9 @@ $^{3}$UMR CNRS 8504 G{\'e}ographie-cit{\'e}s
 
 
 
-\date[24 September 2020]{NetSci\\
-September 24 2020
+\date[24/09/2020]{NetSci 2020\\
+Session 12F: Diffusion\\
+September 24th, 2020
 }
 
 \frame{\maketitle}
@@ -30,18 +31,19 @@ September 24 2020
 
 General framework:
 
+\medskip
+
 \begin{itemize}
 \item Cities as cross-overs of socio-economic interactions           \cite{castells1996information}
     \item Networks as the new social morphology of societies \cite{castells2000networksociety}, giving rise to network economies \cite{sassen1991global} 
-    \item Emergence of an interconnected world city network as a crucial feature of globalisation 
-    \item Interurban interactions between firms as one of the most representative of economic trends \cite{taylor2001specification} \cite{martinus2018global}
+    \item Emergence of an interconnected world city network as a crucial feature of globalisation \cite{taylor2001specification}  
+    \item Interurban interactions between firms as one of the most representative of economic trends \cite{martinus2018global}
     
 \end{itemize}
 
 \bigskip
 
 }
-
 
 \sframe{An evolutionary approach to Urban Systems}{
 
@@ -50,18 +52,19 @@ General framework:
     \item Adaptive cycles and diffusion of innovation \cite{Hagerstrand1968Innovation}
     \item Path dependence \cite{martin2006path} \cite{pumain2012urban}
     \item Selection and emerging structures of systems 
-    \item Evolutionary models for urban systems dynamics: \cite{favaro2011gibrat} \cite{cottineau2015growing} \cite{schmitt2015half} \cite{raimbault2018indirect} \cite{raimbault2018calibration}
+    \item Evolutionary models for urban systems dynamics: \cite{favaro2011gibrat} \cite{cottineau2015growing} \cite{schmitt2015half} \cite{raimbault2018calibration} \cite{raimbault2018indirect} \cite{Raimbault_2020}
 \end{itemize}
 
 }
 
 \sframe{Urban firm linkages and geo-economic processes}{
 
-Assumptions
+Assumptions:
+
+\medskip
 
 \begin{itemize}
-    \item Metropolisation vs. regionalisation effects
-    \item Relationship local/global of multinational firm linkages 
+    \item Metropolisation \& internationalisation effects
     \item Specialisation-driven factors and drivers of innovation
     \item Macroeconomic exogenous chocs and resilience of urban systems 
 \end{itemize}
@@ -70,11 +73,28 @@ Assumptions
 
 $\rightarrow$ \textit{How can we capture geographical and economic processes within urban networks of firms with a generative model?}
 
+\medskip
+
 \begin{itemize}
 	\item Indirect inference on processes
 	\item Includes path-dependency
 \end{itemize}
 
+}
+
+\sframe{Contribution}{
+
+We examine the interactions of European cities within firm linkages defined by
+corporate ownership links and introduce
+
+\medskip
+
+\begin{itemize}
+    \item an empirical analysis of the firm ownership urban network in the European Union, based on the Bureau Van Dijk's AMADEUS database;
+    \item a generative network model to simulate the growth of such linkages at urban areas scale;
+    \item the model allows us to compare the effect of different factors on the final network structure, which is extensively studied through model sensitivity analysis and exploration;
+   \item we calibrate the model on the empirical network and apply it to stylized economic shock scenarios.
+\end{itemize}
 
 }
 
@@ -101,144 +121,133 @@ $\rightarrow$ Cities are defined by their GDP and their profile regarding the pr
 
 Cities characterized by economic size $E_i$ (GDP) and economic structure $S_{ik}$ (probability distribution of firms within $K$ sectors)
 
-% Le k c'est bien le nombre de secteurs? 
-% -> oui exactement
-
-
-\bigskip
-
-Starting from an initial network, at each time step:
-\begin{enumerate}
-    \item Evolve city sizes $E_i \left(t \textrm{ + } 1 \right) \textrm{ = } f\left(E_j\left(t\right)\right)$ with an interaction model (\cite{raimbault2018indirect} or \cite{cottineau2015growing})
-    % ici le = n'apparait pas dans la formule. le t c'est bien le temps?
-    %  => oui t est le temps ; les = et + et ( ) qui passent pas c'est la template ucl, j'arrive pas a fixer alors il faut passer par le reswitch en mode texte
-    \item Add a fixed number of links randomly, following a probability function of sizes, sector proximity, and geographical and socio-cultural proximity
-\end{enumerate}
-
-}
-
-
-\sframe{Formalization}{
-
-Probability for a new link follows a generalized Cobb-Douglas function
 
 \medskip
+
+Starting from an initial network, at each time step, add a fixed number of links randomly, following a probability as a generalized Cobb-Douglas function
 
 \[
-     p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_F} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_T} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \gamma_G \cdot d_{ij}\right) \cdot \exp \left(- \gamma_D \cdot g_{ij}\right)
+     p_{ij} \propto \left(\frac{E_{i}}{E}\right)^{\gamma_O} \cdot \left(\frac{E_{j}}{E}\right)^{\gamma_D} \cdot \left(\frac{w_{ij}}{W}\right)^{\gamma_W} \cdot s\left(S_{ik},S_{jk}\right)^{\gamma_S} \cdot \exp \left(- \frac{d_{ij}}{ d_0}\right) \cdot \exp \left(- \frac{c_{ij}}{c_0}\right)
 \]
 
-
+where $E \textrm{ = } \sum_k E_k$, $W \textrm{ = } \sum_{i,j} w_{ij}$, $s$ is a proximity measure given by cosine similarity, $d_{ij}$ euclidian distance, and $c_{ij}$ a socio-cultural distance
 
 \medskip
 
-where $E \textrm{ = } \sum_k E_k$, $W \textrm{ = } \sum_{i,j} w_{ij}$, $s$ is a proximity measure given by cosine similarity, $d_{ij}$ euclidian distance, and $g_{ij}$ a socio-cultural distance
+\textbf{Model parameters: } $\gamma_O, \gamma_D, \gamma_W, \gamma_S, d_0, c_0$
 
-\bigskip
-\bigskip
+\medskip
 
-\textbf{Model parameters: } $\gamma_F, \gamma_T, \gamma_W, \gamma_S, \gamma_D \textrm{ = } \frac{1}{d_G}, \gamma_G \textrm{ = } \frac{1}{d_G}$
-
-}
-
-\sframe{Model indicators}{
-
-\textbf{Geographical indicators:}
-
-\begin{itemize}
-    \item Internationalisation (modularity of countries in the network)
-    \item Metropolisation (correlation between weighted degree and city size)
-    \item Regionalisation (correlation between length and flow of links, stratified by size of extremities)
-    \item Specialisation (correlation between sector proximity and flow of links, stratified by size of extremities)
-\end{itemize}
-
-\bigskip
-
-\textbf{Network and flows indicators:}
-
-%  networkModularity, networkAvgCommunitySize, networkDegreeHierarchy, networkAvgDegree, networkDegreeEntropy, flowsHierarchy, flowsEntropy, rhoDegreeSize, rhoFlowDistancePos, rhoFlowDistance
-
-\begin{itemize}
-    \item Louvain modularity, community sizes
-    \item Degree and flows distribution (average, hierarchy, entropy)
-    \item Correlations (degree-size, flow-distance)
-\end{itemize}
+\textbf{Model indicators: } internationalisation (modularity of countries in the network), metropolisation (correlation between weighted degree and city size), optimal modularity, average community size
 
 }
 
-\sframe{Simulation on synthetic systems of cities}{
 
+\sframe{Empirical data}{
+
+ \begin{center}
+ \includegraphics[width=0.7\textwidth]{figures/Fig2.png}
+ \end{center}
+ 
+ \footnotesize
+ 
+  \textit{Map of network communities obtained by modularity maximisation (European ownership network between Functional Urban Areas, constructed from the AMADEUS database).}
+
+}
+
+\sframe{Statistical models}{
+
+
+
+Most general spatial interaction model with fixed effects:
+
+\begin{equation}
+\log w_{ij} \textrm{ = } \log d_{ij} \textrm{ + } \log T_i \textrm{ + } \log T_j \textrm{ + } \log s_{ij} \textrm{ + } \alpha_{c_i,c_j} \textrm{ + } \varepsilon_{ij}
+\end{equation}
+
+\bigskip
+\bigskip
+
+\resizebox{\linewidth}{!}{
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+Model  & (1) & (2) & (3) & (4) & (5 - Poisson GLM) \\ 
+\hline
+$\log(d_{ij})$ &      -0.06** (0.03) &   -0.11** (0.05)  & -0.41*** (0.02)  & -0.35*** (0.04)  &  -0.26*** ($5\cdot 10^{-6}$) \\
+$\log(T_i)$ &   &   & 0.56*** (0.01) &  0.56*** (0.01) & 0.79*** ($2\cdot 10^{-6}$) \\
+$\log(T_j)$ &     &   & 0.39*** (0.01) &  0.39*** (0.01) & 0.66***  ($1.5\cdot 10^{-6}$) \\
+$\log(s_{ij})$ &     &   &  &  0.19*** (0.07) & 0.53*** ($9\cdot 10^{-6}$)  \\
+Countries &    &  28.3\% &   &  26.5\% & 100\% \\
+\hline
+$R^2$ &       0.00059   &  0.17 & 0.21 &  0.31  &  0.56 \\
+MSE & 7.75 & 6.84 & 6.10 & 5.33 & 8.72 \\
+AIC &        44304   &  43578  &  42131  & 41917 &   \\
+\hline
+\end{tabular}
+}
+
+}
+
+\begin{frame}[label=setupmain]
+
+\frametitle{Model setup}
 
 \justify
  
-\textit{Following \cite{raimbault2018space}, geosimulation models must be studied within synthetic controllable urban contexts in order to (i) understand intrinsic behavior of the model and robust qualitative stylized facts; (ii) study the sensitivity to the spatial configuration}
-
-\bigskip
-
-Generation of a continent-scale urban system with stylized order of magnitude corresponding to Europe:
-
-\medskip
-
-\footnotesize
-
-\begin{enumerate}
-    \item Generate $N \textrm{ = } 700$ cities with size following a power law $E_i \textrm{ = } E_0 \cdot i^{-\alpha}$ with $E_0 \textrm{ = } 10^{11}$ and $\alpha \textrm{ = } 1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
-    \item Distribute them randomly in space (\cite{simini2019testing} vs \cite{banos2011christaller})
-    \item Create countries with k-means clustering ($C \textrm{ = } 30$)
-    \item Distribute sectors such that (i) smaller cities are more specialized and (ii) larger cities are more knowledge-based, with a one dimensional axis to position sectors $1/K \ldots 1$ where the density $f\left(k\right)$ follows a log-normal with $\left(\mu,\sigma\right)$ such that $\sqrt{\Var f} \textrm{ = } K/2$ for the largest, $\sqrt{\Var f} \textrm{ = } 1/K$ for the smallest
+\begin{enumerate} 
+    \item Simulation on synthetic systems of cities \cite{raimbault2019space}: generation of a continent-scale urban system with stylized order of magnitude corresponding to Europe (urban hierarchy, countries, industrial sector distributions - \hyperlink{syntheticsetup}{\beamerbutton{Details}})
+    \bigskip
+    \item Simulation on the European system of cities (AMADEUS data at FUA level)
 \end{enumerate}
 
- 
-}
+\end{frame}
+
 
 \section{Results}
 
 \sframe{Implementation and experiments}{
 
+\footnotesize
+
 \textbf{Implementation}
 
 \begin{itemize}
 	\item Model implemented in NetLogo (good compromise interactivity / ergonomy), with fast data structures (matrix/table extensions)
-	\item Integrated seamlessly into OpenMOLE \cite{reuillon2013openmole} for model exploration (NetLogoTask)
+	\item Integrated seamlessly into OpenMOLE \cite{reuillon2013openmole} for model exploration \url{https://openmole.org/}
 \end{itemize}
 
+\begin{center}
+\includegraphics[width=0.1\linewidth]{../../figuresraw/iconOM.png}
+\includegraphics[width=0.4\linewidth]{../../figuresraw/openmole.png}
+\end{center}
 
 \medskip
 
 \textbf{Experiments}
 
-% for now no dynamics of cities
-
 \begin{itemize}
-	\item Current experiment: only network dynamics (short time scale)
 	\item One-factor sampling with 100 repetitions to assess statistical properties (good convergence, average sharpe ratios for indicators all larger than 5)
-	\item Grid sampling with 20 repetitions for model behavior %(2years 5months of computation)
+	\item Grid sampling with 20 repetitions for model behavior
+	\item Targeted experiment on impact of synthetic hierarchy
+	\item Global Sensitivity Analysis \cite{saltelli2008global}
+	\item Calibration on real setup with a Genetic Algorithm
+	\item Application to economic shocks scenarios
 \end{itemize}
 
 }
 
 \sframe{Simulation of urban networks}{
-    % examples
-    
-    \begin{center}
-    \includegraphics[width=0.48\textwidth]{../../figuresraw/ex_alleq-highgravity_seed-12102_t1500.png}\hspace{0.1cm}
-    \includegraphics[width=0.48\textwidth]{../../figuresraw/ex_alleq-lowgravity_seed-12102_t1500.png}
-	\end{center}
 
-	\medskip
 
-	\textit{Networks at $t \textrm{ = } 1500$, for default parameters values and high gravity (left) and low gravity (right)}
+ \begin{center}
+ \includegraphics[width=0.67\textwidth]{figures/Fig3.png}
+ \end{center}
+
+\footnotesize
+
+	\textit{Simulated networks in a synthetic setup (top) and real setup (bottom), for a large (resp. low) interaction range $d_0$ (left, resp. right).}
 
 }
-
-%\sframe{Statistical convergence}{
-
-%$\rightarrow$ Good convergence for most indicators: average sharpes ratios on a one-factor sampling above 5 (except for metropolization index $\simeq 1.5$)
-
-% + histograms
-
-%\bigskip
-%}
 
 
 \sframe{Effect of interaction decay}{
@@ -257,10 +266,6 @@ Generation of a continent-scale urban system with stylized order of magnitude co
     
 }
 
-% alors la je ne comprend pas desolee l'interpretation de l'evolution des courbes, l'internationalisation (qui est defini par la modularite diminue avec le temp?
-% et le p(di,E) proba entre distance et poids economique? comment tu interpretes ca? il y a un seuil a la fin
-% du coup je ne comprend pas bien comment interpreter
-%  => c'est pas dans le temps, c'est en fonction du parametre de gravity ; internationalization comme c'est la modularite elle est minimisee plus c'est internataional
 
 \sframe{Effect of sector proximity}{
     
@@ -282,7 +287,7 @@ Generation of a continent-scale urban system with stylized order of magnitude co
 \sframe{Grid exploration: internationalization}{
 
     \begin{center}
-    \includegraphics[width=\textwidth]{../../figuresraw/internationalization_countryGravityDecay200_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+    \includegraphics[width=\textwidth]{../../figures/Fig5.png}
     \end{center}
     
     \medskip
@@ -293,14 +298,10 @@ Generation of a continent-scale urban system with stylized order of magnitude co
     
 }
 
-% alors tu as explique pendant la presentqtion pour Mike, mais je n'ai pas compris pourquoi il a trois graphiques 0 1 2 et pourquoi le 3 est si different:?
-% je pense qu'il faut reconmmer en un truc plus clair l'axe des ordonnees et les 0, 1, 2
-% dG c'est quoi, c'est toujours le pqs de temps? donc la meme chose que le gravity decay?
-
 \sframe{Grid exploration: community size}{
 
     \begin{center}
-    	\includegraphics[height=0.6\textheight]{../../figuresraw/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png}
+    	\includegraphics[height=0.6\textheight]{../../figures/Fig6.png}
     	
     \end{center}
     
@@ -316,67 +317,64 @@ Generation of a continent-scale urban system with stylized order of magnitude co
     
 }
 
-% alors ici il faut reconnomer l'axe des ordonnees ca peut etre community size? qui est defini comment d'ailleurs ici? C'est la ou tu as dit que le pic aussi rapide est interessant, donc en si peu de temps la taille du reseaux grossi c'est ca :'(? et du coup comment expliquer le 2 a droite? 
+
+\sframe{Calibration on the European urban network}{
+
+    \begin{center}
+    	\includegraphics[height=0.75\textheight]{figures/Fig8.png}
+    	
+    \end{center}
+    
+    \footnotesize
+    
+\textit{Pareto front obtained for the bi-objective model calibration using a NSGA2 algorithm (outperforms statistical models that have a MSE of 5.33).}
+
+    
+}
 
 
-%\sframe{Grid exploration}{
-%    \centering
-%
-%    \includegraphics[width=\textwidth]{figures/rhoFlowDistance_countryGravityDecay2100_gammaDestination2_facetwrapgammaOrigin_colorgammaSectors.png}
-%}
+\sframe{Economic shock scenarios}{
 
-% idem la c'est pas facile a lire pour quelqu'un qui ne connait pas. c'est quoi rhoFlowDistance?
-% le gamma sector c'est le parametre de la variable secteurs donc s? 
-% en fait quand j'y pense pourquoi il yq u gradien du gamma et comment comprendre ces varations pour chqaue pqs de temps
+    \begin{center}
+    	\includegraphics[height=0.72\textheight]{figures/Fig9.png}
+    	
+    \end{center}
+    
+    %\vspace{-0.5cm}
+    
+    \footnotesize
 
-% other experiments ? PSE on correlations ?
-
-
+\textit{Although the system is resilient to moderate shocks, strong restrictions have an important impact on internationalization and thus can be
+expected to have a detrimental effect on UK economy due to these foreign ownership links.}
+    
+}
 
 
 \section{Discussion}
 
-% - future work etc (classical discussion)
-% - on the role of model exploration and simulation to gain knowledge from the model
-
-% further comparing with real data?
-
-
-
 \sframe{Discussion}{
 
 \justify
-\footnotesize
 
 \textbf{Practical application}
 
-$\rightarrow$ effect of exogenous shocks in the socio-economic structure (``subsystem-xit'')
-
 \medskip
+
+$\rightarrow$ Potential application to public policy issues;
+
+$\rightarrow$ Effect of exogenous shocks on specific economic sectors mostly dependent on foreign ownership links (extraction of crude petroleum, manufacture of tobacco \& basic pharmaceutical goods, activities of head offices).
+
+\bigskip
 
 \textbf{Developments}
 
-$\rightarrow$ evolution of city sizes (co-evolution model)
+$\rightarrow$ co-evolution model (evolution of city sizes) \cite{raimbault2018modeling};
 
-$\rightarrow$ parametrization/calibration on real data
+$\rightarrow$ a model with firm agents (multi-scale ABM) \cite{raimbault:halshs-02351722};
 
-$\rightarrow$ role of path-dependency
+$\rightarrow$ targeted study of path dependency;
 
-$\rightarrow$ towards a model with firm agents? (multi-scale ABM)
-
-\medskip
-
-\textbf{On the role of model exploration}
-
-$\rightarrow$ even with such a ``simple'' model (close to directly tractable stationary state), behavior is highly non-linear in many dimensions
-
-$\rightarrow$ model exploration allows to overcome hidden parameters (deactivated mechanisms or default parameter values)
-
-$\rightarrow$ exploration of intrinsic dynamics on synthetic data is a crucial step before an application on real data (disentangle effects of geography from model dynamics)
-
-
-
-
+$\rightarrow$ other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.
 
 
 }
@@ -394,6 +392,9 @@ $\rightarrow$ Crucial role of model exploration to validate and extract knowledg
 \bigskip
 \bigskip
 
+\textbf{Preprint at} \texttt{https://arxiv.org/abs/2009.05528}
+
+\bigskip
 
 \textbf{Open repository for model and results at}
 
@@ -405,7 +406,7 @@ $\rightarrow$ Crucial role of model exploration to validate and extract knowledg
 
 \bigskip
 
-\textbf{Acknowledgments}: thanks to the \textit{European Grid Infrastructure} for access to the infrastructure.
+\textbf{Acknowledgments}: thanks to the \textit{European Grid Infrastructure} for access to the infrastructure. We also acknowledge the funding of the EPSRC grant EP/M023583/1
 
 
 }
@@ -421,6 +422,80 @@ $\rightarrow$ Crucial role of model exploration to validate and extract knowledg
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
+\sframe{Reserve slides}{
+
+\Huge
+
+\centering
+
+Reserve slides
+
+}
+
+\sframe{Empirical network properties}{
+
+\begin{center}
+    \includegraphics[width=\linewidth]{../../figures/Fig1.png}
+\end{center}
+
+\textit{Empirical distribution of network properties, with log-normal and power law fits}
+
+}
+
+\begin{frame}[label=syntheticsetup]
+
+\frametitle{Synthetic setup}
+
+\begin{enumerate}
+    \item Generate $N \textrm{ = } 700$ cities with size following a power law $E_i \textrm{ = } E_0 \cdot i^{-\alpha}$ with $E_0 \textrm{ = } 10^{11}$ and $\alpha \textrm{ = } 1.1$ (computed on Europe for GDP with cities larger than 50.000 inhabitants)
+    \item Distribute them randomly in space (\cite{simini2019testing} vs \cite{banos2011christaller})
+    \item Create countries with k-means clustering ($C \textrm{ = } 30$)
+    \item Distribute sectors such that (i) smaller cities are more specialized and (ii) larger cities are more knowledge-based, with a one dimensional axis to position sectors $1/K \ldots 1$ where the density $f\left(k\right)$ follows a log-normal with $\left(\mu,\sigma\right)$ such that $\sqrt{\Var f} \textrm{ = } K/2$ for the largest, $\sqrt{\Var f} \textrm{ = } 1/K$ for the smallest
+\end{enumerate}
+
+\hyperlink{setupmain}{\beamerbutton{Back}}
+
+\end{frame}
+
+
+\sframe{Global sensitivity analysis}{
+
+
+\begin{center}
+\resizebox{\linewidth}{!}{
+    \begin{tabular}{|l|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{2}{|c|}{$d_0$} & \multicolumn{2}{|c|}{$c_0$} & \multicolumn{2}{|c|}{$\gamma_S$} & \multicolumn{2}{|c|}{$\gamma_W$} & \multicolumn{2}{|c|}{$\gamma_O$} & \multicolumn{2}{|c|}{$\gamma_D$} \\
+ & F & T & F & T & F & T & F & T & F & T & F & T \\
+ \hline
+Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.009 & $4\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
+Metropolisation & 0.02 & 0.1 & 0.02 & 0.2 & 0.002 & 0.1 & 0.001 & 0.09 & 0.2 & 0.6 & 0.3 & 0.6 \\
+Modularity & 0.3 & 0.4 & 0.6 & 0.6 & 0.004 & 0.02 & $3\cdot 10^{-4}$ & 0.01 & 0.005 & 0.03 & 0.002 & 0.03 \\
+Avg. com. size & 0.008 & 0.09 & 0.01 & 0.1 & 0.002 & 0.07 & 0.003 & 0.04 & 0.3 & 0.6 & 0.4 & 0.6 \\
+Degree entropy & 0.006 & 0.02 & 0.003 & 0.02 & 0.006 & 0.03 & 0.008 & 0.02 & 0.5 & 0.5 & 0.5 & 0.5 \\
+Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.5 & 0.4 & 0.5 \\\hline
+\end{tabular}
+}
+\end{center}
+
+\medskip
+
+\textit{First order and total sensitivity indices \cite{saltelli2010variance}, for all parameters and indicators.}
+
+}
+
+\sframe{Role of urban hierarchy}{
+
+\begin{center}
+    \includegraphics[width=\linewidth]{../../figures/Fig7.png}
+\end{center}
+
+\medskip
+
+\textit{Impact of urban hierarchy on model indicators in synthetic systems of cities.}
+
+}
 
 
 
