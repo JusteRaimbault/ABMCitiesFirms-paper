@@ -1,0 +1,301 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2013 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[10pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+
+\usepackage[document]{ragged2e}
+% pour justifier
+
+
+% moderncv themes
+\moderncvstyle{banking}                            % style options are 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{red}                                % color options 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+\renewcommand{\familydefault}{\rmdefault} 
+%\nopagenumbers{} 
+\usepackage[utf8]{inputenc} 
+\usepackage[scale=0.9]{geometry}
+
+
+\def \draft {1}
+\usepackage{xparse}
+\usepackage{ifthen}
+\DeclareDocumentCommand{\comment}{o m o o o o}
+{\ifthenelse{\draft=1}{
+  \IfValueT{#1}{
+      \textcolor{red}{\textbf{C (#1) : }#2}
+      \IfValueT{#3}{\textcolor{blue}{\textbf{A1 : }#3}}
+      \IfValueT{#4}{\textcolor{green}{\textbf{A2 : }#4}}
+      \IfValueT{#5}{\textcolor{red!50!blue}{\textbf{A3 : }#5}}
+      \IfValueT{#6}{\textcolor{blue}{\textbf{A4 : }#6}}
+    }
+    \IfNoValueT{#1}{
+      \textcolor{red}{\textbf{C : }#2}
+      \IfValueT{#3}{\textcolor{blue}{\textbf{A1 : }#3}}
+      \IfValueT{#4}{\textcolor{green}{\textbf{A2 : }#4}}
+      \IfValueT{#5}{\textcolor{red!50!blue}{\textbf{A3 : }#5}}
+      \IfValueT{#6}{\textcolor{blue}{\textbf{A4 : }#6}}
+    }
+ }{}
+}
+
+
+\firstname{}
+\lastname{}
+\begin{document}
+
+% recipient data
+\recipient{Editor PONE}{}
+\date{\today}
+\opening{Dear Editor,}
+\closing{Yours faithfully,\\
+Juste Raimbault and co-authors\\
+University College London
+}
+         % use an optional argument to use a string other than "Enclosure", or redefine \enclname
+
+%\makelettertitle
+
+
+
+\justify
+
+
+
+\textbf{Reply to the editor / Journal requirements}
+
+\textit{}
+
+\medskip
+
+$\rightarrow$ 
+
+
+\bigskip
+
+\textbf{Reply to reviewers}
+
+
+\medskip
+
+
+\textbf{First referee:}
+
+\medskip
+
+%### Summary of the research and your overall impression
+
+%The authors develop a model aiming at capturing the determinants of inter-city firms ownership links formation. The model can be seen as an interesting combination of gravity models and preferential attachment that allows to account for the effect of path-dependence (or more accurately, the effect of circular causation/feedback).
+%The theoretical implications of the model are rigorously explored by uncovering the link between the model parameters and some of the city network structural features.
+%The model is eventually fitted to empirical data to evaluate the impact of the model variables on the formation of firms ownership links. The results are consistent with the literature where the gravity model has been applied in similar contexts (mainly trade and migration), although this is not explicitly mentioned by the authors. The effect of path dependence is found to be strongly significant.
+%The authors then use the calibrated model to evaluate the effect of movement restrictions and change in institutional proximity on the city network structure. While the observed effects seem qualitatively relevant, it is difficult to assess the practical usefulness of this exercise. Because: 1) the authors don't discuss the ability of their model to reproduce the structural features of the empirical network that it was calibrated on, and, 2) the global predictive performance of the model (through the Mean squared error on log and the log of mean squared error) seems insufficient for such an exercise (roughly almost an order of magnitude of difference) seems too large at a first glance.
+%In conclusion, the idea of the model is interesting and novel. The developed model appears to be a useful tool to analyze the effects of the chosen variables in the case of inter-city firm ownership links formation. Using it as a predictive tool seems however less convincing.
+
+%### Major issues
+
+\begin{enumerate}
+%1.1 -
+
+	\item \textit{The work is at the intersection of three strands of literature: a) spatial interaction models, b) network analysis, and c) preferential attachment. Yet this does not appear in the literature review. The work could gain more depth from a better discussion of the literature it is grounded in.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%1.2 - 
+
+	\item \textit{The empirical network is sparse (density ~ 0.03). Do the authors consider the absent links in the regression and/or the generative model they propose ? (from the fact that the log is taken in the statistical model and the computation of the mean square error on logs, it appears that it is not the case). This could be made clear and discussed, especially that the absence of links is the norm rather than the exception, meaning that the model only treats only a minor proportion of cases.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%1.3 -
+
+	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectoral proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
+	
+	$\rightarrow$
+
+	\medskip
+
+%1.4 -
+
+	\item \textit{Application: Two potentially problematic aspects: 1) the MSE on logs and the log MSE appear to be quite large to perform an accurate prediction (for an MSE on logs $\sim 5$, the average multiplicative error can roughly be expected to be around $\exp(5^0.5) \sim 9$, which is almost an order of magnitude of difference; the same quick calculation can be applied to the log MSE). Can the authors discuss this point? (May be using a mean absolute error instead of mean squared error is a more tangible estimate of the error?)}
+	
+	$\rightarrow$
+	
+	\medskip
+	
+	\item \textit{2) The authors do not show how well the model reproduces the metropolization and the communities of the empirical network. If the model does not perform well at reproducing these properties of the network, it can mean that the predictors they used are not relevant to such features. This would imply that the model is of limited relevancy to study the impact of crises on these structural features.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%### Minor issues
+%2.1 -
+
+	\item \textit{Do you consider self-connections in the network ? These have been shown to represent an important proportion of firm ownership links.}
+	
+	$\rightarrow$
+	
+	\medskip
+	
+% 2.2 - 
+	\item \textit{Could you please better justify the choice of indicators (Internationalizationand Metropolization).}
+	
+	$\rightarrow$
+	
+	\medskip
+
+
+%2.3 -
+
+	\item \textit{The model is ambiguously described. The link probability update $p_{ij}$ is between 0 and 1, does it mean that 1) at each time step each link ij has a $p_{ij}$ probability to be updated or that 2) like in the preferential attachment model, only one link is updated at each time step (and thus the real probability is $p_ij/sum_{lk}(p_{lk})$)?}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%2.4
+
+	\item \textit{Statistical analysis: A negative binomial or Gamma regression can also be tried. In the case the absence of links is taken into account in regression, a zero-inflated or hurdle regression can be done.}
+	 
+	$\rightarrow$
+	
+	\medskip
+
+%### Misc:
+
+	\item \textit{For a better clarity, please precise that the model generates a directed network.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+	\item \textit{Link creation probability formula - industrial proximity: oversight to remove k (should not depend on k).}
+	
+	$\rightarrow$
+	
+	\medskip
+
+	\item \textit{"Model 4 also indicates the absence of overfitting": Can the authors be more precise?}
+
+	$\rightarrow$
+	
+	\medskip
+
+	\item \textit{Model exploration: The variation of community size was explored but the indicator has not been defined.}
+
+\end{enumerate}
+
+
+\bigskip
+\bigskip
+
+
+\textbf{Second referee:}
+
+\medskip
+
+%This article presents a very interesting and novel approach to identifying corporate city networks, and for testing their effects in terms of economic resilience in cities. The approach is well-supported by previous literature and techniques, and it is clear that the authors have a solid background in statistical analysis.
+%My overall assessment is that the paper is high-quality and along the lines of what should be published in PLOS One. Thus rather than focusing on what the paper's merits are, I will point to a number of areas for improvement. If I am not mistaken, PLOS One does not have a word count limit, meaning that -- unlike many other journals -- there are effectively no limitations on the amount of detail the authors can provide.
+%My main comment is that this paper would be almost unintelligible to the 'average' reader, even an economic geographer. It is full of jargon (not in a bad way) that is clearly of more use to a network scientist, statistician, or even a physicist with an understanding of basic geography. However, as an economic geographer myself, I must say that I would have liked to see a much greater focus on the actual geography, and theory, behind the analysis. To rectify this, I suggest the following:
+
+\begin{enumerate}
+	
+%1.
+
+	\item \textit{Clarify the paper's aims. The part about border closures is interesting but seems almost tacked-on. Is the paper about 'what if' borders closed (e.g. COVID, Brexit), or is it about the communities that exist and the relative hierarchies within the network. To be honest, I don't know if I could pick one after reading it. The conclusion claims that "this paper [is] aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from the Amadeus dataset". This should be reoriented toward a more theoretical framing, and speak to the network geographic ties behind it.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%2.
+	\item \textit{Clarify the jargon. What is a 'generative model'? What is 'synthetic' data?}
+
+	$\rightarrow$
+	
+	\medskip
+
+%3.
+	\item \textit{Clarfiy the methods and data. Explain what Amadeus is, how it is gathered etc. Explain the tools that are used to analyse it. Why those statistical packages and not others? It would also be useful to describe the data. How many cities and how many firms?}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%4.
+	\item \textit{And most importantly, clarify the theoretical framing. There is plenty of literature cited, but which of these provided inspiration for this study? For example, is this speaking to the 'global city networks' literature (e.g. Neal, Derudder) or more the economic connectivity literature (e.g. Acemoglu)?}
+	 
+	$\rightarrow$
+	
+	\medskip
+
+%Once these issues are addressed I feel the paper will be in much better shape. There also a few awkward phrases (e.g. 'crow fly' distance) throughout, so I recommend a carefully re-reading prior to resubmission.
+
+\end{enumerate}
+
+
+
+\bigskip
+
+\textbf{Third referee:}
+
+\medskip
+
+%It is with great interest that I read this paper, as I feel it has much to contribute to current debates on cities - in particular how to measure specific processes. The authors have done well to think about how the complexity of city processes might be measured, but I feel there are issues that need to be addressed before it is ready to be published in this journal.
+
+\begin{enumerate}
+%1)
+
+	\item \textit{The main literature discussion appears to be in the introduction - but this is relatively high level. The research gap that the authors appear to be filling is the operationalisation of the processes (internationalisation, metropolisation, regionalisation and specialisation) within a city. However, it is unclear how this links to the processes you idetnfy as driving the network (listed 1-4 on pg.2) and then the model itself. The processes mentioned appear to be various ways of seeing proximity (ie agglomeration is spatial proximity, and previous linkages could be related to social or institutional proximity) - and whilst link back to previous work mentioned, there needs to be more discussion of past research.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%2)
+	\item \textit{The processes are mentioned in the methods section - but again exactly what is being measured and what each means is not well related to the process. For example, why exactly are geographic structures captured by internationalisation? Why have you chosen metropolisation to be represented in this way?}
+
+	$\rightarrow$
+	
+	\medskip
+
+%3)
+	\item \textit{More information on why the synthetic and real world models have been set up are needed. What do they bring to our understandings? You mention how internationalisation, metropolisation, fit within the model .... but what about regionalisation and specialisation? Are these latter just an outcome of the analysis, whilst the former are model parameters? Then why are they treated as the same in the introduction?}
+
+	$\rightarrow$
+	
+	\medskip
+
+%4)
+	\item \textit{Why in the statistical analysis do you then look at the 'most determining geo-economic factors influencing the creation of links between cities' - there was not real literature review to identify these - how do you then identify them? What is the relationship to the research question? Also pg 6 again describe the processes driving the networks (from pg 2 as noted above) - but these measures where not really discussed in when the model was being explained. How do they fit?}
+	 
+	$\rightarrow$
+	
+	\medskip
+
+%5)
+	\item \textit{The application of economic shocks appears to be an additional part of the model that is not properly discussed again in the literature review. I wonder if this is actually a different paper? I felt there were lots of interesting aspects to the research - and thinking about how to divide out the components to allow better discussion for each would benefit the research in that you could dive alot deeper into specific discussions.}
+	
+	$\rightarrow$
+	
+	\medskip
+
+%I hope these suggestions help the authors develop this work, I feel it is very interesting and worthwhile. Deeper discussion on the different elements would really help to add to the contribution they are making to the literature. Given word limits - this is likely done by rethinking the research into several papers. Good luck with your revisions.
+
+\end{enumerate}
+
+
+
+
+\end{document}
+
+
+%% end of file `template.tex'.
