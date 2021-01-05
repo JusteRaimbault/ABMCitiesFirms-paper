@@ -65,6 +65,36 @@ University College London
 \justify
 
 
+\textbf{Action points}
+
+\begin{itemize}
+    \item[All]
+    \begin{itemize}
+        \item Rewrite literature review
+        \item discuss possible extension with self-connex
+        \item better model description
+        \item paper positioning
+        \item paper writing (ex jargon, clarity)
+    \end{itemize}
+    \item[JR]
+    \begin{itemize}
+        \item Discuss choice/possibly test other stat models - Hurdle, etc.
+        \item total time is linked to $w_0$ - discuss this
+        \item this is not a prediction model - possibly give values of abs error - discuss more model function
+        \item compute more empirical indicators and compare  with generated networks
+        \item technical clarifications
+    \end{itemize}
+    \item[NZ]
+    \begin{itemize}
+        \item geo lit choice indics
+        \item more precise data description
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
 
 \textbf{Reply to the editor / Journal requirements}
 
@@ -102,7 +132,7 @@ $\rightarrow$
 
 	\item \textit{The work is at the intersection of three strands of literature: a) spatial interaction models, b) network analysis, and c) preferential attachment. Yet this does not appear in the literature review. The work could gain more depth from a better discussion of the literature it is grounded in.}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) Rewrite lit review}
 	
 	\medskip
 
@@ -110,7 +140,7 @@ $\rightarrow$
 
 	\item \textit{The empirical network is sparse (density ~ 0.03). Do the authors consider the absent links in the regression and/or the generative model they propose ? (from the fact that the log is taken in the statistical model and the computation of the mean square error on logs, it appears that it is not the case). This could be made clear and discussed, especially that the absence of links is the norm rather than the exception, meaning that the model only treats only a minor proportion of cases.}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(JR) Discuss choice/possibly test other stat models}
 	
 	\medskip
 
@@ -118,7 +148,7 @@ $\rightarrow$
 
 	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectoral proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(JR) total time is linked to $w_0$ - discuss this}
 
 	\medskip
 
@@ -126,13 +156,13 @@ $\rightarrow$
 
 	\item \textit{Application: Two potentially problematic aspects: 1) the MSE on logs and the log MSE appear to be quite large to perform an accurate prediction (for an MSE on logs $\sim 5$, the average multiplicative error can roughly be expected to be around $\exp(5^0.5) \sim 9$, which is almost an order of magnitude of difference; the same quick calculation can be applied to the log MSE). Can the authors discuss this point? (May be using a mean absolute error instead of mean squared error is a more tangible estimate of the error?)}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(JR) this is not a prediction model - possibly give values of abs error - discuss more model function}
 	
 	\medskip
 	
 	\item \textit{2) The authors do not show how well the model reproduces the metropolization and the communities of the empirical network. If the model does not perform well at reproducing these properties of the network, it can mean that the predictors they used are not relevant to such features. This would imply that the model is of limited relevancy to study the impact of crises on these structural features.}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(JR) compute more empirical indicators and compare  with generated networks}
 	
 	\medskip
 
@@ -141,14 +171,14 @@ $\rightarrow$
 
 	\item \textit{Do you consider self-connections in the network ? These have been shown to represent an important proportion of firm ownership links.}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) discuss possible extension with self-connex}
 	
 	\medskip
 	
 % 2.2 - 
 	\item \textit{Could you please better justify the choice of indicators (Internationalizationand Metropolization).}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(NZ) geo lit choice indics}
 	
 	\medskip
 
@@ -157,7 +187,7 @@ $\rightarrow$
 
 	\item \textit{The model is ambiguously described. The link probability update $p_{ij}$ is between 0 and 1, does it mean that 1) at each time step each link ij has a $p_{ij}$ probability to be updated or that 2) like in the preferential attachment model, only one link is updated at each time step (and thus the real probability is $p_ij/sum_{lk}(p_{lk})$)?}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) model description}
 	
 	\medskip
 
@@ -165,7 +195,7 @@ $\rightarrow$
 
 	\item \textit{Statistical analysis: A negative binomial or Gamma regression can also be tried. In the case the absence of links is taken into account in regression, a zero-inflated or hurdle regression can be done.}
 	 
-	$\rightarrow$
+	$\rightarrow$ \todo{(JR) other stat models (see above)}
 	
 	\medskip
 
@@ -173,23 +203,25 @@ $\rightarrow$
 
 	\item \textit{For a better clarity, please precise that the model generates a directed network.}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) model description}
 	
 	\medskip
 
 	\item \textit{Link creation probability formula - industrial proximity: oversight to remove k (should not depend on k).}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) model description}
 	
 	\medskip
 
 	\item \textit{"Model 4 also indicates the absence of overfitting": Can the authors be more precise?}
 
-	$\rightarrow$
+	$\rightarrow$ \todo{(JR) clarify}
 	
 	\medskip
 
 	\item \textit{Model exploration: The variation of community size was explored but the indicator has not been defined.}
+	
+	$\rightarrow$ \todo{(All) model description}
 
 \end{enumerate}
 
@@ -212,21 +244,21 @@ $\rightarrow$
 
 	\item \textit{Clarify the paper's aims. The part about border closures is interesting but seems almost tacked-on. Is the paper about 'what if' borders closed (e.g. COVID, Brexit), or is it about the communities that exist and the relative hierarchies within the network. To be honest, I don't know if I could pick one after reading it. The conclusion claims that "this paper [is] aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from the Amadeus dataset". This should be reoriented toward a more theoretical framing, and speak to the network geographic ties behind it.}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) paper positioning}
 	
 	\medskip
 
 %2.
 	\item \textit{Clarify the jargon. What is a 'generative model'? What is 'synthetic' data?}
 
-	$\rightarrow$
+	$\rightarrow$ \todo{(All) paper writing (ex jargon, clarity)}
 	
 	\medskip
 
 %3.
 	\item \textit{Clarfiy the methods and data. Explain what Amadeus is, how it is gathered etc. Explain the tools that are used to analyse it. Why those statistical packages and not others? It would also be useful to describe the data. How many cities and how many firms?}
 	
-	$\rightarrow$
+	$\rightarrow$ \todo{(NZ) more precise data description}
 	
 	\medskip
 
