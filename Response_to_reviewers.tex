@@ -132,7 +132,8 @@ $\rightarrow$
 
 	\item \textit{The work is at the intersection of three strands of literature: a) spatial interaction models, b) network analysis, and c) preferential attachment. Yet this does not appear in the literature review. The work could gain more depth from a better discussion of the literature it is grounded in.}
 	
-	$\rightarrow$ \todo{(All) Rewrite lit review. Include applications of gravity models to trade and migration.}
+	% TODO (All) Rewrite lit review
+	$\rightarrow$ \comment{(All) Rewrite lit review. Include applications of gravity models to trade and migration.}
 	
 	\medskip
 
@@ -140,7 +141,8 @@ $\rightarrow$
 
 	\item \textit{The empirical network is sparse (density ~ 0.03). Do the authors consider the absent links in the regression and/or the generative model they propose ? (from the fact that the log is taken in the statistical model and the computation of the mean square error on logs, it appears that it is not the case). This could be made clear and discussed, especially that the absence of links is the norm rather than the exception, meaning that the model only treats only a minor proportion of cases.}
 	
-	$\rightarrow$ \todo{(JR) Discuss choice/possibly test other stat models}
+	% TODO (JR) Hurdle and zero inflated models
+	$\rightarrow$ \comment{(JR) Discuss choice/possibly test other stat models}
 	
 	\medskip
 
@@ -148,7 +150,8 @@ $\rightarrow$
 
 	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectoral proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
 	
-	$\rightarrow$ \todo{(JR) total time is linked to $w_0$ - discuss this}
+	% TODO (JR) total time is linked to $w_0$ - discuss this
+	$\rightarrow$ The way the model captures time steps and deals with time granularity was indeed not discussed well in the previous version of the paper. Effective time simulated by the model can be set by modifying both $t_f$ (number of steps) and $w_0$ parameters: % develop
 
 	\medskip
 
@@ -160,7 +163,7 @@ $\rightarrow$
 	
 	\medskip
 	
-	\item \textit{2) The authors do not show how well the model reproduces the metropolization and the communities of the empirical network. If the model does not perform well at reproducing these properties of the network, it can mean that the predictors they used are not relevant to such features. This would imply that the model is of limited relevancy to study the impact of crises on these structural features.}
+	\item \textit{2) The authors do not show how well the model reproduces the metropolisation and the communities of the empirical network. If the model does not perform well at reproducing these properties of the network, it can mean that the predictors they used are not relevant to such features. This would imply that the model is of limited relevancy to study the impact of crises on these structural features.}
 	
 	$\rightarrow$ \todo{(JR) compute more empirical indicators and compare  with generated networks}
 	
@@ -171,14 +174,16 @@ $\rightarrow$
 
 	\item \textit{Do you consider self-connections in the network ? These have been shown to represent an important proportion of firm ownership links.}
 	
-	$\rightarrow$ \todo{(All) discuss possible extension with self-connex}
+	% TODO (All) discuss possible extension with self-connex
+	$\rightarrow$ Self-connections within urban areas are not considered in the current version of the model. We added in the discussion this possibility and issues related to such an extension.
 	
 	\medskip
 	
 % 2.2 - 
-	\item \textit{Could you please better justify the choice of indicators (Internationalizationand Metropolization).}
+	\item \textit{Could you please better justify the choice of indicators (Internationalization and Metropolization).}
 	
-	$\rightarrow$ \todo{(NZ) The choice of indicators has been better justified and explained based on citations of previous literature, already using these indicators to capture important globalisation processes in a city level network}
+	% TODO check lit - which lit stream
+	$\rightarrow$ The choice of indicators has been better justified and explained based on citations of previous literature, already using these indicators to capture important globalisation processes in a city level network.
 	
 	\medskip
 
@@ -187,7 +192,8 @@ $\rightarrow$
 
 	\item \textit{The model is ambiguously described. The link probability update $p_{ij}$ is between 0 and 1, does it mean that 1) at each time step each link ij has a $p_{ij}$ probability to be updated or that 2) like in the preferential attachment model, only one link is updated at each time step (and thus the real probability is $p_ij/sum_{lk}(p_{lk})$)?}
 	
-	$\rightarrow$ \todo{(All) model description}
+	% TODO (All) model description
+	$\rightarrow$ 
 	
 	\medskip
 
@@ -195,7 +201,8 @@ $\rightarrow$
 
 	\item \textit{Statistical analysis: A negative binomial or Gamma regression can also be tried. In the case the absence of links is taken into account in regression, a zero-inflated or hurdle regression can be done.}
 	 
-	$\rightarrow$ \todo{(JR) other stat models (see above)}
+	% TODO (JR) other stat models (see above)
+	$\rightarrow$ This remark converges with one point raised by the second referee (see ).
 	
 	\medskip
 
@@ -203,7 +210,8 @@ $\rightarrow$
 
 	\item \textit{For a better clarity, please precise that the model generates a directed network.}
 	
-	$\rightarrow$ \todo{(All) model description}
+	% TODO model description: directed network
+	$\rightarrow$
 	
 	\medskip
 
