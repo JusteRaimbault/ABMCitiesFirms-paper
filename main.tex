@@ -14,8 +14,8 @@
 % Insert author names, affiliations and corresponding author email (do not include titles, positions, or degrees).
 \\
 Juste Raimbault\textsuperscript{1,2,3*},
-Natalia Zdanowska\textsuperscript{1,3},
-Elsa Arcaute\textsuperscript{3}
+Natalia Zdanowska\textsuperscript{4,1,3},
+Elsa Arcaute\textsuperscript{1}
 \\
 \bigskip
 \textbf{1} Centre for Advanced Spatial Analysis, UCL, London, United Kingdom
@@ -24,6 +24,8 @@ Elsa Arcaute\textsuperscript{3}
 \\
 \textbf{3} UMR CNRS 8504 G{\'e}ographie-cit{\'e}s, Paris, France
 \\
+\textbf{4} Luxembourg Institute of Socio-Economic Research, Luxembourg
+
 \bigskip
 
 % Use the asterisk to denote corresponding authorship and provide email address in note below.
@@ -33,12 +35,17 @@ Elsa Arcaute\textsuperscript{3}
 
 
 \section*{Abstract}
-The emergence of interconnected urban networks is a crucial feature of globalisation processes. Understanding the drivers behind the growth of such networks -- in particular urban firm networks --, is essential for the economic resilience of urban systems. We introduce in this paper a generative network model for firm networks at the urban area level including several complementary processes: the economic size of urban areas at origin and destination, industrial sector proximity between firms, the strength of links from the past, as well as the geographical and socio-cultural distance. An empirical network analysis on European firm ownership data confirms the relevance of each of these factors. We then simulate network growth for synthetic systems of cities, unveiling stylized facts such as a transition from a local to a global regime or a maximal integration achieved at an intermediate interaction range. We calibrate the model on the European network, outperforming statistical models and showing a strong role of path-dependency. Potential applications of the model include the study of mitigation policies to deal with exogenous shocks such as economic crisis or potential lockdowns of countries, which we illustrate with an application on stylized scenarios.
+The emergence of interconnected urban networks is a crucial feature of globalisation processes. Understanding the drivers behind the growth of such networks -- in particular urban firm networks --, is essential for the economic resilience of urban systems. We introduce in this paper a generative network model for firm networks at the urban area level including several complementary processes: the economic size of urban areas at origin and destination, industrial sector proximity between firms, the strength of links from the past, as well as the geographical and socio-cultural distance. An empirical network analysis on European firm ownership data confirms the relevance of each of these factors. We then simulate network growth for synthetic systems of cities, unveiling stylized facts such as a transition from a local to a global regime or a maximal integration achieved at an intermediate interaction range. We calibrate the model on the European network, outperforming statistical models and showing a strong role of path-dependency. Potential applications of the model include the study of mitigation policies to deal with exogenous shocks such as economic crisis or potential lockdowns of countries, which we illustrate with an application on stylised scenarios.
 
 \linenumbers
 
 % Keywords
 % Urban firm networks; Simulation model; Model calibration
+
+\cite{rozenblat2021intra}
+
+% https://zenodo.org/record/4668663#.YHmorxNKi3I GISRUK paper on urban nw - typology
+
 
 \section*{Introduction}
 
@@ -354,6 +361,8 @@ This paper aimed at presenting a generative model for urban networks defined by 
 The calibration of model suggests its potential application to policy issues and can therefore have practical applications in the future. For example the effect of exogenous shocks in the socio-economic structure can be tested as we did in the stylized application example above. Such shocks can for example be the upcoming impact of Brexit on the European market or the consequence of a long-term closure of the European Union members' borders due to further pandemic outbreaks on the single market. In this sense the UK economic sectors mostly dependent on foreign capital and generating the highest turnovers in 2018, that would be the most affected and worth examining in details are: extraction of crude petroleum, manufacture of tobacco products and of basic pharmaceutical goods (in terms of out-going links from the UK) ; activities of head offices and holding companies, sale of cars and manufacture of motor vehicles (in terms of in-going links to the UK). We showed in our experiment that although the system is resilient to moderate shocks, strong restrictions have an important impact on internationalization and thus can be expected to have a detrimental effect on UK economy due to these foreign ownership links (see also S1 Text).
 
 Several possible extensions of the current work can be undertaken in the future as a co-evolution model with an evolution of city sizes or a model with firm agents leading to a multi-scale agent-based model. A more precise study of the role of path dependency can also be undertaken in order to understand the creation of the future links. Other formulations of the model might be taken into consideration as other formulation of the combination of factors or multi-objective optimisation depending on sectors using Pareto fronts.  
+
+% TODO towards dynamical graph generative model, to allow for dynamical calibration (discuss possibilities of dyn calib? ; no edge deletion in the model: also discuss?)
 
 
 \section*{Supporting information}
