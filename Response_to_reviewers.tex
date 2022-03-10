@@ -65,31 +65,31 @@ University College London
 \justify
 
 
-\textbf{Action points}
+%\textbf{Action points}
 
-\begin{itemize}
-    \item[All]
-    \begin{itemize}
-        \item Paper writing (jargon, clarity, nonsense in Fig 4 legend on gravity (?))
-        \item Improve model description
-        \item Rewrite literature review, theoretical framing, more literature on included processes
-        \item Paper positioning: rewrite
-        \item Discuss possible extension with self-connection e.g.
-        \item Justify application to economic shocks is a proof-of-concept - add literature
-    \end{itemize}
-    \item[JR]
-    \begin{itemize}
-        \item Discuss choices of stat models (link with literature); possibly test other stat models - Hurdle, Gamma etc. (discuss missing data treated differently than actual zeros)
-        \item This is not a prediction model: discuss more model function; possibly give values of abs error
-        \item Compute more indicators on empirical data and compare with generated networks (the comparison is only on fitting indicators for now)
-        \item Technical clarifications (total time is linked to $w_0$; over-fitting)
-    \end{itemize}
-    \item[NZ]
-    \begin{itemize}
-        \item More geographical literature for the choice of indicators, theoretical framing of processes
-        \item More precise data description, descriptive statistics
-    \end{itemize}
-\end{itemize}
+%\begin{itemize}
+%    \item[All]
+%    \begin{itemize}
+%        \item Paper writing (jargon, clarity, nonsense in Fig 4 legend on gravity (?))
+%        \item Improve model description
+%        \item Rewrite literature review, theoretical framing, more literature on included processes
+%        \item Paper positioning: rewrite
+%        \item Discuss possible extension with self-connection e.g.
+%        \item Justify application to economic shocks is a proof-of-concept - add literature
+%    \end{itemize}
+%    \item[JR]
+%    \begin{itemize}
+%        OK \item Discuss choices of stat models (link with literature); possibly test other stat models - Hurdle, Gamma etc. (discuss missing data treated differently than actual zeros)
+%        OK\item This is not a prediction model: discuss more model function; possibly give values of abs error
+%        OK \item Compute more indicators on empirical data and compare with generated networks (the comparison is only on fitting indicators for now)
+%        OK \item Technical clarifications (total time is linked to $w_0$; over-fitting)
+%    \end{itemize}
+%    \item[NZ]
+%    \begin{itemize}
+%        OK \item More geographical literature for the choice of indicators, theoretical framing of processes
+%        OK \item More precise data description, descriptive statistics
+%    \end{itemize}
+%\end{itemize}
 
 
 
@@ -98,11 +98,13 @@ University College London
 
 \textbf{Reply to the editor / Journal requirements}
 
-\textit{}
+% redo map with open resources (see editor request) https://www.naturalearthdata.com/downloads/110m-cultural-vectors/
+
+\textit{Maps should use only open resources.}
 
 \medskip
 
-$\rightarrow$ 
+$\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth Data.
 
 
 \bigskip
@@ -132,8 +134,8 @@ $\rightarrow$
 
 	\item \textit{The work is at the intersection of three strands of literature: a) spatial interaction models, b) network analysis, and c) preferential attachment. Yet this does not appear in the literature review. The work could gain more depth from a better discussion of the literature it is grounded in.}
 	
-	% TODO (All) Rewrite lit review
-	$\rightarrow$ \comment{(All) Rewrite lit review. Include applications of gravity models to trade and migration.}
+	$\rightarrow$ Literature review and paper positioning was reworked and extended to reflect this intersection of disciplines and currents.
+	%\comment{(All) Rewrite lit review. Include applications of gravity models to trade and migration.}
 	
 	\medskip
 
@@ -141,8 +143,8 @@ $\rightarrow$
 
 	\item \textit{The empirical network is sparse (density ~ 0.03). Do the authors consider the absent links in the regression and/or the generative model they propose ? (from the fact that the log is taken in the statistical model and the computation of the mean square error on logs, it appears that it is not the case). This could be made clear and discussed, especially that the absence of links is the norm rather than the exception, meaning that the model only treats only a minor proportion of cases.}
 	
-	% TODO (JR) Hurdle and zero inflated models
-	$\rightarrow$ \comment{(JR) Discuss choice/possibly test other stat models}
+	$\rightarrow$ Additional statistical models extended to account for zeros were fitted and commented. This aspect was better explained.
+	%(JR) Hurdle and zero inflated models\comment{(JR) Discuss choice/possibly test other stat models}
 	
 	\medskip
 
@@ -150,8 +152,8 @@ $\rightarrow$
 
 	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectoral proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
 	
-	% TODO (JR) total time is linked to $w_0$ - discuss this
-	$\rightarrow$ The way the model captures time steps and deals with time granularity was indeed not discussed well in the previous version of the paper. Effective time simulated by the model can be set by modifying both $t_f$ (number of steps) and $w_0$ parameters: % develop
+	$\rightarrow$ The way the model captures time steps and deals with time granularity was indeed not discussed well in the previous version of the paper. Effective time simulated by the model can be set by modifying both $t_f$ (number of steps) and $w_0$ parameters. This was better explained in the model description.
+	% develop - (JR) total time is linked to $w_0$ - discuss this
 
 	\medskip
 
@@ -159,7 +161,8 @@ $\rightarrow$
 
 	\item \textit{Application: Two potentially problematic aspects: 1) the MSE on logs and the log MSE appear to be quite large to perform an accurate prediction (for an MSE on logs $\sim 5$, the average multiplicative error can roughly be expected to be around $\exp(5^0.5) \sim 9$, which is almost an order of magnitude of difference; the same quick calculation can be applied to the log MSE). Can the authors discuss this point? (May be using a mean absolute error instead of mean squared error is a more tangible estimate of the error?)}
 	
-	$\rightarrow$ \todo{(JR) this is not a prediction model - possibly give values of abs error - discuss more model function}
+	$\rightarrow$ The purpose of both the statistical analysis and the generative model is not prediction. Statistical analysis is a preliminary exploration to determine potential processes to be included in the generative model, while the latest is an explanatory model, i.e. aimed at explaining the role of different factors in the growth of the urban network (such as the role of urban hierarchy) and test hypothesis in a virtual laboratory. It is also used to prototype policy applications, and in that sense is potentially a decision-making model. A discussion on model function and the precise positioning of this model was added.
+	%\todo{(JR) this is not a prediction model - possibly give values of abs error - discuss more model function}
 	
 	\medskip
 	
@@ -174,7 +177,7 @@ $\rightarrow$
 
 	\item \textit{Do you consider self-connections in the network ? These have been shown to represent an important proportion of firm ownership links.}
 	
-	% TODO (All) discuss possible extension with self-connex
+	% (All) discuss possible extension with self-connex
 	$\rightarrow$ Self-connections within urban areas are not considered in the current version of the model. We added in the discussion this possibility and issues related to such an extension.
 	
 	\medskip
@@ -182,7 +185,7 @@ $\rightarrow$
 % 2.2 - 
 	\item \textit{Could you please better justify the choice of indicators (Internationalization and Metropolization).}
 	
-	% TODO check lit - which lit stream
+	% check lit - which lit stream
 	$\rightarrow$ The choice of indicators has been better justified and explained based on citations of previous literature, already using these indicators to capture important globalisation processes in a city level network.
 	
 	\medskip
@@ -201,8 +204,8 @@ $\rightarrow$
 
 	\item \textit{Statistical analysis: A negative binomial or Gamma regression can also be tried. In the case the absence of links is taken into account in regression, a zero-inflated or hurdle regression can be done.}
 	 
-	% TODO (JR) other stat models (see above)
-	$\rightarrow$ This remark converges with one point raised by the second referee (see ).
+	% (JR) other stat models (see above)
+	$\rightarrow$ This remark converges with one point raised by the second referee (see above) - more statistical models were tested.
 	
 	\medskip
 
@@ -265,16 +268,16 @@ $\rightarrow$
 	\medskip
 
 %3.
-	\item \textit{Clarfiy the methods and data. Explain what Amadeus is, how it is gathered etc. Explain the tools that are used to analyse it. Why those statistical packages and not others? It would also be useful to describe the data. How many cities and how many firms?}
+	\item \textit{Clarify the methods and data. Explain what Amadeus is, how it is gathered etc. Explain the tools that are used to analyse it. Why those statistical packages and not others? It would also be useful to describe the data. How many cities and how many firms?}
 	
-	$\rightarrow$ \todo{(NZ) The ADAMDEUS dataset has been better explained in terms of sources and representativity}
+	$\rightarrow$ The AMADEUS dataset has been better explained in terms of sources and exhaustiveness.
 	
 	\medskip
 
 %4.
 	\item \textit{And most importantly, clarify the theoretical framing. There is plenty of literature cited, but which of these provided inspiration for this study? For example, is this speaking to the 'global city networks' literature (e.g. Neal, Derudder) or more the economic connectivity literature (e.g. Acemoglu)?}
 	 
-	$\rightarrow$ \todo{(All) Literature review/theoretical framing has been reviewed in order to justify the inspiration by the global city networks litterature}
+	$\rightarrow$ Literature review/theoretical framing has been reviewed in order to justify the inspiration by the global city networks literature.
 	
 	\medskip
 
@@ -297,14 +300,14 @@ $\rightarrow$
 
 	\item \textit{The main literature discussion appears to be in the introduction - but this is relatively high level. The research gap that the authors appear to be filling is the operationalisation of the processes (internationalisation, metropolisation, regionalisation and specialisation) within a city. However, it is unclear how this links to the processes you identify as driving the network (listed 1-4 on pg.2) and then the model itself. The processes mentioned appear to be various ways of seeing proximity (ie agglomeration is spatial proximity, and previous linkages could be related to social or institutional proximity) - and whilst link back to previous work mentioned, there needs to be more discussion of past research.}
 	
-	$\rightarrow$ \todo{(NZ) The choice and the purpose of choosing thes indicators to identify economic processes has been better described in the introduction and hopefully it links better with the model}
+	$\rightarrow$ The choice and the purpose of choosing these indicators to identify economic processes has been better described in the introduction and hopefully it links better with the model.
 	
 	\medskip
 
 %2)
 	\item \textit{The processes are mentioned in the methods section - but again exactly what is being measured and what each means is not well related to the process. For example, why exactly are geographic structures captured by internationalisation? Why have you chosen metropolisation to be represented in this way?}
 
-	$\rightarrow$ \todo{(NZ) This has been better explained in the literature review and introduction}
+	$\rightarrow$ This has been better explained in the literature review and introduction.
 	
 	\medskip
 
