@@ -28,6 +28,108 @@ In the real model setup, socio-economic distance between countries $c_{ij}$ is c
 
 
 
+% TODO comment
+
+
+%%%%%%%%%%%%%
+\begin{table}[!ht]
+\begin{adjustwidth}{-1in}{0in}
+\caption{{\bf Zero-inflated statistical models.}}
+\medskip
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Model  & \multicolumn{2}{|c|}{Zero-inflated} & \multicolumn{2}{|c|}{Hurdle} \\ 
+ & Count & Zero-infl. & Count & Zero-hurdle \\
+\hline
+$\log(d_{ij})$ &    -0.28*** (7e-4) &   0.88*** (0.01)      &   -0.29*** (8e-6)   &  -0.75*** (0.01)    \\
+$\log(T_i)$ & 0.74*** (4e-6)  & -0.74*** (7e-3)       &   0.74***  (5e-6)     &  0.67*** (5e-3)   \\
+$\log(T_j)$ & 0.64*** (4e-6)  & -0.52*** (7e-3)      &    0.64***  (4e-6)     &  0.48*** (5e-3)    \\
+$\log(s_{ij})$ & 0.46*** (2e-5)   &  -0.33*** (3e-2)  &  0.45*** (2e-5)       &  0.27*** (0.02)    \\
+\hline
+$R^2$ &   \multicolumn{2}{|c|}{0.1607}     &  \multicolumn{2}{|c|}{0.1661}  \\
+%MSE & & \\
+AIC &     \multicolumn{2}{|c|}{5.85e10}    &   \multicolumn{2}{|c|}{5.85e10}  \\
+\hline
+\end{tabular}
+\end{adjustwidth}
+\end{table}
+%%%%%%%%%%%%%
+
+%pscl::hurdle(formula = intweight ~ log(distance) + log(from_turnover) + log(to_turnover) + 
+%    log(sim), data = dz, dist = "poisson", zero.dist = "poisson")
+%
+%Pearson residuals:
+%       Min         1Q     Median         3Q        Max 
+%-9.195e+03 -1.373e-01 -7.627e-02 -4.204e-02  1.727e+04 
+%
+%Count model coefficients (truncated poisson with log link):
+%                     Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        -9.853e+00  1.345e-04  -73252   <2e-16 ***
+%log(distance)      -2.875e-01  7.603e-06  -37812   <2e-16 ***
+%log(from_turnover)  7.379e-01  4.708e-06  156720   <2e-16 ***
+%log(to_turnover)    6.379e-01  4.060e-06  157119   <2e-16 ***
+%log(sim)            4.550e-01  2.137e-05   21292   <2e-16 ***
+%Zero hurdle model coefficients (censored poisson with log link):
+%                     Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        -20.525823   0.155298 -132.17   <2e-16 ***
+%log(distance)       -0.747788   0.010991  -68.04   <2e-16 ***
+%log(from_turnover)   0.665678   0.005630  118.23   <2e-16 ***
+%log(to_turnover)     0.479214   0.005707   83.96   <2e-16 ***
+%log(sim)             0.278290   0.022439   12.40   <2e-16 ***
+%---
+%Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+%
+%Number of iterations in BFGS optimization: 46 
+%Log-likelihood: -2.927e+10 on 10 Df
+
+% 0.1661997
+
+%mean((dz$intweight-hurdle2$fitted)^2)
+%[1] 6.119694e+12
+
+% > AIC(hurdle2)
+%[1] 58545461912
+
+
+%pscl::zeroinfl(formula = intweight ~ log(distance) + log(from_turnover) + log(to_turnover) + 
+%    log(sim), data = dz, dist = "poisson")
+%
+%Pearson residuals:
+%       Min         1Q     Median         3Q        Max 
+%-7.693e+00 -1.335e-01 -6.957e-02 -3.591e-02  1.760e+04 
+%
+%Count model coefficients (poisson with log link):
+%                     Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        -9.853e+00  1.345e-04  -73251   <2e-16 ***
+%log(distance)      -2.875e-01  7.603e-06  -37810   <2e-16 ***
+%log(from_turnover)  7.379e-01  4.708e-06  156719   <2e-16 ***
+%log(to_turnover)    6.379e-01  4.060e-06  157120   <2e-16 ***
+%log(sim)            4.550e-01  2.137e-05   21294   <2e-16 ***
+%
+%Zero-inflation model coefficients (binomial with logit link):
+%                    Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        22.046685   0.180605  122.07   <2e-16 ***
+%log(distance)       0.881724   0.013134   67.13   <2e-16 ***
+%log(from_turnover) -0.737441   0.006776 -108.83   <2e-16 ***
+%log(to_turnover)   -0.521642   0.006540  -79.76   <2e-16 ***
+%log(sim)           -0.330340   0.025360  -13.03   <2e-16 ***
+%---
+%Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+%
+%Number of iterations in BFGS optimization: 1 
+%Log-likelihood: -2.927e+10 on 10 Df
+
+% 0.1607349
+
+%mean((dz$intweight-zinflpoisson2$fitted)^2)
+%[1] 6.159803e+12
+
+% AIC(zinflpoisson2)
+%[1] 58545461691
+
+
+
+
 
 
 \subsection*{Synthetic model setup}

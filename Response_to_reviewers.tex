@@ -104,7 +104,7 @@ University College London
 
 \medskip
 
-$\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth Data.
+$\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth Data (public domain).
 
 
 \bigskip
@@ -150,9 +150,9 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 
 %1.3 -
 
-	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectoral proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
+	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectorial proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
 	
-	$\rightarrow$ The way the model captures time steps and deals with time granularity was indeed not discussed well in the previous version of the paper. Effective time simulated by the model can be set by modifying both $t_f$ (number of steps) and $w_0$ parameters. This was better explained in the model description.
+	$\rightarrow$ The way the model captures time steps and deals with time granularity was indeed not discussed well in the previous version of the paper. Effective time simulated by the model can be set by modifying both $t_f$ (number of steps) and $w_0$ parameters. The model assumes that context remains constant, so that medium-length periods can be captured. This was better explained in the model description.
 	% develop - (JR) total time is linked to $w_0$ - discuss this
 
 	\medskip
@@ -168,7 +168,8 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 	
 	\item \textit{2) The authors do not show how well the model reproduces the metropolisation and the communities of the empirical network. If the model does not perform well at reproducing these properties of the network, it can mean that the predictors they used are not relevant to such features. This would imply that the model is of limited relevancy to study the impact of crises on these structural features.}
 	
-	$\rightarrow$ \todo{(JR) compute more empirical indicators and compare  with generated networks}
+	$\rightarrow$ We added the computation of empirical macroscopic indicators (internationalisation and metropolisation), and how the model gets close to these through the exploration. The calibration at the link level (mean square errors) remains the most relevant for discussion - this was further discussed.
+	%\todo{(JR) compute more empirical indicators and compare  with generated networks}
 	
 	\medskip
 
@@ -256,7 +257,8 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 
 	\item \textit{Clarify the paper's aims. The part about border closures is interesting but seems almost tacked-on. Is the paper about 'what if' borders closed (e.g. COVID, Brexit), or is it about the communities that exist and the relative hierarchies within the network. To be honest, I don't know if I could pick one after reading it. The conclusion claims that "this paper [is] aimed at presenting a generative model for urban networks defined by interactions between firms based on synthetic data, simulated via the OpenMole platform and calibrated on real data on ownership linkages of firms for Europe from the Amadeus dataset". This should be reoriented toward a more theoretical framing, and speak to the network geographic ties behind it.}
 	
-	$\rightarrow$ \todo{(All) paper positioning}
+	$\rightarrow$ The paper positioning and goal were reframed. The purpose is to introduce a generative model to understand how different geographical and economic factors influence the growth of urban firm networks, with both potentialities for theoretical explanations (through exploration and calibration) and practical applications (the latest being a proof-of-concept in this work).
+	%\todo{(All) paper positioning}
 	
 	\medskip
 
@@ -328,7 +330,8 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 %5)
 	\item \textit{The application of economic shocks appears to be an additional part of the model that is not properly discussed again in the literature review. I wonder if this is actually a different paper? I felt there were lots of interesting aspects to the research - and thinking about how to divide out the components to allow better discussion for each would benefit the research in that you could dive alot deeper into specific discussions.}
 	
-	$\rightarrow$ \todo{(All) justify proof of concept - add literature}
+	$\rightarrow$ Echoing a remark by the second referee, the model application is not the main focus of the paper, but a proof-of-concept illustration for possible developments. This was clarified in paper positioning.
+	%\todo{(All) justify proof of concept - add literature}
 	
 	\medskip
 
