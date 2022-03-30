@@ -260,7 +260,8 @@ A global sensitivity analysis first unveils an aggregated influence of parameter
 
 \paragraph{One factor sampling}
 
-A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms a good statistical convergence (average Sharpe ratios for indicators all larger than 5). We use thus 20 repetitions in following larger experiments (in the case of a normal distribution, a 95\% confidence interval on the average is of size $2\sigma \cdot 1.96 / \sqrt{n}$, what gives $n=16$ repetitions for a CI of width of the standard deviation). Behavior of some indicators are shown in Fig.~\ref{fig:fig4}. For example, internationalisation and metropolisation both show a transition as a function of d$_o$, from a local to a global regime. The sector proximity parameter $\gamma_S$ influences the internationalisation linearly, but induces a maximum for the correlation between size and degree, which can be interpreted as a setting where size and the total volume in a city are the most correlated.
+A first numerical experiment of one-factor sampling on all Cobb-Douglas parameters and 100 stochastic repetitions confirms a good statistical convergence (average Sharpe ratios for indicators are all larger than 5). We use thus 20 repetitions in following larger experiments (in the case of a normal distribution, a 95\% confidence interval on the average is of size $2\sigma \cdot 1.96 / \sqrt{n}$, what gives $n=16$ repetitions for a CI of width of the standard deviation). Behavior of some indicators are shown in Fig.~\ref{fig:fig4}. For example, internationalisation and metropolisation both show a transition as a function of d$_o$, from a local to a global regime. The sector proximity parameter $\gamma_S$ influences the internationalisation linearly, but induces a maximum for the correlation between size and degree, which can be interpreted as a setting where size and the total volume in a city are the most correlated.
+% TODO comment max metropolisation
 
 %%%%%%%%%%%%%
 \begin{figure}
@@ -268,7 +269,7 @@ A first numerical experiment of one-factor sampling on all Cobb-Douglas paramete
 	    \includegraphics[width=\linewidth]{figures/Fig4.png}
 	\end{center}
 	\vspace{2cm}
-    \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) Correlation between degree and size exhibits a maximum, witnessing an intermediate regime where size is the most important. \label{fig:fig4}}
+    \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) Metropolisation exhibits a maximum, witnessing an intermediate regime where size is the most important. \label{fig:fig4}}
 \end{figure}
 %%%%%%%%%%%%%
 
@@ -287,7 +288,7 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 \end{figure}
 %%%%%%%%%%%%%%
 
-
+% TODO JR redo comment
 Other indicators exhibit non-trivial patterns. For example, when considering average community size of the final network as shown in Fig.~\ref{fig:fig6}, we obtain a maximal integration in terms of communities at an intermediate value of the gravity decay. This can be interpreted as the emergence of a regional regime. The size of communities is largely influenced by the value of the elasticities for the similarity function and the ratio of the economic output of the area. In particular, we observe a qualitative inversion of the role of $\gamma_S$ when introducing an effect of the origin (switching $\gamma_O$ from 0 to 1, first panel to second panel). The maximal community size disappears when $\gamma_O = 2$, implying a regime with small local communities where large cities mostly connect with their hinterland. These experiments reveal a complex interplay between processes and how the model produces diverse stylised facts.
 
 %%%%%%%%%%%%%%
