@@ -24,7 +24,7 @@ cp figuresraw/internationalization_countryGravityDecay200_gammaDestination0_face
 cp figuresraw/networkAvgCommunitySize_countryGravityDecay2100_gammaDestination0_facetwrapgammaOrigin_colorgammaSectors.png figures/Fig6.png
 
 # Fig 7
-montage figuresraw/internationalization-alpha_colorgravityDecay_errorBar.png figuresraw/rhoDegreeSize-alpha_colorgravityDecay_errorBar.png -tile 2x1 -geometry +"$HORIZONTALPADDING"+0 -resize "$WIDTH"x figures/Fig7.png
+montage figuresraw/internationalization-alpha_colorgravityDecay_errorBar.png figuresraw/metropolization-alpha_colorgravityDecay_errorBar.png -tile 2x1 -geometry +"$HORIZONTALPADDING"+0 -resize "$WIDTH"x figures/Fig7.png
 
 # Fig 8
 cp figuresraw/pareto_colorgammaOrigin.png figures/Fig8.png
