@@ -25,16 +25,13 @@ In the real model setup, socio-economic distance between countries $c_{ij}$ is c
 
 \subsection*{Zero-inflated models}
 
-
-
-
-% TODO comment
+We show in Table~\ref{tab:zeroinfl} estimation results for zero-inflated and hurdle statistical models. We only show models with all variables included, which had the best AIC values. Main model coefficients are very close in both approaches, and do not deviate largely from values obtained with the simpler model. All coefficients have a high significance in this case. Regarding the additional components, both give the same qualitative outcome (with opposite signs, the hurdle interpretation being the opposite of the zero-inflated). Distance increase the likelihood of having a zero flow, while other variables decrease it, with the same order of magnitude of effect size than the main component. R-squared values are much lower than simpler model, since a large proportion of the dataset are zeros and the models are thus harder to fit when including them.
 
 
 %%%%%%%%%%%%%
 \begin{table}[!ht]
 \begin{adjustwidth}{-1in}{0in}
-\caption{{\bf Zero-inflated statistical models.}}
+\caption{{\bf Zero-inflated and Hurdle statistical models.}\label{tab:zeroinfl}}
 \medskip
 \begin{tabular}{|l|c|c|c|c|}
 \hline
