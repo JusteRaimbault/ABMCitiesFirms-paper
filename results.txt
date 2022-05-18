@@ -1,0 +1,142 @@
+
+
+
+
+
+
+
+
+%pscl::hurdle(formula = intweight ~ log(distance) + log(from_turnover) + log(to_turnover) + 
+%    log(sim), data = dz, dist = "poisson", zero.dist = "poisson")
+%
+%Pearson residuals:
+%       Min         1Q     Median         3Q        Max 
+%-9.195e+03 -1.373e-01 -7.627e-02 -4.204e-02  1.727e+04 
+%
+%Count model coefficients (truncated poisson with log link):
+%                     Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        -9.853e+00  1.345e-04  -73252   <2e-16 ***
+%log(distance)      -2.875e-01  7.603e-06  -37812   <2e-16 ***
+%log(from_turnover)  7.379e-01  4.708e-06  156720   <2e-16 ***
+%log(to_turnover)    6.379e-01  4.060e-06  157119   <2e-16 ***
+%log(sim)            4.550e-01  2.137e-05   21292   <2e-16 ***
+%Zero hurdle model coefficients (censored poisson with log link):
+%                     Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        -20.525823   0.155298 -132.17   <2e-16 ***
+%log(distance)       -0.747788   0.010991  -68.04   <2e-16 ***
+%log(from_turnover)   0.665678   0.005630  118.23   <2e-16 ***
+%log(to_turnover)     0.479214   0.005707   83.96   <2e-16 ***
+%log(sim)             0.278290   0.022439   12.40   <2e-16 ***
+%---
+%Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+%
+%Number of iterations in BFGS optimization: 46 
+%Log-likelihood: -2.927e+10 on 10 Df
+
+% 0.1661997
+
+%mean((dz$intweight-hurdle2$fitted)^2)
+%[1] 6.119694e+12
+
+% > AIC(hurdle2)
+%[1] 58545461912
+
+
+%pscl::zeroinfl(formula = intweight ~ log(distance) + log(from_turnover) + log(to_turnover) + 
+%    log(sim), data = dz, dist = "poisson")
+%
+%Pearson residuals:
+%       Min         1Q     Median         3Q        Max 
+%-7.693e+00 -1.335e-01 -6.957e-02 -3.591e-02  1.760e+04 
+%
+%Count model coefficients (poisson with log link):
+%                     Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        -9.853e+00  1.345e-04  -73251   <2e-16 ***
+%log(distance)      -2.875e-01  7.603e-06  -37810   <2e-16 ***
+%log(from_turnover)  7.379e-01  4.708e-06  156719   <2e-16 ***
+%log(to_turnover)    6.379e-01  4.060e-06  157120   <2e-16 ***
+%log(sim)            4.550e-01  2.137e-05   21294   <2e-16 ***
+%
+%Zero-inflation model coefficients (binomial with logit link):
+%                    Estimate Std. Error z value Pr(>|z|)    
+%(Intercept)        22.046685   0.180605  122.07   <2e-16 ***
+%log(distance)       0.881724   0.013134   67.13   <2e-16 ***
+%log(from_turnover) -0.737441   0.006776 -108.83   <2e-16 ***
+%log(to_turnover)   -0.521642   0.006540  -79.76   <2e-16 ***
+%log(sim)           -0.330340   0.025360  -13.03   <2e-16 ***
+%---
+%Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
+%
+%Number of iterations in BFGS optimization: 1 
+%Log-likelihood: -2.927e+10 on 10 Df
+
+% 0.1607349
+
+%mean((dz$intweight-zinflpoisson2$fitted)^2)
+%[1] 6.159803e+12
+
+% AIC(zinflpoisson2)
+%[1] 58545461691
+
+
+
+
+
+%%%%%%
+% Synthetic setup
+
+%solve for mu,sigma of the log-normal as a function of gdp
+%       we aim at having a log-normal mostly in [0,1] such that
+%       (mode,variance) =  1 / K for the smallest log(E_i) and = 1/2 for the largest log(E_i)
+%        writing
+%        e_i = (log(E_i) - log(E_imin))/(log(E_imax) - log(E_imin)) * (1/2 - 1/K) + 1/K
+%        this yields
+%         (1)  mu - sigma^2 = log(e_i)
+%         (2) -3 sigma^2 - 2 log(exp(sigma^2) - 1) = log(e_i)
+%        => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)
+
+
+
+%%%%%%%%%% Saltelli
+
+
+
+
+
+%% 20220516_140656_SALTELLI_SYNTHETIC_GRID
+
+ & F & T & F & T & F & T & F & T & F & T & F & T \\
+ \hline
+Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.008 & $5\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
+Metropolisation & 0.02 & 0.04 & 0.02 & 0.04 & 0.02 & 0.3 & 0.002 & 0.01 & 0.2 & 0.7 & 0.2 & 0.7 \\
+Modularity & 0.3 & 0.4 & 0.6 & 0.6 & $5\cdot 10^{-4}$ & 0.02 & 0.002 & 0.02 & 0.007 & 0.03 & 0.003 & 0.03 \\
+Avg. com. size & 0.004 & 0.1 & 0.01 & 0.1 & 0.003 & 0.07 & 0.001 & 0.04 & 0.3 & 0.6 & 0.3 & 0.6 \\
+Degree entropy & 0.003 & 0.03 & 0.002 & 0.03 & 0.008 & 0.04 & 0.003 & 0.03 & 0.5 & 0.6 & 0.5 & 0.6 \\
+Weight entropy & 0.04 & 0.2 & 0.03 & 0.2 & 0.002 & 0.1 & 0.001 & 0.1 & 0.5 & 0.6 & 0.5 & 0.6 \\\hline
+
+% first order
+output,gravityDecay,countryGravityDecay,gammaSectors,gammaLinks,gammaOrigin,gammaDestination
+internationalization,0.2558809637689867,0.6579017160191208,9.798392349436359E-4,-5.120066176174941E-4,0.0261079337954924,0.02564034215267214
+metropolization,0.019212136661890408,0.019537927725804566,0.01578831257616743,-0.002138788132918964,0.23580032179724525,0.23655042351387578
+networkModularity,0.34332678483040474,0.6032208255837836,-5.347656392980572E-4,0.001549764700950123,0.007079347309625172,0.003351953197263627
+networkAvgCommunitySize,0.003670615851282361,0.012573979236248697,0.0031683667193624777,0.0011666884122068203,0.31402515170949025,0.34030514810805806
+networkAvgDegree,0.0,0.0,0.0,0.0,0.0,0.0
+networkDegreeEntropy,0.0031765231082461795,0.00236533416884668,0.008438910610184753,0.003371166474163771,0.4869403851313524,0.48159589488831267
+flowsEntropy,0.04041978841264766,0.04244747969141165,0.02759669899594966,0.02285361179954388,0.4188657461329678,0.40619014555363286
+firmLinks,0.01981563267026081,0.022928504612444774,0.0018705936757298595,-0.0011229453238351,0.4465435443242388,0.4477686471397382
+
+
+% total order
+
+output,gravityDecay,countryGravityDecay,gammaSectors,gammaLinks,gammaOrigin,gammaDestination
+internationalization,0.27938571085169817,0.6837881702586602,0.008403100711930825,0.00707057637976141,0.040980278662939795,0.04058120661809078
+metropolization,0.03586472037897918,0.03776823308844708,0.2613503491321273,0.010626891080292175,0.6532288504751165,0.657875517372916
+networkModularity,0.3771744271573371,0.6435631759235398,0.016129187675562883,0.014903007540923493,0.028979453502784292,0.028512766968821362
+networkAvgCommunitySize,0.09742723851266538,0.11782059952145282,0.07146261335044939,0.039991317953600565,0.6022201541990896,0.6259746132058198
+networkAvgDegree,0.0,0.0,0.0,0.0,0.0,0.0
+networkDegreeEntropy,0.033488141249599666,0.032271222121292784,0.03589898498171527,0.030606780774921488,0.5240345460453698,0.5255961917469689
+flowsEntropy,0.14993688592711177,0.15079030338986366,0.10738581156526211,0.10385655889236121,0.549299962021408,0.5547496504704041
+firmLinks,0.031096774642575896,0.034286482088798774,0.011627005301472726,0.005914457518684065,0.5061008255409173,0.5068641940170161
+
+
+

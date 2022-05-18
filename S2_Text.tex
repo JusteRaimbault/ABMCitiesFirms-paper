@@ -11,7 +11,7 @@
 
 \subsection*{Socio-economic distance matrix}
 
-In the real model setup, socio-economic distance between countries $c_{ij}$ is constructed using fixed effects coefficients from the statistical model. In Table~1 in main text, we estimated several statistical models, including some with fixed effects by pairs of countries. The socio-cultural distance between two countries is then taken as the opposite of the fixed effect coefficient for this pair, for the full statistical model. Summary statistics for the 29x29 matrix (28 EU countries and Jersey which is in the database a distinct country from UK but has an important total turnover since many British companies are located there for fiscal advantage reasons) are shown below in Table~\ref{tab:fixedeff}. We observe that distances are rather localized but with large outliers, and an important proportion are not defined (339 out of 841), corresponding to couple of countries having no exchange at all in the dataset.
+In the real model setup, the socio-economic distance between countries $c_{ij}$ is constructed using the fixed effects coefficients from the statistical model. In Table~1 in the main text, we estimated several statistical models, including some with fixed effects by pairs of countries. The socio-cultural distance between two countries is then taken as the opposite of the fixed effect coefficient for this pair, for the full statistical model. The summary statistics for the 29x29 matrix (28 EU countries and Jersey, which is in the database corresponds to a distinct country from the UK, although it has an important total turnover since many British companies are located there for fiscal advantage reasons) are shown below in the Table~\ref{tab:fixedeff}. We observe that distances are rather localised but with large outliers, and an important proportion are not defined (339 out of 841), corresponding to a couple of countries having no exchange at all in the dataset.
 
 \begin{table}[h!]
 \caption{\textbf{Summary statistics of the socio-cultural distance estimated with a fixed effects model.}\label{tab:fixedeff}}
@@ -52,81 +52,6 @@ AIC &     \multicolumn{2}{|c|}{5.85e10}    &   \multicolumn{2}{|c|}{5.85e10}  \\
 \end{table}
 %%%%%%%%%%%%%
 
-%pscl::hurdle(formula = intweight ~ log(distance) + log(from_turnover) + log(to_turnover) + 
-%    log(sim), data = dz, dist = "poisson", zero.dist = "poisson")
-%
-%Pearson residuals:
-%       Min         1Q     Median         3Q        Max 
-%-9.195e+03 -1.373e-01 -7.627e-02 -4.204e-02  1.727e+04 
-%
-%Count model coefficients (truncated poisson with log link):
-%                     Estimate Std. Error z value Pr(>|z|)    
-%(Intercept)        -9.853e+00  1.345e-04  -73252   <2e-16 ***
-%log(distance)      -2.875e-01  7.603e-06  -37812   <2e-16 ***
-%log(from_turnover)  7.379e-01  4.708e-06  156720   <2e-16 ***
-%log(to_turnover)    6.379e-01  4.060e-06  157119   <2e-16 ***
-%log(sim)            4.550e-01  2.137e-05   21292   <2e-16 ***
-%Zero hurdle model coefficients (censored poisson with log link):
-%                     Estimate Std. Error z value Pr(>|z|)    
-%(Intercept)        -20.525823   0.155298 -132.17   <2e-16 ***
-%log(distance)       -0.747788   0.010991  -68.04   <2e-16 ***
-%log(from_turnover)   0.665678   0.005630  118.23   <2e-16 ***
-%log(to_turnover)     0.479214   0.005707   83.96   <2e-16 ***
-%log(sim)             0.278290   0.022439   12.40   <2e-16 ***
-%---
-%Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-%
-%Number of iterations in BFGS optimization: 46 
-%Log-likelihood: -2.927e+10 on 10 Df
-
-% 0.1661997
-
-%mean((dz$intweight-hurdle2$fitted)^2)
-%[1] 6.119694e+12
-
-% > AIC(hurdle2)
-%[1] 58545461912
-
-
-%pscl::zeroinfl(formula = intweight ~ log(distance) + log(from_turnover) + log(to_turnover) + 
-%    log(sim), data = dz, dist = "poisson")
-%
-%Pearson residuals:
-%       Min         1Q     Median         3Q        Max 
-%-7.693e+00 -1.335e-01 -6.957e-02 -3.591e-02  1.760e+04 
-%
-%Count model coefficients (poisson with log link):
-%                     Estimate Std. Error z value Pr(>|z|)    
-%(Intercept)        -9.853e+00  1.345e-04  -73251   <2e-16 ***
-%log(distance)      -2.875e-01  7.603e-06  -37810   <2e-16 ***
-%log(from_turnover)  7.379e-01  4.708e-06  156719   <2e-16 ***
-%log(to_turnover)    6.379e-01  4.060e-06  157120   <2e-16 ***
-%log(sim)            4.550e-01  2.137e-05   21294   <2e-16 ***
-%
-%Zero-inflation model coefficients (binomial with logit link):
-%                    Estimate Std. Error z value Pr(>|z|)    
-%(Intercept)        22.046685   0.180605  122.07   <2e-16 ***
-%log(distance)       0.881724   0.013134   67.13   <2e-16 ***
-%log(from_turnover) -0.737441   0.006776 -108.83   <2e-16 ***
-%log(to_turnover)   -0.521642   0.006540  -79.76   <2e-16 ***
-%log(sim)           -0.330340   0.025360  -13.03   <2e-16 ***
-%---
-%Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
-%
-%Number of iterations in BFGS optimization: 1 
-%Log-likelihood: -2.927e+10 on 10 Df
-
-% 0.1607349
-
-%mean((dz$intweight-zinflpoisson2$fitted)^2)
-%[1] 6.159803e+12
-
-% AIC(zinflpoisson2)
-%[1] 58545461691
-
-
-
-
 
 
 \subsection*{Synthetic model setup}
@@ -134,24 +59,17 @@ AIC &     \multicolumn{2}{|c|}{5.85e10}    &   \multicolumn{2}{|c|}{5.85e10}  \\
 The procedure for the synthetic sector setup is the following:
 \begin{itemize}
     \item Sectors distributions follow log-normal densities with most mass in $\left[0;1\right]$
-    \item Large cities are more innovative and more diverse. Assuming that sectors are ordered by innovativity (the larger the sector index the larger the innovativity), this assumption is translated by taking a mode and variance of 0.5 for the largest city and a mode and variance of $1/K$ for the smallest, and a linear interpolation between the two. For each city, we define
+    \item Large cities are more innovative and more diverse. Assuming that sectors are ordered by innovativity (the larger the sector index the larger the innovativity), this assumption is translated by taking a mode and variance of $1/2$ for the sector distribution of the largest city and a mode and variance of $1/K$ for the sector distribution of the smallest city. Intermediate cities have their sector distribution mode and variance following a linear interpolation between the two. For each city, we therefore define this value for mode and variance as $e_i$ by taking
     \[
-    \log(e_i) = \frac{(\log(E_i) - \log(E_{imin}))}{(\log(E_{imax}) - \log(E_{imin}))} * (1/2 - 1/K) + 1/K
+    e_i = \frac{(\log(E_i) - \log(E_{imin}))}{(\log(E_{imax}) - \log(E_{imin}))} \cdot (1/2 - 1/K) + 1/K
     \]
-    \item Log-normal parameters $(\mu_i,\sigma_i)$ for each city are then fixed by $\mu_i - \sigma_i^2 = \log(e_i)$ and $-3 \sigma_i^2 - 2 \log(\exp(\sigma_i^2) - 1) = log(e_i)$
-    \item $\sigma_i^2$ is the unique positive root of $f(X)=0$ with $f(X) = -3X - 2 \log(\exp(X) - 1) - \log(e_i)$ and $\mu_i = \log(e_i) + \sigma_i^2$.
+    where $E_i$ is the economic size of city $i$, $E_{imin}$ size of smallest city and $E_{imax}$ size of the largest city;
+    \item Log-normal parameters $(\mu_i,\sigma_i)$ for each city are then determined by using the formula for the mode and variance of a log-normal law; the mode is directly given by $\mu_i - \sigma_i^2 = \log(e_i)$, while the variance verifies $\log(\exp(\sigma_i^2) - 1) + 2\mu + \sigma^2  = log(e_i)$; using the first equation to have an expression for $\mu$ and substituting into the second, we obtain
+    \[
+    -3 \sigma_i^2 - 2 \log(\exp(\sigma_i^2) - 1) = log(e_i)
+    \]
+    \item $\sigma_i^2$ is thus obtained as the unique positive root of $f(X)=0$ with $f(X) = -3X - 2 \log(\exp(X) - 1) - \log(e_i)$ (this function has a derivative always negative on $\mathbb{R}+$, tends to $\infty$ when $X \rightarrow 0+$ and to $-\infty$ when $X \rightarrow \infty$); we finally compute $\mu_i$ as $\mu_i = \log(e_i) + \sigma_i^2$.
 \end{itemize}
-
-%solve for mu,sigma of the log-normal as a function of gdp
-%       we aim at having a log-normal mostly in [0,1] such that
-%       (mode,variance) =  1 / K for the smallest log(E_i) and = 1/2 for the largest log(E_i)
-%        writing
-%        e_i = (log(E_i) - log(E_imin))/(log(E_imax) - log(E_imin)) * (1/2 - 1/K) + 1/K
-%        this yields
-%         (1)  mu - sigma^2 = log(e_i)
-%         (2) -3 sigma^2 - 2 log(exp(sigma^2) - 1) = log(e_i)
-%        => sigma^2 is the unique positive root of f(X)=0 with f(X) = -3X - 2 ln(exp(X) - 1) - ln(e_i)
-
 
 
 
@@ -169,12 +87,12 @@ The table~\ref{tab:saltelli} gives the full results for the Global Sensitivity A
  & \multicolumn{2}{|c|}{$d_0$} & \multicolumn{2}{|c|}{$c_0$} & \multicolumn{2}{|c|}{$\gamma_S$} & \multicolumn{2}{|c|}{$\gamma_W$} & \multicolumn{2}{|c|}{$\gamma_O$} & \multicolumn{2}{|c|}{$\gamma_D$} \\
  & F & T & F & T & F & T & F & T & F & T & F & T \\
  \hline
-Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.009 & $4\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
-Metropolisation & 0.02 & 0.1 & 0.02 & 0.2 & 0.002 & 0.1 & 0.001 & 0.09 & 0.2 & 0.6 & 0.3 & 0.6 \\
-Modularity & 0.3 & 0.4 & 0.6 & 0.6 & 0.004 & 0.02 & $3\cdot 10^{-4}$ & 0.01 & 0.005 & 0.03 & 0.002 & 0.03 \\
-Avg. com. size & 0.008 & 0.09 & 0.01 & 0.1 & 0.002 & 0.07 & 0.003 & 0.04 & 0.3 & 0.6 & 0.4 & 0.6 \\
-Degree entropy & 0.006 & 0.02 & 0.003 & 0.02 & 0.006 & 0.03 & 0.008 & 0.02 & 0.5 & 0.5 & 0.5 & 0.5 \\
-Weight entropy & 0.04 & 0.1 & 0.03 & 0.1 & 0.008 & 0.08 & 0.01 & 0.07 & 0.4 & 0.5 & 0.4 & 0.5 \\\hline
+Internationalisation & 0.2 & 0.3 & 0.7 & 0.7 & 0.001 & 0.008 & $5\cdot 10^{-4}$ & 0.007 & 0.03 & 0.04 & 0.02 & 0.04 \\
+Metropolisation & 0.02 & 0.04 & 0.02 & 0.04 & 0.02 & 0.3 & 0.002 & 0.01 & 0.2 & 0.7 & 0.2 & 0.7 \\
+Modularity & 0.3 & 0.4 & 0.6 & 0.6 & $5\cdot 10^{-4}$ & 0.02 & 0.002 & 0.02 & 0.007 & 0.03 & 0.003 & 0.03 \\
+Avg. com. size & 0.004 & 0.1 & 0.01 & 0.1 & 0.003 & 0.07 & 0.001 & 0.04 & 0.3 & 0.6 & 0.3 & 0.6 \\
+Degree entropy & 0.003 & 0.03 & 0.002 & 0.03 & 0.008 & 0.04 & 0.003 & 0.03 & 0.5 & 0.6 & 0.5 & 0.6 \\
+Weight entropy & 0.04 & 0.2 & 0.03 & 0.2 & 0.002 & 0.1 & 0.001 & 0.1 & 0.5 & 0.6 & 0.5 & 0.6 \\\hline
 \end{tabular}
 \end{adjustwidth}
 \end{table}

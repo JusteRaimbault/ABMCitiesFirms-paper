@@ -110,7 +110,7 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 
 	\item \textit{The work is at the intersection of three strands of literature: a) spatial interaction models, b) network analysis, and c) preferential attachment. Yet this does not appear in the literature review. The work could gain more depth from a better discussion of the literature it is grounded in.}
 	
-	$\rightarrow$ Literature review and paper positioning was reworked and extended to reflect this intersection of disciplines and currents.
+	$\rightarrow$ Literature review and paper positioning was reworked and extended to reflect this intersection of disciplines (although preferential attachment is not as central in our study).
 	%\comment{(All) Rewrite lit review. Include applications of gravity models to trade and migration.}
 	
 	\medskip
@@ -126,7 +126,7 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 
 %1.3 -
 
-	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectorial proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
+	\item \textit{Given that the model is generative, the temporal aspect of the model can be an issue. Indeed, if the number of iterations (around 5000) needed to generate the empirical network correspond to a long time period (for example decades), the economic size and sectoral proximity are expected to change, probably implying a substantially different network, if these changes were accounted for in the model. Can the authors mention (and may be discuss) this issue?}
 	
 	$\rightarrow$ The way the model captures time steps and deals with time granularity was indeed not discussed well in the previous version of the paper. Effective time simulated by the model can be set by modifying both $t_f$ (number of steps) and $w_0$ parameters. The model assumes that context remains constant, so that medium-length periods can be captured. This was better explained in the model description.
 	% develop - (JR) total time is linked to $w_0$ - discuss this
@@ -137,7 +137,7 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 
 	\item \textit{Application: Two potentially problematic aspects: 1) the MSE on logs and the log MSE appear to be quite large to perform an accurate prediction (for an MSE on logs $\sim 5$, the average multiplicative error can roughly be expected to be around $\exp(5^0.5) \sim 9$, which is almost an order of magnitude of difference; the same quick calculation can be applied to the log MSE). Can the authors discuss this point? (May be using a mean absolute error instead of mean squared error is a more tangible estimate of the error?)}
 	
-	$\rightarrow$ The purpose of both the statistical analysis and the generative model is not prediction. Statistical analysis is a preliminary exploration to determine potential processes to be included in the generative model, while the latest is an explanatory model, i.e. aimed at explaining the role of different factors in the growth of the urban network (such as the role of urban hierarchy) and test hypothesis in a virtual laboratory. It is also used to prototype policy applications, and in that sense is potentially a decision-making model. A discussion on model function and the precise positioning of this model was added.
+	$\rightarrow$ The purpose of both the statistical analysis and the generative model is not prediction. Statistical analysis is a preliminary exploration to determine potential processes to be included in the generative model, while the latest is an explanatory model, i.e. aimed at explaining the role of different factors in the growth of the urban network (such as the one of urban hierarchy) and test hypothesis in a virtual laboratory. It is also used to prototype policy applications, and in that sense is potentially a decision-making model. A discussion on model function and the precise positioning of this model was added.
 	%\todo{(JR) this is not a prediction model - possibly give values of abs error - discuss more model function}
 	
 	\medskip
@@ -162,7 +162,7 @@ $\rightarrow$ The map in Figure 2 was redrawn using countries from Natural Earth
 	\item \textit{Could you please better justify the choice of indicators (Internationalization and Metropolization).}
 	
 	% check lit - which lit stream
-	$\rightarrow$ The choice of indicators has been better justified and explained based on citations of previous literature, already using these indicators to capture important globalisation processes in a city level network.
+	$\rightarrow$ The choice of indicators has been better justified and explained based on citations of previous literature, already using these indicators to capture important globalisation processes in a city-level network.
 	
 	\medskip
 
