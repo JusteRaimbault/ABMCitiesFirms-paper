@@ -6,7 +6,7 @@
 \vspace*{0.35in}
 \justify
 
-\section*{S2 Text: Statistical models, generative model setup and sensitivity analysis}
+\section*{S2 Text: Statistical models, generative model setup, sensitivity analysis, and model calibration}
 
 
 \subsection*{Socio-economic distance matrix}
@@ -99,7 +99,28 @@ Weight entropy & 0.04 & 0.2 & 0.03 & 0.2 & 0.002 & 0.1 & 0.001 & 0.1 & 0.5 & 0.6
 %%%%%%%%%%%%%
 
 
+\subsection*{Model calibration}
 
+When all parameters except $w_0$ are fixed, an external constraint can be enforced, hence fixing its value. A simple example is to set the total volume of simulated links to that it equals the total volume of observed links. Since by construction we have at final time $\sum_{i,j} w_{ij} = w_0 \cdot t_f$, this constraint yields $w_0 = \frac{\sum_{ij} w_{ij}^{(obs)}}{t_f}$ with $w_{ij}^{(obs)}$ observed weights.
 
+For the model calibration, we choose a constraint minimising one of the two objectives. Rescaling the final simulated flows by some constant $k_0$ while having $w_0 = 1$ is equivalent to set $w_0 = k_0$. We can thus determine the optimal value of $k_0$ that will minimise
+
+\[
+\varepsilon_L (k_0) = \frac{1}{N^2} \sum_{i,j} \left(\log w_{ij} - \log \left(k_0 \cdot \hat{w}_{ij} \right) \right)^2
+\]
+
+The derivative along $k_0$ must thus be zero, what yields
+
+\[
+0 =  \frac{1}{N^2} \sum_{i,j} \log w_{ij} - \frac{1}{N^2} \sum_{i,j} \log \hat{w}_{ij} - \frac{1}{N^2} \sum_{i,j} \log k_0
+\]
+
+and therefore
+
+\[
+k_0 = \exp \left[\frac{1}{N^2} \sum_{i,j} \log w_{ij} - \frac{1}{N^2} \sum_{i,j} \log \hat{w}_{ij} \right]
+\]
+
+In practice, we rescale the final simulated flows by this value in the calibration procedure. Note that only one constraint can be satisfied, and that this rescaling which improves the $\varepsilon_L$ objective probably deteriorates the $\varepsilon_M$ objective. We choose to rescale this dimension as it is directly comparable with the statistical models.
 
 \end{document}
