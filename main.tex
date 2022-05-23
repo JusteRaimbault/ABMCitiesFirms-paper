@@ -12,7 +12,6 @@
 }
 \newline
 
-\\
 Juste Raimbault\textsuperscript{1,2,3,4 *},
 Natalia Zdanowska\textsuperscript{2,4,5},
 Elsa Arcaute\textsuperscript{2}
@@ -312,7 +311,7 @@ where $\hat{w}_{ij}$ are the simulated weights, and the logarithm of the mean sq
 \varepsilon_M = \log\left(\frac{1}{N^2} \sum_{i,j} \left(w_{ij} - \hat{w}_{ij}\right)^2 \right)
 \end{equation}
 
-These two indicators capture the overall model performance with the logarithm of MSE, but also performance on medium-sized and small links, and are therefore complementary as shown in the case of cities population dynamics by \cite{raimbault2018indirect}. A calibration on macroscopic indicators of metropolisation and internationalisation would not bring much knowledge on model processes, since several points from the grid experiment above - not designed for this - already provide a good performance (19 parameter points out of 6534 are simultaneously below a relative error of 10\% on internationalisation and below 10\% on metropolisation).
+These two indicators capture the overall model performance with the logarithm of MSE, but also performance on medium-sized and small links, and are therefore complementary as shown in the case of cities population dynamics by \cite{raimbault2018indirect}. A calibration on macroscopic indicators of metropolisation and internationalisation would not bring much knowledge on model processes, since several points from the grid experiment above - not designed for this - already provide a good performance: 19 parameter points out of 6534 are simultaneously below a relative error of 10\% on internationalisation and below 10\% on metropolisation. These points correspond to diverse parametrisation, suggesting the presence of equifinality when trying to calibrate at the macroscopic level. 
 
 Calibration is done using a genetic NSGA2 algorithm \cite{deb2002fast}, which is particularly suited for such a bi-objective calibration of a simulation model. Stochasticity is taken into account by adding the estimation confidence as an additional objective, and we filter the final population to have at least 20 samples. We use a population of 200 individuals and run the algorithm for 50,000 generations, on 1000 islands in parallel.
 
