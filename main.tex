@@ -141,7 +141,7 @@ The urban network is sparse with a density of around $0.028$. It has heavy tail 
 %%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig1.png}
+        %\includegraphics[width=\linewidth]{figures/Fig1.png}
     \end{center}
     \vspace{2cm}
     \caption{Distributions of network properties. \textit{(Left)} Cumulative distribution for edge weight, with power law fit (red) and log-normal fit (green); \textit{(Right)} Cumulative distribution for weighted degree.}
@@ -158,7 +158,7 @@ The communities reflect characteristic socio-cultural structures and cross-borde
 %%%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
-    \includegraphics[width=\linewidth]{figures/Fig2.png}
+    %\includegraphics[width=\linewidth]{figures/Fig2.png}
     \end{center}
     \caption{{\bf Map of network communities obtained by modularity maximisation.} We show communities with the higher modularity, obtained with the Louvain algorithm. The area of circles gives the turnover within the Functional Urban Area, and colour the community it belongs to. Urban Areas in communities of size smaller than 3 were not coloured for readability. Made with Natural Earth Data \cite{naturalearth}.}
     \label{fig:fig2}
@@ -223,7 +223,7 @@ The model is implemented in NetLogo, which provides a good compromise between pe
 %%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig3.png}
+        %\includegraphics[width=\linewidth]{figures/Fig3.png}
     \end{center}
     \caption{Example of simulated networks at $t=1500$, for a synthetic system of cities (Top row) and the European urban network (Bottom row), with a high (resp. low) gravity decay parameter for the left column (resp. right).\label{fig:fig3}}
 \end{figure}
@@ -248,7 +248,7 @@ A first numerical experiment of one-factor sampling on all Cobb-Douglas paramete
 %%%%%%%%%%%%%
 \begin{figure}
 	\begin{center}
-	    \includegraphics[width=\linewidth]{figures/Fig4.png}
+	    %\includegraphics[width=\linewidth]{figures/Fig4.png}
 	\end{center}
     \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) Metropolisation exhibits a maximum at $\gamma_S \simeq 1.2$, suggesting an intermediate regime where specialisation has more influence. \label{fig:fig4}}
 \end{figure}
@@ -263,7 +263,7 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=\linewidth]{figures/Fig5.png}
+    %\includegraphics[width=\linewidth]{figures/Fig5.png}
     \caption{The transition as a function of the interaction range depends on the influence of the origin size $\gamma_O$; the sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:fig5}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -272,7 +272,7 @@ Other indicators exhibit non-trivial patterns. For example, when considering the
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    \includegraphics[width=\textwidth]{figures/Fig6.png}
+    %\includegraphics[width=\textwidth]{figures/Fig6.png}
 	\caption{Maximal integration in terms of the community size is achieved at an intermediate value of d$_o$: emergence of a regional regime; the maximal size depends on the role of the sectors $\gamma_S$ in a decreasing way when the origin size is deactivated, and in an increasing way when $\gamma_o=1$; this regime disappears when the influence of the origin size becomes too large.\label{fig:fig6}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -287,7 +287,7 @@ We run a specific experiment to study the impact of the urban hierarchy on firms
 %%%%%%%%%%%%%
 \begin{figure}
     \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig7.png}
+        %\includegraphics[width=\linewidth]{figures/Fig7.png}
     \end{center}
     \caption{\textbf{Impact of the urban hierarchy.} (Left) Internationalisation as a function of the initial synthetic hierarchical exponent $\alpha$, for different values of the interaction range $d_0$ (colour); (Right) Metropolisation as a function of $\alpha$, for different values of the interaction range $d_0$ (colour).\label{fig:fig7}}
 \end{figure}
@@ -318,7 +318,7 @@ Calibration is done using a genetic NSGA2 algorithm \cite{deb2002fast}, which is
 %%%%%%%%%%%%%%
 \begin{figure}
 	\begin{center}
-    \includegraphics[width=0.75\linewidth]{figures/Fig8.png}
+    %\includegraphics[width=0.75\linewidth]{figures/Fig8.png}
     \end{center}
 	\caption{\textbf{Model calibration results.} Pareto front obtained for the bi-objective model calibration for $\varepsilon_L$ and $\varepsilon_M$ objectives. $\varepsilon_L$ can be compared to the MSE of statistical models fitted above, and the generative model outperform these for several parametrisations (lowest MSE 5.33 for statistical models). Point size gives the number of stochastic samples and colour the value of $\gamma_O$.\label{fig:fig8}}
 \end{figure}
@@ -340,7 +340,7 @@ Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the sho
 %%%%%%%%%%%%%%
 \begin{figure}
 	\begin{center}
-    \includegraphics[width=\linewidth]{figures/Fig9.png}
+    %\includegraphics[width=\linewidth]{figures/Fig9.png}
     \end{center}
 	\caption{\textbf{Application of the calibrated model to an economic shock scenario.} All plots show the trajectory of indicators (internationalisation for the top row and average community size for the bottom row) in time, for different values of interaction decay rescaling $\kappa_G$ (colour) and socio-economic distance rescaling $\kappa_C$ (panels). The vertical dotted red line shows the moment the economic shock is introduced and $d_0$ (respectively $c_0$) is set to $\kappa_G \cdot d_0$ (resp. $\kappa_C \cdot c_0$).\label{fig:fig9}}
 \end{figure}

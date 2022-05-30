@@ -1,7 +1,7 @@
 \documentclass[10pt,letterpaper]{article}
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL misc/paper_v1.tex   Thu May 12 17:43:34 2022
-%DIF ADD main.tex            Mon May 23 17:06:25 2022
+%DIF ADD main.tex            Mon May 30 17:51:44 2022
 \input{header.tex}
 
 \usepackage{ragged2e}
@@ -256,28 +256,29 @@ Secondly, we consider the \DIFdelbegin \DIFdel{metropolisation indicator }\DIFde
 
 In \DIFdelbegin \DIFdel{this work, we do not consider the relationship between countries given their economic complexity, such as the framework developed by  \mbox{%DIFAUXCMD
 \cite{hidalgo2007product}}\hspace{0pt}%DIFAUXCMD
-, where the diversity of products produced plays an essential role in determining co-dependencies and resilience. What we investigate instead, is the role of linkages given by geography and history, and hence, }\DIFdelend \DIFaddbegin \DIFadd{addition, we also consider an indicator giving insight of the structure of the network: this is the average size of communities obtained with a modularity optimisation algorithm (weighted Louvain algorithm \mbox{%DIFAUXCMD
+, where the diversity of products produced plays an essential role in determining co-dependencies and resilience. What we investigate instead, is the role of linkages given by geography and history, and hence, the sector structure of cities does not evolve within the model.
+}\DIFdelend \DIFaddbegin \DIFadd{addition, we also consider an indicator giving insight of the structure of the network: this is the average size of communities obtained with a modularity optimisation algorithm (weighted Louvain algorithm \mbox{%DIFAUXCMD
 \cite{blondel2008fast}}\hspace{0pt}%DIFAUXCMD
 ). This is complementary to internationalisation, as it captures the endogenous structure of the network and the average size of international business clusters.
-}
+}\DIFaddend 
 
 
-\subsection*{\DIFadd{Empirical data}}
+\subsection*{Empirical data}
+\DIFdelbegin %DIFDELCMD < 
+
+%DIFDELCMD < %%%
+\DIFdel{Companies from }%DIFDELCMD < \emph {%%%
+\DIFdel{AMADEUS}%DIFDELCMD < } %%%
+\DIFdelend \DIFaddbegin 
 
 \DIFadd{We base our study on empirical data from the }\emph{\DIFadd{AMADEUS}} \DIFadd{dataset produced by the Bureau Van Dijk (BVD) on transnational firms in Europe. }\emph{\DIFadd{AMADEUS}} \DIFadd{provides a precise location, turnover and activity codes for owners and owned companies in all sectors in Europe. The Bureau Van Dick gathers, homogenises and completes the information on these firms from national sources, publications of consultancies and audit firms such as KPMG, Deloitte, PricewaterhouseCoopers (PwC), Ernst \& Young (EY), Mazars, and those of other financial organisations such as Moody's, Fitch, Standard \& Poor's, Thomson Reuters or Duns and Bradstreet. A representativity study shows that }\emph{\DIFadd{ORBIS}} \DIFadd{--the Bureau Van Dijk's dataset for firms at the worldwide scale--, captures around 10 percent of existing foreign direct investments in 2011 in Poland \mbox{%DIFAUXCMD
 \cite{Zdanowska2018}}\hspace{0pt}%DIFAUXCMD
 . \mbox{%DIFAUXCMD
 \cite{bajgar2020coverage} }\hspace{0pt}%DIFAUXCMD
-find that the coverage of }\DIFaddend the \DIFdelbegin \DIFdel{sector structure of cities does not evolve within the model}\DIFdelend \DIFaddbegin \emph{\DIFadd{ORBIS}} \DIFadd{database on OECD countries is a representative sample, but with a better performance on larger firms. As we aggregate company turnovers on urban areas in our analysis, we thus do not expect much representativity bias in the inter-urban network}\DIFaddend .
+find that the coverage of the }\emph{\DIFadd{ORBIS}} \DIFadd{database on OECD countries is a representative sample, but with a better performance on larger firms. As we aggregate company turnovers on urban areas in our analysis, we thus do not expect much representativity bias in the inter-urban network.
+}
 
-\DIFdelbegin \subsection*{\DIFdel{Empirical data}}
-%DIFAUXCMD
-%DIFDELCMD < 
-
-%DIFDELCMD < %%%
-\DIFdel{Companies from }%DIFDELCMD < \emph {%%%
-\DIFdel{AMADEUS}%DIFDELCMD < } %%%
-\DIFdelend \DIFaddbegin \DIFadd{Companies from }\emph{\DIFadd{AMADEUS}} \DIFaddend are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the Global Human Settlement dataset GHS-FUA for Functional Urban Areas \cite{Florczyk2019ghs} -- which delineate the commuting areas for urban centres. Starting from a firm-level dataset of 1,562,862 nodes and 1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. The weight of links is obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} p_{kl} \cdot T_l$ where $p_{kl}$ is the ownership share of company $l$ by company $k$ and $T_l$ is the turnover of company $l$. Node attributes include the economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with the GDP of the area-level included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$). \DIFdelbegin \DIFdel{We then expect to capture size effects while keeping the consistence of a single main data source. }\DIFdelend Another attribute of the nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the four digits of the NACE classification in the raw data \cite{EUROSTAT2008}. We consider the first level classification (21 categories) and compute sector proportions accordingly. This allows us to define an industrial proximity matrix between urban areas, taking a cosine similarity between vectors as $s_{ij} = \sum_{k=1}^{K} S_{ik}\cdot S_{jk}$ where $S_{ik}$ are sector proportions.
+\DIFadd{Companies from }\emph{\DIFadd{AMADEUS}} \DIFaddend are georeferenced using the Geonames database (using postcode or address depending on the information available). We then join this data with the Global Human Settlement dataset GHS-FUA for Functional Urban Areas \cite{Florczyk2019ghs} -- which delineate the commuting areas for urban centres. Starting from a firm-level dataset of 1,562,862 nodes and 1,866,936 links, we obtain a directed network of 573 urban areas and 9323 ownership links. The weight of links is obtained by computing the owned share of turnover at destination, i.e. $w_{ij} = \sum_{k \in i,l \in j} p_{kl} \cdot T_l$ where $p_{kl}$ is the ownership share of company $l$ by company $k$ and $T_l$ is the turnover of company $l$. Node attributes include the economic size of urban areas, that we compute as the sum of turnovers of companies within the area. This quantity is highly correlated with the GDP of the area-level included in the GHS database (Spearman correlation $\rho = 0.71$) and also with population ($\rho = 0.60$). \DIFdelbegin \DIFdel{We then expect to capture size effects while keeping the consistence of a single main data source. }\DIFdelend Another attribute of the nodes is the industrial sector composition, expressed as a proportion of turnover in the area associated to a given industrial sector. Detailed sectors of firms are available up to the four digits of the NACE classification in the raw data \cite{EUROSTAT2008}. We consider the first level classification (21 categories) and compute sector proportions accordingly. This allows us to define an industrial proximity matrix between urban areas, taking a cosine similarity between vectors as $s_{ij} = \sum_{k=1}^{K} S_{ik}\cdot S_{jk}$ where $S_{ik}$ are sector proportions.
 
 The urban network \DIFaddbegin \DIFadd{is sparse with a density of around $0.028$. It }\DIFaddend has heavy tail weighted degree and edge weight distributions, as shown in Fig.~\ref{fig:nwdist}. We fit power law and log-normal distributions, including minimal value cutoff following \cite{clauset2009power}, using the \texttt{powerlaw} R package \cite{powerlawpackage}. For both, log-normal distributions appear to be a better fit ($\mu=18.8$, $\sigma=2.3$ for weighted degree; $\mu=13.8$, $\sigma=2.8$ for edge weight), and include a much broader range of empirical distributions with lower estimated cut-offs. These heavy tail properties suggest the relevance of a generative model including self-reinforcing processes, which are known to produce such distributions.
 
@@ -287,7 +288,7 @@ The urban network \DIFaddbegin \DIFadd{is sparse with a density of around $0.028
     %DIF <     \includegraphics[width=\linewidth]{figures/Fig1.png}
     %DIF < \end{center}
     \DIFaddbeginFL \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig1.png}
+        %DIF > \includegraphics[width=\linewidth]{figures/Fig1.png}
     \end{center}
     \DIFaddendFL \vspace{2cm}
     \caption{Distributions of network properties. \textit{(Left)} \DIFdelbeginFL \DIFdelFL{Cumulated }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Cumulative }\DIFaddendFL distribution for edge weight, with power law fit (red) and log-normal fit (green); \textit{(Right)} \DIFdelbeginFL \DIFdelFL{Cumulated }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Cumulative }\DIFaddendFL distribution for weighted degree.}
@@ -317,13 +318,12 @@ The communities reflect characteristic socio-cultural structures and cross-borde
 \DIFaddend %%%%%%%%%%%%%%
 \begin{figure}
     %DIF < \begin{center}
-    %DIF < \includegraphics[width=\linewidth]{figures/Fig2.png}
+    \DIFaddbeginFL \begin{center}
+    \DIFaddendFL %\includegraphics[width=\linewidth]{figures/Fig2.png}
     %DIF < \end{center}
     \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \begin{center}
-    \includegraphics[width=\linewidth]{figures/Fig2.png}
-    \end{center}
+\DIFdelendFL \DIFaddbeginFL \end{center}
     \DIFaddendFL \caption{{\bf Map of network communities obtained by modularity maximisation.} \DIFaddbeginFL \DIFaddFL{We show communities with the higher modularity, obtained with the Louvain algorithm. }\DIFaddendFL The area of circles gives the turnover within the Functional Urban Area, and \DIFdelbeginFL \DIFdelFL{color }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{colour }\DIFaddendFL the community it belongs to. Urban Areas in communities of size smaller than 3 were not \DIFdelbeginFL \DIFdelFL{colored }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{coloured }\DIFaddendFL for readability. \DIFaddbeginFL \DIFaddFL{Made with Natural Earth Data \mbox{%DIFAUXCMD
 \cite{naturalearth}}\hspace{0pt}%DIFAUXCMD
 .}\DIFaddendFL }
@@ -408,7 +408,7 @@ The model is implemented in NetLogo, which provides a good compromise between pe
     \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD <     %%%
 \DIFdelendFL \DIFaddbeginFL \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig3.png}
+        %DIF > \includegraphics[width=\linewidth]{figures/Fig3.png}
     \end{center}
     \DIFaddendFL \caption{Example of simulated networks at $t=1500$, for a synthetic system of cities (Top row) and the European urban network (Bottom row), with a high (resp. low) gravity decay parameter for the left column (resp. right).\label{fig:fig3}}
 \end{figure}
@@ -438,7 +438,7 @@ A first numerical experiment of one-factor sampling on all Cobb-Douglas paramete
 	\DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD <     %%%
 \DIFdelendFL \DIFaddbeginFL \begin{center}
-	    \includegraphics[width=\linewidth]{figures/Fig4.png}
+	    %DIF > \includegraphics[width=\linewidth]{figures/Fig4.png}
 	\end{center}
     \DIFaddendFL \caption{(Top Left) Internationalisation index decreases exponentially with gravity decay; (Top Right) Correlation between city weighted degree and size. Both plots show a transition from a local to a global regime. (Bottom Left) Internationalisation varies linearly with sector proximity $\gamma_S$; (Bottom Right) \DIFdelbeginFL \DIFdelFL{Correlation between degree and size }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{Metropolisation }\DIFaddendFL exhibits a maximum \DIFaddbeginFL \DIFaddFL{at $\gamma_S \simeq 1.2$}\DIFaddendFL , \DIFdelbeginFL \DIFdelFL{witnessing }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{suggesting }\DIFaddendFL an intermediate regime where \DIFdelbeginFL \DIFdelFL{size is the most important}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{specialisation has more influence}\DIFaddendFL . \label{fig:fig4}}
 \end{figure}
@@ -453,11 +453,10 @@ The model behaviour is then studied with a grid sampling for parameters and 20 r
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    %DIF < \includegraphics[width=\linewidth]{figures/Fig5.png}
+    %\includegraphics[width=\linewidth]{figures/Fig5.png}
     \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD <     %%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\linewidth]{figures/Fig5.png}
-    \DIFaddendFL \caption{The transition as a function of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL interaction range depends on the influence of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL origin size $\gamma_O$; \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:fig5}}
+\DIFdelendFL \caption{The transition as a function of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL interaction range depends on the influence of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL origin size $\gamma_O$; \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL sector proximity $\gamma_S$ plays a role only for a large influence of the origin.\label{fig:fig5}}
 \end{figure}
 %%%%%%%%%%%%%%
 
@@ -465,11 +464,10 @@ Other indicators exhibit non-trivial patterns. For example, when considering \DI
 
 %%%%%%%%%%%%%%
 \begin{figure}
-    %DIF < \includegraphics[width=\textwidth]{figures/Fig6.png}
-    \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
+    %\includegraphics[width=\textwidth]{figures/Fig6.png}
+	\DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD < 	%%%
-\DIFdelendFL \DIFaddbeginFL \includegraphics[width=\textwidth]{figures/Fig6.png}
-	\DIFaddendFL \caption{Maximal integration in terms of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL community size is achieved at an intermediate value of d$_o$: emergence of a regional regime; \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL maximal size depends on the role of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL sectors $\gamma_S$ in a decreasing way when the origin size is deactivated, and in an increasing way when $\gamma_o=1$; this regime disappears when the influence of the origin size becomes too large.\label{fig:fig6}}
+\DIFdelendFL \caption{Maximal integration in terms of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL community size is achieved at an intermediate value of d$_o$: emergence of a regional regime; \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL maximal size depends on the role of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL sectors $\gamma_S$ in a decreasing way when the origin size is deactivated, and in an increasing way when $\gamma_o=1$; this regime disappears when the influence of the origin size becomes too large.\label{fig:fig6}}
 \end{figure}
 %%%%%%%%%%%%%%
 
@@ -492,7 +490,7 @@ We run a specific experiment to study the impact of \DIFaddbegin \DIFadd{the }\D
     \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD <     %%%
 \DIFdelendFL \DIFaddbeginFL \begin{center}
-        \includegraphics[width=\linewidth]{figures/Fig7.png}
+        %DIF > \includegraphics[width=\linewidth]{figures/Fig7.png}
     \end{center}
     \DIFaddendFL \caption{\DIFdelbeginFL \textbf{\DIFdelFL{Impact of urban hierarchy.}} %DIFAUXCMD
 \DIFdelendFL \DIFaddbeginFL \textbf{\DIFaddFL{Impact of the urban hierarchy.}} \DIFaddendFL (Left) Internationalisation as a function of the initial synthetic \DIFdelbeginFL \DIFdelFL{hierarchy }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{hierarchical exponent }\DIFaddendFL $\alpha$, for different values of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL interaction range $d_0$ (\DIFdelbeginFL \DIFdelFL{color}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{colour}\DIFaddendFL ); (Right) Metropolisation as a function of $\alpha$, for different values of \DIFaddbeginFL \DIFaddFL{the }\DIFaddendFL interaction range $d_0$ (\DIFdelbeginFL \DIFdelFL{color}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{colour}\DIFaddendFL ).\label{fig:fig7}}
@@ -535,13 +533,12 @@ showed that these two are complementary to calibrate urban systems models.
 %%%%%%%%%%%%%%
 \begin{figure}
 	%DIF < \begin{center}
-    %DIF < \includegraphics[width=0.75\linewidth]{figures/Fig8.png}
+    \DIFaddbeginFL \begin{center}
+    \DIFaddendFL %\includegraphics[width=0.75\linewidth]{figures/Fig8.png}
     %DIF < \end{center}
     \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD < 	%%%
-\DIFdelendFL \DIFaddbeginFL \begin{center}
-    \includegraphics[width=0.75\linewidth]{figures/Fig8.png}
-    \end{center}
+\DIFdelendFL \DIFaddbeginFL \end{center}
 	\DIFaddendFL \caption{\textbf{Model calibration results.} Pareto front obtained for the bi-objective model calibration for $\varepsilon_L$ and $\varepsilon_M$ objectives. $\varepsilon_L$ can be compared to the MSE of statistical models fitted above, and the generative model outperform these for several \DIFdelbeginFL \DIFdelFL{parametrizations }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{parametrisations }\DIFaddendFL (lowest MSE 5.33 for statistical models). Point size gives the number of stochastic samples and \DIFdelbeginFL \DIFdelFL{color }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{colour }\DIFaddendFL the value of $\gamma_O$.\label{fig:fig8}}
 \end{figure}
 %%%%%%%%%%%%%%
@@ -580,13 +577,12 @@ Results are shown in Fig.~\ref{fig:fig9}. We find an important impact of the sho
 \DIFdelend %%%%%%%%%%%%%%
 \begin{figure}
 	%DIF < \begin{center}
-    %DIF < \includegraphics[width=\linewidth]{figures/Fig9.png}
+    \DIFaddbeginFL \begin{center}
+    \DIFaddendFL %\includegraphics[width=\linewidth]{figures/Fig9.png}
     %DIF < \end{center}
     \DIFdelbeginFL %DIFDELCMD < \vspace{2cm}
 %DIFDELCMD < 	%%%
-\DIFdelendFL \DIFaddbeginFL \begin{center}
-    \includegraphics[width=\linewidth]{figures/Fig9.png}
-    \end{center}
+\DIFdelendFL \DIFaddbeginFL \end{center}
 	\DIFaddendFL \caption{\textbf{Application of the calibrated model to an economic shock scenario.} All plots show the trajectory of indicators (internationalisation for the top row and average community size for the bottom row) in time, for different values of interaction decay rescaling $\kappa_G$ (\DIFdelbeginFL \DIFdelFL{color}\DIFdelendFL \DIFaddbeginFL \DIFaddFL{colour}\DIFaddendFL ) and socio-economic distance rescaling $\kappa_C$ (panels). The vertical dotted red line shows the moment the economic shock is introduced and $d_0$ (respectively $c_0$) is set to $\kappa_G \cdot d_0$ (resp. $\kappa_C \cdot c_0$).\label{fig:fig9}}
 \end{figure}
 %%%%%%%%%%%%%%
