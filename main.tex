@@ -109,6 +109,7 @@ In the synthetic experiments, the network is generated from an initial complete 
 \paragraph{Real setup}
 
 The real setup is done using the empirical network of ownership links. Urban areas are distributed according to their positions in the actual geographical space, and economic size and sector composition attributes are used. The socio-economic distance is constructed using information from the statistical modelling, by considering fixed-effect coefficients estimated for each pair of countries. See S2 Text for more details on the construction of the socio-economic distance matrix.
+% TODO precise treatment of NAs: conditions links in some way? (-> info? anyway not used in calib)
 
 The initial network is the same than in the synthetic setup, and the real links are taken as targets for the generated network. We constrain the total volume of flows by setting $w_0 = \sum_{ij} w_{ij}^{(obs)} / t_{f}$ when the number of time steps $t_f$ is given as a parameter and $w_{ij}^{(obs)}$ are observed flows.
 
